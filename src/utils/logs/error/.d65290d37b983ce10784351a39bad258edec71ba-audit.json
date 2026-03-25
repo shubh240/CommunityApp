@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\.d65290d37b983ce10784351a39bad258edec71ba-audit.json",
+    "files": [
+        {
+            "date": 1770226043459,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-02-04.log",
+            "hash": "8c2200c668fc95ac2f4d2d1bb5e45c1ee4e1a829a5c607ff2c5209c4b50506e3"
+        },
+        {
+            "date": 1774283119472,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-03-23.log",
+            "hash": "56d395166f8f5f6a431d1fb372e420e4615b3a99445c8e87160cc7b5ce4f1c96"
+        },
+        {
+            "date": 1774367046547,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-03-24.log",
+            "hash": "021554d8f6aba01b92586a2e2ba46e9e8e1203d55ac3fcc2ea52bbf57c3de0d6"
+        },
+        {
+            "date": 1774453208016,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-03-25.log",
+            "hash": "a3e9402bc4275a2c6c637f72f96ba042f6e692ee6f83e2f7991975c609930c6f"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,344 @@
+2025-12-29 20:59:34 info: =================================
+2025-12-29 20:59:34 info: ======= ENV: development ========
+2025-12-29 20:59:34 info: 🚀 App listening on the port 5000
+2025-12-29 20:59:34 info: =================================
+2025-12-29 20:59:34 info: MongoDB connected successfully
+2025-12-29 21:04:05 info: =================================
+2025-12-29 21:04:05 info: ======= ENV: development ========
+2025-12-29 21:04:05 info: 🚀 App listening on the port 5000
+2025-12-29 21:04:05 info: =================================
+2025-12-29 21:04:05 info: MongoDB connected successfully
+2025-12-29 21:05:40 info: =================================
+2025-12-29 21:05:40 info: ======= ENV: development ========
+2025-12-29 21:05:40 info: 🚀 App listening on the port 5000
+2025-12-29 21:05:40 info: =================================
+2025-12-29 21:05:40 info: MongoDB connected successfully
+2025-12-29 21:27:41 info: ::1 - - [29/Dec/2025:15:57:40 +0000] "POST /api/v1v1/auth/send-otp HTTP/1.1" 404 162 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:27:53 info: ::1 - - [29/Dec/2025:15:57:53 +0000] "POST /api/v1/auth/send-otp HTTP/1.1" 404 160 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:28:09 info: ::1 - - [29/Dec/2025:15:58:09 +0000] "POST /api/v1auth/send-otp HTTP/1.1" 404 159 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:28:21 info: ::1 - - [29/Dec/2025:15:58:21 +0000] "POST /api/v1/auth/send-otp HTTP/1.1" 404 160 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:28:32 info: ::1 - - [29/Dec/2025:15:58:32 +0000] "POST /api/auth/send-otp HTTP/1.1" 404 157 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:28:54 info: ::1 - - [29/Dec/2025:15:58:54 +0000] "POST /api/user/auth/send-otp HTTP/1.1" 404 162 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:30:56 info: =================================
+2025-12-29 21:30:56 info: ======= ENV: development ========
+2025-12-29 21:30:56 info: 🚀 App listening on the port 5000
+2025-12-29 21:30:56 info: =================================
+2025-12-29 21:30:56 info: MongoDB connected successfully
+2025-12-29 21:31:09 info: =================================
+2025-12-29 21:31:09 info: ======= ENV: development ========
+2025-12-29 21:31:09 info: 🚀 App listening on the port 5000
+2025-12-29 21:31:09 info: =================================
+2025-12-29 21:31:09 info: MongoDB connected successfully
+2025-12-29 21:32:49 info: =================================
+2025-12-29 21:32:49 info: ======= ENV: development ========
+2025-12-29 21:32:49 info: 🚀 App listening on the port 5000
+2025-12-29 21:32:49 info: =================================
+2025-12-29 21:32:49 info: MongoDB connected successfully
+2025-12-29 21:35:44 info: =================================
+2025-12-29 21:35:44 info: ======= ENV: development ========
+2025-12-29 21:35:44 info: 🚀 App listening on the port 5000
+2025-12-29 21:35:44 info: =================================
+2025-12-29 21:35:44 info: MongoDB connected successfully
+2025-12-29 21:36:53 info: =================================
+2025-12-29 21:36:53 info: ======= ENV: development ========
+2025-12-29 21:36:53 info: 🚀 App listening on the port 5000
+2025-12-29 21:36:53 info: =================================
+2025-12-29 21:36:53 info: MongoDB connected successfully
+2025-12-29 21:37:36 info: =================================
+2025-12-29 21:37:36 info: ======= ENV: development ========
+2025-12-29 21:37:36 info: 🚀 App listening on the port 5000
+2025-12-29 21:37:36 info: =================================
+2025-12-29 21:37:36 info: MongoDB connected successfully
+2025-12-29 21:38:01 info: ::1 - - [29/Dec/2025:16:08:01 +0000] "POST /api/v1user/auth/sendOtp HTTP/1.1" 404 163 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:38:24 info: ::1 - - [29/Dec/2025:16:08:24 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 404 164 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:40:41 info: =================================
+2025-12-29 21:40:41 info: ======= ENV: development ========
+2025-12-29 21:40:41 info: 🚀 App listening on the port 5000
+2025-12-29 21:40:41 info: =================================
+2025-12-29 21:40:41 info: MongoDB connected successfully
+2025-12-29 21:40:50 info: ::1 - - [29/Dec/2025:16:10:50 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 85 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:42:14 info: =================================
+2025-12-29 21:42:14 info: ======= ENV: development ========
+2025-12-29 21:42:14 info: 🚀 App listening on the port 5000
+2025-12-29 21:42:14 info: =================================
+2025-12-29 21:42:14 info: MongoDB connected successfully
+2025-12-29 21:42:51 info: ::1 - - [29/Dec/2025:16:12:51 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 85 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:45:57 info: =================================
+2025-12-29 21:45:57 info: ======= ENV: development ========
+2025-12-29 21:45:57 info: 🚀 App listening on the port 5000
+2025-12-29 21:45:57 info: =================================
+2025-12-29 21:45:57 info: MongoDB connected successfully
+2025-12-29 21:46:04 info: ::1 - - [29/Dec/2025:16:16:04 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 79 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:48:56 info: =================================
+2025-12-29 21:48:56 info: ======= ENV: development ========
+2025-12-29 21:48:56 info: 🚀 App listening on the port 5000
+2025-12-29 21:48:56 info: =================================
+2025-12-29 21:48:56 info: MongoDB connected successfully
+2025-12-29 21:49:45 info: =================================
+2025-12-29 21:49:45 info: ======= ENV: development ========
+2025-12-29 21:49:45 info: 🚀 App listening on the port 5000
+2025-12-29 21:49:45 info: =================================
+2025-12-29 21:49:45 info: MongoDB connected successfully
+2025-12-29 21:49:53 info: ::1 - - [29/Dec/2025:16:19:53 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 500 753 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:52:28 info: =================================
+2025-12-29 21:52:28 info: ======= ENV: development ========
+2025-12-29 21:52:28 info: 🚀 App listening on the port 5000
+2025-12-29 21:52:28 info: =================================
+2025-12-29 21:52:28 info: MongoDB connected successfully
+2025-12-29 21:52:36 info: ::1 - - [29/Dec/2025:16:22:36 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 87 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:52:56 info: ::1 - - [29/Dec/2025:16:22:56 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 87 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:53:02 info: ::1 - - [29/Dec/2025:16:23:02 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 87 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:53:31 info: ::1 - - [29/Dec/2025:16:23:31 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 97 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:55:31 info: =================================
+2025-12-29 21:55:31 info: ======= ENV: development ========
+2025-12-29 21:55:31 info: 🚀 App listening on the port 5000
+2025-12-29 21:55:31 info: =================================
+2025-12-29 21:55:31 info: MongoDB connected successfully
+2025-12-29 21:56:47 info: ::1 - - [29/Dec/2025:16:26:47 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 97 "-" "PostmanRuntime/7.44.1"
+2025-12-29 21:58:05 info: =================================
+2025-12-29 21:58:05 info: ======= ENV: development ========
+2025-12-29 21:58:05 info: 🚀 App listening on the port 5000
+2025-12-29 21:58:05 info: =================================
+2025-12-29 21:58:05 info: MongoDB connected successfully
+2025-12-29 22:00:58 info: =================================
+2025-12-29 22:00:58 info: ======= ENV: development ========
+2025-12-29 22:00:58 info: 🚀 App listening on the port 5000
+2025-12-29 22:00:58 info: =================================
+2025-12-29 22:00:58 info: MongoDB connected successfully
+2025-12-29 22:01:57 info: =================================
+2025-12-29 22:01:57 info: ======= ENV: development ========
+2025-12-29 22:01:57 info: 🚀 App listening on the port 5000
+2025-12-29 22:01:57 info: =================================
+2025-12-29 22:01:57 info: MongoDB connected successfully
+2025-12-29 22:02:05 info: =================================
+2025-12-29 22:02:05 info: ======= ENV: development ========
+2025-12-29 22:02:05 info: 🚀 App listening on the port 5000
+2025-12-29 22:02:05 info: =================================
+2025-12-29 22:02:05 info: MongoDB connected successfully
+2025-12-29 22:06:25 info: =================================
+2025-12-29 22:06:25 info: ======= ENV: development ========
+2025-12-29 22:06:25 info: 🚀 App listening on the port 5000
+2025-12-29 22:06:25 info: =================================
+2025-12-29 22:06:25 info: MongoDB connected successfully
+2025-12-29 22:06:33 info: ::1 - - [29/Dec/2025:16:36:33 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 97 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:06:53 info: ::1 - - [29/Dec/2025:16:36:53 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 97 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:07:36 info: =================================
+2025-12-29 22:07:36 info: ======= ENV: development ========
+2025-12-29 22:07:36 info: 🚀 App listening on the port 5000
+2025-12-29 22:07:36 info: =================================
+2025-12-29 22:07:36 info: MongoDB connected successfully
+2025-12-29 22:08:11 info: =================================
+2025-12-29 22:08:11 info: ======= ENV: development ========
+2025-12-29 22:08:11 info: 🚀 App listening on the port 5000
+2025-12-29 22:08:11 info: =================================
+2025-12-29 22:08:11 info: MongoDB connected successfully
+2025-12-29 22:08:39 info: ::1 - - [29/Dec/2025:16:38:39 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 97 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:12:07 info: =================================
+2025-12-29 22:12:07 info: ======= ENV: development ========
+2025-12-29 22:12:07 info: 🚀 App listening on the port 5000
+2025-12-29 22:12:07 info: =================================
+2025-12-29 22:12:07 info: MongoDB connected successfully
+2025-12-29 22:13:48 info: =================================
+2025-12-29 22:13:48 info: ======= ENV: development ========
+2025-12-29 22:13:48 info: 🚀 App listening on the port 5000
+2025-12-29 22:13:48 info: =================================
+2025-12-29 22:13:48 info: MongoDB connected successfully
+2025-12-29 22:15:41 info: =================================
+2025-12-29 22:15:41 info: ======= ENV: development ========
+2025-12-29 22:15:41 info: 🚀 App listening on the port 5000
+2025-12-29 22:15:41 info: =================================
+2025-12-29 22:15:41 info: MongoDB connected successfully
+2025-12-29 22:15:58 info: ::1 - - [29/Dec/2025:16:45:58 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 92 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:16:11 info: ::1 - - [29/Dec/2025:16:46:11 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 400 93 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:16:17 info: ::1 - - [29/Dec/2025:16:46:17 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:16:25 info: ::1 - - [29/Dec/2025:16:46:25 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:18:26 info: =================================
+2025-12-29 22:18:26 info: ======= ENV: development ========
+2025-12-29 22:18:26 info: 🚀 App listening on the port 5000
+2025-12-29 22:18:26 info: =================================
+2025-12-29 22:18:26 info: MongoDB connected successfully
+2025-12-29 22:19:39 info: =================================
+2025-12-29 22:19:39 info: ======= ENV: development ========
+2025-12-29 22:19:39 info: 🚀 App listening on the port 5000
+2025-12-29 22:19:39 info: =================================
+2025-12-29 22:19:39 info: MongoDB connected successfully
+2025-12-29 22:20:06 info: =================================
+2025-12-29 22:20:06 info: ======= ENV: development ========
+2025-12-29 22:20:06 info: 🚀 App listening on the port 5000
+2025-12-29 22:20:06 info: =================================
+2025-12-29 22:20:06 info: MongoDB connected successfully
+2025-12-29 22:20:31 info: =================================
+2025-12-29 22:20:31 info: ======= ENV: development ========
+2025-12-29 22:20:31 info: 🚀 App listening on the port 5000
+2025-12-29 22:20:31 info: =================================
+2025-12-29 22:20:31 info: MongoDB connected successfully
+2025-12-29 22:21:00 info: =================================
+2025-12-29 22:21:00 info: ======= ENV: development ========
+2025-12-29 22:21:00 info: 🚀 App listening on the port 5000
+2025-12-29 22:21:00 info: =================================
+2025-12-29 22:21:00 info: MongoDB connected successfully
+2025-12-29 22:21:49 info: =================================
+2025-12-29 22:21:49 info: ======= ENV: development ========
+2025-12-29 22:21:49 info: 🚀 App listening on the port 5000
+2025-12-29 22:21:49 info: =================================
+2025-12-29 22:21:49 info: MongoDB connected successfully
+2025-12-29 22:25:25 info: =================================
+2025-12-29 22:25:25 info: ======= ENV: development ========
+2025-12-29 22:25:25 info: 🚀 App listening on the port 5000
+2025-12-29 22:25:25 info: =================================
+2025-12-29 22:25:25 info: MongoDB connected successfully
+2025-12-29 22:26:43 info: =================================
+2025-12-29 22:26:43 info: ======= ENV: development ========
+2025-12-29 22:26:43 info: 🚀 App listening on the port 5000
+2025-12-29 22:26:43 info: =================================
+2025-12-29 22:26:43 info: MongoDB connected successfully
+2025-12-29 22:27:02 info: =================================
+2025-12-29 22:27:02 info: ======= ENV: development ========
+2025-12-29 22:27:02 info: 🚀 App listening on the port 5000
+2025-12-29 22:27:02 info: =================================
+2025-12-29 22:27:02 info: MongoDB connected successfully
+2025-12-29 22:27:38 info: =================================
+2025-12-29 22:27:38 info: ======= ENV: development ========
+2025-12-29 22:27:38 info: 🚀 App listening on the port 5000
+2025-12-29 22:27:38 info: =================================
+2025-12-29 22:27:38 info: MongoDB connected successfully
+2025-12-29 22:30:49 info: =================================
+2025-12-29 22:30:49 info: ======= ENV: development ========
+2025-12-29 22:30:49 info: 🚀 App listening on the port 5000
+2025-12-29 22:30:49 info: =================================
+2025-12-29 22:30:49 info: MongoDB connected successfully
+2025-12-29 22:31:06 info: =================================
+2025-12-29 22:31:06 info: ======= ENV: development ========
+2025-12-29 22:31:06 info: 🚀 App listening on the port 5000
+2025-12-29 22:31:06 info: =================================
+2025-12-29 22:31:06 info: MongoDB connected successfully
+2025-12-29 22:31:13 info: =================================
+2025-12-29 22:31:13 info: ======= ENV: development ========
+2025-12-29 22:31:13 info: 🚀 App listening on the port 5000
+2025-12-29 22:31:13 info: =================================
+2025-12-29 22:31:13 info: MongoDB connected successfully
+2025-12-29 22:44:39 info: =================================
+2025-12-29 22:44:39 info: ======= ENV: development ========
+2025-12-29 22:44:39 info: 🚀 App listening on the port 5000
+2025-12-29 22:44:39 info: =================================
+2025-12-29 22:44:39 info: MongoDB connected successfully
+2025-12-29 22:45:05 info: =================================
+2025-12-29 22:45:05 info: ======= ENV: development ========
+2025-12-29 22:45:05 info: 🚀 App listening on the port 5000
+2025-12-29 22:45:05 info: =================================
+2025-12-29 22:45:06 info: MongoDB connected successfully
+2025-12-29 22:45:50 info: =================================
+2025-12-29 22:45:50 info: ======= ENV: development ========
+2025-12-29 22:45:50 info: 🚀 App listening on the port 5000
+2025-12-29 22:45:50 info: =================================
+2025-12-29 22:45:50 info: MongoDB connected successfully
+2025-12-29 22:46:51 info: =================================
+2025-12-29 22:46:51 info: ======= ENV: development ========
+2025-12-29 22:46:51 info: 🚀 App listening on the port 5000
+2025-12-29 22:46:51 info: =================================
+2025-12-29 22:46:51 info: MongoDB connected successfully
+2025-12-29 22:47:06 info: =================================
+2025-12-29 22:47:06 info: ======= ENV: development ========
+2025-12-29 22:47:06 info: 🚀 App listening on the port 5000
+2025-12-29 22:47:06 info: =================================
+2025-12-29 22:47:06 info: MongoDB connected successfully
+2025-12-29 22:47:15 info: ::1 - - [29/Dec/2025:17:17:15 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:47:28 info: ::1 - - [29/Dec/2025:17:17:28 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:47:56 info: ::1 - - [29/Dec/2025:17:17:56 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 132 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:48:22 info: ::1 - - [29/Dec/2025:17:18:22 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 105 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:50:04 info: ::1 - - [29/Dec/2025:17:20:04 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 82 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:50:16 info: ::1 - - [29/Dec/2025:17:20:16 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 500 431 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:50:31 info: ::1 - - [29/Dec/2025:17:20:31 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 500 403 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:52:57 info: =================================
+2025-12-29 22:52:57 info: ======= ENV: development ========
+2025-12-29 22:52:57 info: 🚀 App listening on the port 5000
+2025-12-29 22:52:57 info: =================================
+2025-12-29 22:52:57 info: MongoDB connected successfully
+2025-12-29 22:53:29 info: =================================
+2025-12-29 22:53:29 info: ======= ENV: development ========
+2025-12-29 22:53:29 info: 🚀 App listening on the port 5000
+2025-12-29 22:53:29 info: =================================
+2025-12-29 22:53:29 info: MongoDB connected successfully
+2025-12-29 22:55:31 info: =================================
+2025-12-29 22:55:31 info: ======= ENV: development ========
+2025-12-29 22:55:31 info: 🚀 App listening on the port 5000
+2025-12-29 22:55:31 info: =================================
+2025-12-29 22:55:31 info: MongoDB connected successfully
+2025-12-29 22:55:48 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 22:55:48 info: ::1 - - [29/Dec/2025:17:25:48 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:56:57 info: =================================
+2025-12-29 22:56:57 info: ======= ENV: development ========
+2025-12-29 22:56:57 info: 🚀 App listening on the port 5000
+2025-12-29 22:56:57 info: =================================
+2025-12-29 22:56:57 info: MongoDB connected successfully
+2025-12-29 22:57:06 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: Invalid OTP.
+2025-12-29 22:57:06 info: ::1 - - [29/Dec/2025:17:27:06 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 72 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:57:13 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 22:57:13 info: ::1 - - [29/Dec/2025:17:27:13 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 22:57:41 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 22:57:41 info: ::1 - - [29/Dec/2025:17:27:41 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:00:42 info: =================================
+2025-12-29 23:00:42 info: ======= ENV: development ========
+2025-12-29 23:00:42 info: 🚀 App listening on the port 5000
+2025-12-29 23:00:42 info: =================================
+2025-12-29 23:00:42 info: MongoDB connected successfully
+2025-12-29 23:01:14 info: =================================
+2025-12-29 23:01:14 info: ======= ENV: development ========
+2025-12-29 23:01:14 info: 🚀 App listening on the port 5000
+2025-12-29 23:01:14 info: =================================
+2025-12-29 23:01:14 info: MongoDB connected successfully
+2025-12-29 23:01:20 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:01:20 info: ::1 - - [29/Dec/2025:17:31:20 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:03:28 info: =================================
+2025-12-29 23:03:28 info: ======= ENV: development ========
+2025-12-29 23:03:28 info: 🚀 App listening on the port 5000
+2025-12-29 23:03:28 info: =================================
+2025-12-29 23:03:28 info: MongoDB connected successfully
+2025-12-29 23:03:56 info: =================================
+2025-12-29 23:03:56 info: ======= ENV: development ========
+2025-12-29 23:03:56 info: 🚀 App listening on the port 5000
+2025-12-29 23:03:56 info: =================================
+2025-12-29 23:03:56 info: MongoDB connected successfully
+2025-12-29 23:04:11 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:04:11 info: ::1 - - [29/Dec/2025:17:34:11 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:05:53 info: =================================
+2025-12-29 23:05:53 info: ======= ENV: development ========
+2025-12-29 23:05:53 info: 🚀 App listening on the port 5000
+2025-12-29 23:05:53 info: =================================
+2025-12-29 23:05:53 info: MongoDB connected successfully
+2025-12-29 23:06:05 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:06:05 info: ::1 - - [29/Dec/2025:17:36:05 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:06:16 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:06:16 info: ::1 - - [29/Dec/2025:17:36:16 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:08:06 info: =================================
+2025-12-29 23:08:06 info: ======= ENV: development ========
+2025-12-29 23:08:06 info: 🚀 App listening on the port 5000
+2025-12-29 23:08:07 info: =================================
+2025-12-29 23:08:07 info: MongoDB connected successfully
+2025-12-29 23:08:23 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:08:23 info: ::1 - - [29/Dec/2025:17:38:23 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:08:32 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:08:32 info: ::1 - - [29/Dec/2025:17:38:32 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:09:46 info: ::1 - - [29/Dec/2025:17:39:46 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:09:57 info: ::1 - - [29/Dec/2025:17:39:57 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 544 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:10:56 info: =================================
+2025-12-29 23:10:56 info: ======= ENV: development ========
+2025-12-29 23:10:56 info: 🚀 App listening on the port 5000
+2025-12-29 23:10:56 info: =================================
+2025-12-29 23:10:56 info: MongoDB connected successfully
+2025-12-29 23:11:14 info: ::1 - - [29/Dec/2025:17:41:14 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:12:25 info: =================================
+2025-12-29 23:12:25 info: ======= ENV: development ========
+2025-12-29 23:12:25 info: 🚀 App listening on the port 5000
+2025-12-29 23:12:25 info: =================================
+2025-12-29 23:12:26 info: MongoDB connected successfully
+2025-12-29 23:12:28 info: ::1 - - [29/Dec/2025:17:42:28 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:16:24 info: =================================
+2025-12-29 23:16:24 info: ======= ENV: development ========
+2025-12-29 23:16:24 info: 🚀 App listening on the port 5000
+2025-12-29 23:16:24 info: =================================
+2025-12-29 23:16:24 info: MongoDB connected successfully
+2025-12-29 23:17:02 info: ::1 - - [29/Dec/2025:17:47:02 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:17:18 info: ::1 - - [29/Dec/2025:17:47:18 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:17:39 info: ::1 - - [29/Dec/2025:17:47:39 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.44.1"
+2025-12-29 23:17:50 info: ::1 - - [29/Dec/2025:17:47:50 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.44.1"

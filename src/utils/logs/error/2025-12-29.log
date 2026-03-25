@@ -1,0 +1,10 @@
+2025-12-29 22:55:48 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 22:57:06 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: Invalid OTP.
+2025-12-29 22:57:13 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 22:57:41 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:01:20 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:04:11 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:06:05 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:06:16 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:08:23 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2025-12-29 23:08:32 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.

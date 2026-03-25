@@ -1,0 +1,32 @@
+// admin.validation.schema.ts
+import Joi from 'joi';
+
+export const adminLoginSchema = Joi.object({
+  mobile: Joi.number().required(),
+  password: Joi.string().min(6).required(),
+  deviceInfo: Joi.object({
+    deviceId: Joi.string().required(),
+    platform: Joi.string().valid('web', 'android', 'ios').required(),
+    appVersion: Joi.string().optional(),
+  }).optional(),
+});
+
+export const userUnderReviewSchema = Joi.object({
+  kycStatus : Joi.string().optional(),
+  page:Joi.number().optional(),
+  pageSize:Joi.number().optional()
+});
+
+export const reviewUserDocSchema = Joi.object({
+  userId: Joi.string().required(),
+  docId: Joi.string().required(),
+  action: Joi.string()
+    .valid("APPROVED", "REJECTED")
+    .required(),
+
+  rejectionReason: Joi.when("action", {
+    is: "REJECTED",
+    then: Joi.string().min(1).required(),
+    otherwise: Joi.forbidden()
+  })
+});

@@ -1,0 +1,232 @@
+2026-01-01 21:26:01 info: =================================
+2026-01-01 21:26:02 info: ======= ENV: development ========
+2026-01-01 21:26:02 info: 🚀 App listening on the port 5000
+2026-01-01 21:26:02 info: =================================
+2026-01-01 21:26:03 info: MongoDB connected successfully
+2026-01-01 21:27:54 info: =================================
+2026-01-01 21:27:54 info: ======= ENV: development ========
+2026-01-01 21:27:54 info: 🚀 App listening on the port 5000
+2026-01-01 21:27:54 info: =================================
+2026-01-01 21:27:54 info: MongoDB connected successfully
+2026-01-01 21:28:07 info: ::1 - - [01/Jan/2026:15:58:07 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" - - "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:28:29 info: =================================
+2026-01-01 21:28:29 info: ======= ENV: development ========
+2026-01-01 21:28:29 info: 🚀 App listening on the port 5000
+2026-01-01 21:28:29 info: =================================
+2026-01-01 21:28:29 info: MongoDB connected successfully
+2026-01-01 21:29:30 info: ::1 - - [01/Jan/2026:15:59:30 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 500 447 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:29:41 info: ::1 - - [01/Jan/2026:15:59:41 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:29:51 info: ::1 - - [01/Jan/2026:15:59:51 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:30:01 info: ::1 - - [01/Jan/2026:16:00:01 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" - - "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:32:26 info: =================================
+2026-01-01 21:32:26 info: ======= ENV: development ========
+2026-01-01 21:32:26 info: 🚀 App listening on the port 5000
+2026-01-01 21:32:26 info: =================================
+2026-01-01 21:32:26 info: MongoDB connected successfully
+2026-01-01 21:32:46 info: =================================
+2026-01-01 21:32:46 info: ======= ENV: development ========
+2026-01-01 21:32:46 info: 🚀 App listening on the port 5000
+2026-01-01 21:32:46 info: =================================
+2026-01-01 21:32:46 info: MongoDB connected successfully
+2026-01-01 21:35:08 info: =================================
+2026-01-01 21:35:08 info: ======= ENV: development ========
+2026-01-01 21:35:08 info: 🚀 App listening on the port 5000
+2026-01-01 21:35:08 info: =================================
+2026-01-01 21:35:08 info: MongoDB connected successfully
+2026-01-01 21:35:55 info: =================================
+2026-01-01 21:35:55 info: ======= ENV: development ========
+2026-01-01 21:35:55 info: 🚀 App listening on the port 5000
+2026-01-01 21:35:55 info: =================================
+2026-01-01 21:35:56 info: MongoDB connected successfully
+2026-01-01 21:36:43 info: =================================
+2026-01-01 21:36:43 info: ======= ENV: development ========
+2026-01-01 21:36:43 info: 🚀 App listening on the port 5000
+2026-01-01 21:36:43 info: =================================
+2026-01-01 21:36:43 info: MongoDB connected successfully
+2026-01-01 21:36:49 info: ::1 - - [01/Jan/2026:16:06:49 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:38:06 info: =================================
+2026-01-01 21:38:06 info: ======= ENV: development ========
+2026-01-01 21:38:06 info: 🚀 App listening on the port 5000
+2026-01-01 21:38:06 info: =================================
+2026-01-01 21:38:06 info: MongoDB connected successfully
+2026-01-01 21:38:31 info: =================================
+2026-01-01 21:38:31 info: ======= ENV: development ========
+2026-01-01 21:38:31 info: 🚀 App listening on the port 5000
+2026-01-01 21:38:31 info: =================================
+2026-01-01 21:38:31 info: MongoDB connected successfully
+2026-01-01 21:39:15 info: ::1 - - [01/Jan/2026:16:09:15 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:40:56 info: ::1 - - [01/Jan/2026:16:10:56 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" - - "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:41:35 info: =================================
+2026-01-01 21:41:35 info: ======= ENV: development ========
+2026-01-01 21:41:35 info: 🚀 App listening on the port 5000
+2026-01-01 21:41:35 info: =================================
+2026-01-01 21:41:35 info: MongoDB connected successfully
+2026-01-01 21:41:52 info: ::1 - - [01/Jan/2026:16:11:52 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" - - "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:42:39 info: =================================
+2026-01-01 21:42:39 info: ======= ENV: development ========
+2026-01-01 21:42:39 info: 🚀 App listening on the port 5000
+2026-01-01 21:42:39 info: =================================
+2026-01-01 21:42:39 info: MongoDB connected successfully
+2026-01-01 21:47:22 info: =================================
+2026-01-01 21:47:22 info: ======= ENV: development ========
+2026-01-01 21:47:22 info: 🚀 App listening on the port 5000
+2026-01-01 21:47:22 info: =================================
+2026-01-01 21:47:22 info: MongoDB connected successfully
+2026-01-01 21:48:17 info: =================================
+2026-01-01 21:48:17 info: ======= ENV: development ========
+2026-01-01 21:48:17 info: 🚀 App listening on the port 5000
+2026-01-01 21:48:17 info: =================================
+2026-01-01 21:48:17 info: MongoDB connected successfully
+2026-01-01 21:48:33 info: =================================
+2026-01-01 21:48:33 info: ======= ENV: development ========
+2026-01-01 21:48:33 info: 🚀 App listening on the port 5000
+2026-01-01 21:48:33 info: =================================
+2026-01-01 21:48:33 info: MongoDB connected successfully
+2026-01-01 21:49:34 info: =================================
+2026-01-01 21:49:34 info: ======= ENV: development ========
+2026-01-01 21:49:34 info: 🚀 App listening on the port 5000
+2026-01-01 21:49:34 info: =================================
+2026-01-01 21:49:34 info: MongoDB connected successfully
+2026-01-01 21:49:52 info: =================================
+2026-01-01 21:49:52 info: ======= ENV: development ========
+2026-01-01 21:49:52 info: 🚀 App listening on the port 5000
+2026-01-01 21:49:52 info: =================================
+2026-01-01 21:49:52 info: MongoDB connected successfully
+2026-01-01 21:50:25 info: =================================
+2026-01-01 21:50:25 info: ======= ENV: development ========
+2026-01-01 21:50:25 info: 🚀 App listening on the port 5000
+2026-01-01 21:50:25 info: =================================
+2026-01-01 21:50:25 info: MongoDB connected successfully
+2026-01-01 21:50:32 error: [POST] /api/v1/user/completeProfile >> StatusCode:: 401, Message:: Token expired, try again
+2026-01-01 21:50:32 info: ::1 - - [01/Jan/2026:16:20:32 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 401 84 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:51:37 info: ::1 - - [01/Jan/2026:16:21:37 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 400 113 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:52:09 info: ::1 - - [01/Jan/2026:16:22:09 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 200 186 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:53:05 info: =================================
+2026-01-01 21:53:05 info: ======= ENV: development ========
+2026-01-01 21:53:05 info: 🚀 App listening on the port 5000
+2026-01-01 21:53:06 info: =================================
+2026-01-01 21:53:06 info: MongoDB connected successfully
+2026-01-01 21:53:36 info: =================================
+2026-01-01 21:53:36 info: ======= ENV: development ========
+2026-01-01 21:53:36 info: 🚀 App listening on the port 5000
+2026-01-01 21:53:36 info: =================================
+2026-01-01 21:53:36 info: MongoDB connected successfully
+2026-01-01 21:54:20 info: ::1 - - [01/Jan/2026:16:24:20 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:54:32 info: ::1 - - [01/Jan/2026:16:24:32 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 531 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:55:10 info: ::1 - - [01/Jan/2026:16:25:10 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 401 86 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:55:38 info: ::1 - - [01/Jan/2026:16:25:38 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 401 86 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:55:46 info: ::1 - - [01/Jan/2026:16:25:46 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 400 83 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:56:03 info: ::1 - - [01/Jan/2026:16:26:03 +0000] "POST /api/v1/user/completeProfile HTTP/1.1" 200 186 "-" "PostmanRuntime/7.51.0"
+2026-01-01 21:57:21 info: =================================
+2026-01-01 21:57:21 info: ======= ENV: development ========
+2026-01-01 21:57:21 info: 🚀 App listening on the port 5000
+2026-01-01 21:57:21 info: =================================
+2026-01-01 21:57:21 info: MongoDB connected successfully
+2026-01-01 22:03:47 info: =================================
+2026-01-01 22:03:47 info: ======= ENV: development ========
+2026-01-01 22:03:47 info: 🚀 App listening on the port 5000
+2026-01-01 22:03:47 info: =================================
+2026-01-01 22:03:47 info: MongoDB connected successfully
+2026-01-01 22:04:39 info: =================================
+2026-01-01 22:04:39 info: ======= ENV: development ========
+2026-01-01 22:04:39 info: 🚀 App listening on the port 5000
+2026-01-01 22:04:39 info: =================================
+2026-01-01 22:04:39 info: MongoDB connected successfully
+2026-01-01 22:05:41 info: =================================
+2026-01-01 22:05:41 info: ======= ENV: development ========
+2026-01-01 22:05:41 info: 🚀 App listening on the port 5000
+2026-01-01 22:05:41 info: =================================
+2026-01-01 22:05:41 info: MongoDB connected successfully
+2026-01-01 22:06:45 info: =================================
+2026-01-01 22:06:45 info: ======= ENV: development ========
+2026-01-01 22:06:45 info: 🚀 App listening on the port 5000
+2026-01-01 22:06:45 info: =================================
+2026-01-01 22:06:45 info: MongoDB connected successfully
+2026-01-01 22:06:56 info: =================================
+2026-01-01 22:06:56 info: ======= ENV: development ========
+2026-01-01 22:06:56 info: 🚀 App listening on the port 5000
+2026-01-01 22:06:56 info: =================================
+2026-01-01 22:06:56 info: MongoDB connected successfully
+2026-01-01 22:11:31 info: ::1 - - [01/Jan/2026:16:41:31 +0000] "POST /api/v1/user/uploadAddressProof HTTP/1.1" 404 170 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:12:08 info: =================================
+2026-01-01 22:12:08 info: ======= ENV: development ========
+2026-01-01 22:12:08 info: 🚀 App listening on the port 5000
+2026-01-01 22:12:08 info: =================================
+2026-01-01 22:12:08 info: MongoDB connected successfully
+2026-01-01 22:12:54 info: =================================
+2026-01-01 22:12:54 info: ======= ENV: development ========
+2026-01-01 22:12:54 info: 🚀 App listening on the port 5000
+2026-01-01 22:12:54 info: =================================
+2026-01-01 22:12:54 info: MongoDB connected successfully
+2026-01-01 22:13:53 info: ::1 - - [01/Jan/2026:16:43:53 +0000] "POST /api/v1/user/address-proof HTTP/1.1" - - "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:14:19 info: =================================
+2026-01-01 22:14:19 info: ======= ENV: development ========
+2026-01-01 22:14:19 info: 🚀 App listening on the port 5000
+2026-01-01 22:14:19 info: =================================
+2026-01-01 22:14:19 info: MongoDB connected successfully
+2026-01-01 22:14:28 info: ::1 - - [01/Jan/2026:16:44:28 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 401 86 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:14:48 info: ::1 - - [01/Jan/2026:16:44:48 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 401 86 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:15:32 info: ::1 - - [01/Jan/2026:16:45:32 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 400 110 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:17:03 info: ::1 - - [01/Jan/2026:16:47:03 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 500 557 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:21:30 info: =================================
+2026-01-01 22:21:30 info: ======= ENV: development ========
+2026-01-01 22:21:30 info: 🚀 App listening on the port 5000
+2026-01-01 22:21:30 info: =================================
+2026-01-01 22:21:31 info: MongoDB connected successfully
+2026-01-01 22:22:18 info: =================================
+2026-01-01 22:22:18 info: ======= ENV: development ========
+2026-01-01 22:22:18 info: 🚀 App listening on the port 5000
+2026-01-01 22:22:18 info: =================================
+2026-01-01 22:22:18 info: MongoDB connected successfully
+2026-01-01 22:30:34 info: =================================
+2026-01-01 22:30:34 info: ======= ENV: development ========
+2026-01-01 22:30:34 info: 🚀 App listening on the port 5000
+2026-01-01 22:30:34 info: =================================
+2026-01-01 22:30:34 info: MongoDB connected successfully
+2026-01-01 22:32:56 info: =================================
+2026-01-01 22:32:56 info: ======= ENV: development ========
+2026-01-01 22:32:56 info: 🚀 App listening on the port 5000
+2026-01-01 22:32:56 info: =================================
+2026-01-01 22:32:56 info: MongoDB connected successfully
+2026-01-01 22:34:11 info: =================================
+2026-01-01 22:34:11 info: ======= ENV: development ========
+2026-01-01 22:34:11 info: 🚀 App listening on the port 5000
+2026-01-01 22:34:11 info: =================================
+2026-01-01 22:34:11 info: MongoDB connected successfully
+2026-01-01 22:34:22 info: ::1 - - [01/Jan/2026:17:04:22 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 200 470 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:39:46 info: =================================
+2026-01-01 22:39:46 info: ======= ENV: development ========
+2026-01-01 22:39:46 info: 🚀 App listening on the port 5000
+2026-01-01 22:39:46 info: =================================
+2026-01-01 22:39:46 info: MongoDB connected successfully
+2026-01-01 22:40:00 info: ::1 - - [01/Jan/2026:17:10:00 +0000] "POST /api/v1/user/address-proof HTTP/1.1" 200 470 "-" "PostmanRuntime/7.51.0"
+2026-01-01 22:45:52 info: =================================
+2026-01-01 22:45:52 info: ======= ENV: development ========
+2026-01-01 22:45:52 info: 🚀 App listening on the port 5000
+2026-01-01 22:45:52 info: =================================
+2026-01-01 22:45:52 info: MongoDB connected successfully
+2026-01-01 22:47:03 info: =================================
+2026-01-01 22:47:03 info: ======= ENV: development ========
+2026-01-01 22:47:03 info: 🚀 App listening on the port 5000
+2026-01-01 22:47:03 info: =================================
+2026-01-01 22:47:03 info: MongoDB connected successfully
+2026-01-01 22:47:37 info: =================================
+2026-01-01 22:47:37 info: ======= ENV: development ========
+2026-01-01 22:47:37 info: 🚀 App listening on the port 5000
+2026-01-01 22:47:37 info: =================================
+2026-01-01 22:47:37 info: MongoDB connected successfully
+2026-01-01 22:48:00 info: =================================
+2026-01-01 22:48:00 info: ======= ENV: development ========
+2026-01-01 22:48:00 info: 🚀 App listening on the port 5000
+2026-01-01 22:48:00 info: =================================
+2026-01-01 22:48:00 info: MongoDB connected successfully
+2026-01-01 22:48:48 info: =================================
+2026-01-01 22:48:48 info: ======= ENV: development ========
+2026-01-01 22:48:48 info: 🚀 App listening on the port 5000
+2026-01-01 22:48:48 info: =================================
+2026-01-01 22:48:48 info: MongoDB connected successfully
+2026-01-01 22:49:43 info: =================================
+2026-01-01 22:49:43 info: ======= ENV: development ========
+2026-01-01 22:49:43 info: 🚀 App listening on the port 5000
+2026-01-01 22:49:43 info: =================================
+2026-01-01 22:49:43 info: MongoDB connected successfully

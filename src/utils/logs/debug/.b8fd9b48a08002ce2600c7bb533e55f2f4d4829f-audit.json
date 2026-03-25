@@ -1,0 +1,60 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\.b8fd9b48a08002ce2600c7bb533e55f2f4d4829f-audit.json",
+    "files": [
+        {
+            "date": 1766733436429,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2025-12-26.log",
+            "hash": "0edb8d4e8c15dba3caa1f5c217b121f582d16e6a4adb7d0daf6e63fe6ea8e1a5"
+        },
+        {
+            "date": 1766815748347,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2025-12-27.log",
+            "hash": "50eaf6ceb07de576baf0eba6bce7612c7dea0cd8c5ef5a3cc681d73ae4b1d654"
+        },
+        {
+            "date": 1767022163052,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2025-12-29.log",
+            "hash": "03ad446d2e9d5c8fbcd3a9969311029ea9df06cedc1b7abdef35b8a217c2a6bb"
+        },
+        {
+            "date": 1767109834984,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2025-12-30.log",
+            "hash": "60e7f6dd68addf04ff41e5961a295e9933a485e05380401455a6a67e55d203f5"
+        },
+        {
+            "date": 1767282940193,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-01.log",
+            "hash": "1349c63f1df514b82320f662d678ffab0ec3cabf72cfb6ead4bbb39a4bf6b467"
+        },
+        {
+            "date": 1767716261059,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-06.log",
+            "hash": "7b714c1503913c6253f625810ec99e17092de10bbe99b05c860da2e4786c91fa"
+        },
+        {
+            "date": 1767802106670,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-07.log",
+            "hash": "74754c8275f4dc22b4e3479818cb18854c67ad5aaf9fe2ae5796f12decd0854c"
+        },
+        {
+            "date": 1767810697669,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-08.log",
+            "hash": "d623054c76ca3b19c62165ea50606ebd5e1aa321b84f6a7dc53a3bb71f0bf7d7"
+        },
+        {
+            "date": 1768027709988,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-10.log",
+            "hash": "34b16947353b28ef5b104e2c6bf9d7737fa0fe9da9ff76332c92f97a625b7ac8"
+        },
+        {
+            "date": 1769350111519,
+            "name": "G:\\Eco-System\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-01-25.log",
+            "hash": "8cd545869355f2d6a1a3530d91c9549553537043fde6adc341999f38b767a8ff"
+        }
+    ],
+    "hashType": "sha256"
+}

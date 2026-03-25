@@ -1,0 +1,41 @@
+import { Router } from 'express';
+import { Routes } from '@/interfaces/routes.interface';
+import validationMiddleware from '@/middlewares/validation.middleware';
+import { adminLoginSchema, reviewUserDocSchema, userUnderReviewSchema } from '@/validationSchema/admin.validation.schema';
+import { AdminAuthController } from '@/controllers/admin.controller';
+import AdminAuthRepo from '@/repository/admin.repository';
+import { adminAuthMiddleware } from '@/middlewares/adminAuth.middleware';
+
+class AdminAuthRoute implements Routes {
+  public path = '/admin';
+  public router = Router();
+  public controller = new AdminAuthController(new AdminAuthRepo());
+
+  constructor() {
+    this.initializeRoutes();
+  }
+
+  private initializeRoutes() {
+    this.router.post(
+      `${this.path}/login`,
+      validationMiddleware(adminLoginSchema, 'body'),
+      this.controller.login
+    );
+
+    this.router.get(
+      `${this.path}/kyc/submitted`,
+      adminAuthMiddleware(),
+      validationMiddleware(userUnderReviewSchema, 'query'),
+      this.controller.listSubmittedKycUsers
+    );
+
+    this.router.post(
+      '${this.path}/reviewUserDocument',
+      adminAuthMiddleware(),
+      validationMiddleware(reviewUserDocSchema,'body'),
+      this.controller.reviewUserDocument
+    );
+  }
+}
+
+export default AdminAuthRoute;

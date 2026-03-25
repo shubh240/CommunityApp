@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "G:\\NodeTs\\hhl_backend\\src\\utils\\logs\\error\\.c9100a0c0b6b6eadec61994c6d8e0bf9e64e6909-audit.json",
+    "files": [
+        {
+            "date": 1758956616352,
+            "name": "G:\\NodeTs\\hhl_backend\\src\\utils\\logs\\error\\2025-09-27.log",
+            "hash": "435da1701f1edfd8db322818e3b93757bfb9708f8d18ee4cad2bb24cdddc29b1"
+        }
+    ],
+    "hashType": "sha256"
+}

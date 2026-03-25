@@ -1,0 +1,10 @@
+2026-01-07 21:44:28 error: [POST] /api/v1/user/completeProfile >> StatusCode:: 400, Message:: Profile is already completed
+2026-01-07 22:22:27 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid email or password
+2026-01-07 22:23:50 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-01-07 22:26:11 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-01-07 22:27:47 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-01-07 22:29:25 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-01-07 22:32:34 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-01-07 23:51:34 error: [GET] /api/v1/admin/kyc/submitted >> StatusCode:: 401, Message:: Authorization token missing
+2026-01-07 23:51:45 error: [GET] /api/v1/admin/kyc/submitted >> StatusCode:: 401, Message:: Authorization token missing
+2026-01-07 23:53:38 error: [GET] /api/v1/admin/kyc/submitted >> StatusCode:: 401, Message:: Authorization token missing

@@ -1,0 +1,47 @@
+{
+  "compileOnSave": false,
+  "ts-node": {
+    "require": ["tsconfig-paths/register"],
+    "transpileOnly": true
+  },
+  "compilerOptions": {
+    "target": "es2017",
+    "typeRoots": ["node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "pretty": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["DOM", "es2017", "esnext.asynciterable"],
+    "paths": {
+      "*": ["customTypes/"],
+      "@/*": ["*"],
+      "@lib/*": ["lib/*"],
+      "@dtos/*": ["dtos/*"],
+      "@utils/*": ["utils/*"],
+      "@routes/*": ["routes/*"],
+      "@config": ["config"],
+      "@services/*": ["services/*"],
+      "@constants/*": ["constants/*"],
+      "@exceptions/*": ["exceptions/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@controllers/*": ["controllers/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@scripts/*": ["scripts/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.json", ".env", "src/constants/modules/index.js"],
+  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
+}

@@ -1,0 +1,17 @@
+2026-01-08 00:01:55 info: =================================
+2026-01-08 00:01:55 info: ======= ENV: development ========
+2026-01-08 00:01:55 info: 🚀 App listening on the port 5000
+2026-01-08 00:01:55 info: =================================
+2026-01-08 00:01:55 info: MongoDB connected successfully
+2026-01-08 00:02:04 info: ::1 - - [07/Jan/2026:18:32:04 +0000] "GET /api/v1/admin/kyc/submitted?page=1&pageSize=10 HTTP/1.1" 200 330 "-" "PostmanRuntime/7.51.0"
+2026-01-08 00:03:26 info: =================================
+2026-01-08 00:03:26 info: ======= ENV: development ========
+2026-01-08 00:03:26 info: 🚀 App listening on the port 5000
+2026-01-08 00:03:26 info: =================================
+2026-01-08 00:03:26 info: MongoDB connected successfully
+2026-01-08 00:03:36 info: ::1 - - [07/Jan/2026:18:33:36 +0000] "GET /api/v1/admin/kyc/submitted?page=1&pageSize=10 HTTP/1.1" 200 297 "-" "PostmanRuntime/7.51.0"
+2026-01-08 00:04:08 info: =================================
+2026-01-08 00:04:08 info: ======= ENV: development ========
+2026-01-08 00:04:08 info: 🚀 App listening on the port 5000
+2026-01-08 00:04:08 info: =================================
+2026-01-08 00:04:08 info: MongoDB connected successfully

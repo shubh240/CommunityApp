@@ -1,0 +1,217 @@
+2026-01-10 12:18:49 info: =================================
+2026-01-10 12:18:49 info: ======= ENV: development ========
+2026-01-10 12:18:49 info: 🚀 App listening on the port 5000
+2026-01-10 12:18:49 info: =================================
+2026-01-10 12:18:49 info: MongoDB connected successfully
+2026-01-10 12:20:18 info: ::1 - - [10/Jan/2026:06:50:18 +0000] "POST /api/v1/admin/login HTTP/1.1" 200 610 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:20:35 info: ::1 - - [10/Jan/2026:06:50:35 +0000] "GET /api/v1/admin/kyc/submitted?page=1&pageSize=10 HTTP/1.1" 200 330 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:21:00 info: ::1 - - [10/Jan/2026:06:51:00 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:23:19 info: =================================
+2026-01-10 12:23:19 info: ======= ENV: development ========
+2026-01-10 12:23:19 info: 🚀 App listening on the port 5000
+2026-01-10 12:23:19 info: =================================
+2026-01-10 12:23:19 info: MongoDB connected successfully
+2026-01-10 12:25:25 info: =================================
+2026-01-10 12:25:25 info: ======= ENV: development ========
+2026-01-10 12:25:25 info: 🚀 App listening on the port 5000
+2026-01-10 12:25:25 info: =================================
+2026-01-10 12:25:25 info: MongoDB connected successfully
+2026-01-10 12:26:04 info: =================================
+2026-01-10 12:26:04 info: ======= ENV: development ========
+2026-01-10 12:26:04 info: 🚀 App listening on the port 5000
+2026-01-10 12:26:04 info: =================================
+2026-01-10 12:26:04 info: MongoDB connected successfully
+2026-01-10 12:26:15 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2026-01-10 12:26:15 info: ::1 - - [10/Jan/2026:06:56:15 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:26:25 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2026-01-10 12:26:25 info: ::1 - - [10/Jan/2026:06:56:25 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 400 102 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:26:35 info: ::1 - - [10/Jan/2026:06:56:35 +0000] "POST /api/v1/admin/login HTTP/1.1" 200 610 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:26:42 info: ::1 - - [10/Jan/2026:06:56:42 +0000] "POST /api/v1/user/auth/sendOtp HTTP/1.1" 200 95 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:26:55 info: ::1 - - [10/Jan/2026:06:56:55 +0000] "POST /api/v1/user/auth/verifyOtp HTTP/1.1" 200 854 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:28:15 info: =================================
+2026-01-10 12:28:15 info: ======= ENV: development ========
+2026-01-10 12:28:15 info: 🚀 App listening on the port 5000
+2026-01-10 12:28:15 info: =================================
+2026-01-10 12:28:16 info: MongoDB connected successfully
+2026-01-10 12:29:28 info: =================================
+2026-01-10 12:29:28 info: ======= ENV: development ========
+2026-01-10 12:29:28 info: 🚀 App listening on the port 5000
+2026-01-10 12:29:28 info: =================================
+2026-01-10 12:29:28 info: MongoDB connected successfully
+2026-01-10 12:30:07 info: =================================
+2026-01-10 12:30:07 info: ======= ENV: development ========
+2026-01-10 12:30:07 info: 🚀 App listening on the port 5000
+2026-01-10 12:30:07 info: =================================
+2026-01-10 12:30:07 info: MongoDB connected successfully
+2026-01-10 12:30:49 info: =================================
+2026-01-10 12:30:49 info: ======= ENV: development ========
+2026-01-10 12:30:49 info: 🚀 App listening on the port 5000
+2026-01-10 12:30:49 info: =================================
+2026-01-10 12:30:49 info: MongoDB connected successfully
+2026-01-10 12:32:02 info: =================================
+2026-01-10 12:32:02 info: ======= ENV: development ========
+2026-01-10 12:32:02 info: 🚀 App listening on the port 5000
+2026-01-10 12:32:02 info: =================================
+2026-01-10 12:32:02 info: MongoDB connected successfully
+2026-01-10 12:32:53 info: =================================
+2026-01-10 12:32:53 info: ======= ENV: development ========
+2026-01-10 12:32:53 info: 🚀 App listening on the port 5000
+2026-01-10 12:32:53 info: =================================
+2026-01-10 12:32:53 info: MongoDB connected successfully
+2026-01-10 12:33:17 info: ::1 - - [10/Jan/2026:07:03:17 +0000] "GET /api/v1/admin/kyc/submitted?page=1&pageSize=10 HTTP/1.1" 200 330 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:34:19 info: =================================
+2026-01-10 12:34:19 info: ======= ENV: development ========
+2026-01-10 12:34:19 info: 🚀 App listening on the port 5000
+2026-01-10 12:34:19 info: =================================
+2026-01-10 12:34:19 info: MongoDB connected successfully
+2026-01-10 12:34:45 info: =================================
+2026-01-10 12:34:45 info: ======= ENV: development ========
+2026-01-10 12:34:45 info: 🚀 App listening on the port 5000
+2026-01-10 12:34:45 info: =================================
+2026-01-10 12:34:45 info: MongoDB connected successfully
+2026-01-10 12:35:08 info: =================================
+2026-01-10 12:35:08 info: ======= ENV: development ========
+2026-01-10 12:35:08 info: 🚀 App listening on the port 5000
+2026-01-10 12:35:08 info: =================================
+2026-01-10 12:35:08 info: MongoDB connected successfully
+2026-01-10 12:35:35 info: ::1 - - [10/Jan/2026:07:05:35 +0000] "GET /api/v1/admin/kyc/submitted?page=1&pageSize=10 HTTP/1.1" 200 277 "-" "PostmanRuntime/7.51.0"
+2026-01-10 12:50:24 info: =================================
+2026-01-10 12:50:24 info: ======= ENV: development ========
+2026-01-10 12:50:24 info: 🚀 App listening on the port 5000
+2026-01-10 12:50:24 info: =================================
+2026-01-10 12:50:24 info: MongoDB connected successfully
+2026-01-10 12:50:49 info: =================================
+2026-01-10 12:50:49 info: ======= ENV: development ========
+2026-01-10 12:50:49 info: 🚀 App listening on the port 5000
+2026-01-10 12:50:49 info: =================================
+2026-01-10 12:50:49 info: MongoDB connected successfully
+2026-01-10 12:51:23 info: =================================
+2026-01-10 12:51:23 info: ======= ENV: development ========
+2026-01-10 12:51:23 info: 🚀 App listening on the port 5000
+2026-01-10 12:51:23 info: =================================
+2026-01-10 12:51:23 info: MongoDB connected successfully
+2026-01-10 13:16:42 info: =================================
+2026-01-10 13:16:42 info: ======= ENV: development ========
+2026-01-10 13:16:42 info: 🚀 App listening on the port 5000
+2026-01-10 13:16:42 info: =================================
+2026-01-10 13:16:42 info: MongoDB connected successfully
+2026-01-10 13:20:28 info: =================================
+2026-01-10 13:20:28 info: ======= ENV: development ========
+2026-01-10 13:20:28 info: 🚀 App listening on the port 5000
+2026-01-10 13:20:28 info: =================================
+2026-01-10 13:20:28 info: MongoDB connected successfully
+2026-01-10 13:20:46 info: =================================
+2026-01-10 13:20:46 info: ======= ENV: development ========
+2026-01-10 13:20:46 info: 🚀 App listening on the port 5000
+2026-01-10 13:20:46 info: =================================
+2026-01-10 13:20:46 info: MongoDB connected successfully
+2026-01-10 13:21:29 info: =================================
+2026-01-10 13:21:29 info: ======= ENV: development ========
+2026-01-10 13:21:29 info: 🚀 App listening on the port 5000
+2026-01-10 13:21:29 info: =================================
+2026-01-10 13:21:29 info: MongoDB connected successfully
+2026-01-10 13:22:05 info: =================================
+2026-01-10 13:22:05 info: ======= ENV: development ========
+2026-01-10 13:22:05 info: 🚀 App listening on the port 5000
+2026-01-10 13:22:05 info: =================================
+2026-01-10 13:22:05 info: MongoDB connected successfully
+2026-01-10 13:23:30 info: =================================
+2026-01-10 13:23:30 info: ======= ENV: development ========
+2026-01-10 13:23:30 info: 🚀 App listening on the port 5000
+2026-01-10 13:23:30 info: =================================
+2026-01-10 13:23:30 info: MongoDB connected successfully
+2026-01-10 14:16:25 info: =================================
+2026-01-10 14:16:25 info: ======= ENV: development ========
+2026-01-10 14:16:25 info: 🚀 App listening on the port 5000
+2026-01-10 14:16:25 info: =================================
+2026-01-10 14:16:25 info: MongoDB connected successfully
+2026-01-10 14:16:47 info: =================================
+2026-01-10 14:16:47 info: ======= ENV: development ========
+2026-01-10 14:16:47 info: 🚀 App listening on the port 5000
+2026-01-10 14:16:47 info: =================================
+2026-01-10 14:16:47 info: MongoDB connected successfully
+2026-01-10 14:20:17 info: =================================
+2026-01-10 14:20:17 info: ======= ENV: development ========
+2026-01-10 14:20:17 info: 🚀 App listening on the port 5000
+2026-01-10 14:20:17 info: =================================
+2026-01-10 14:20:17 info: MongoDB connected successfully
+2026-01-10 14:22:09 info: =================================
+2026-01-10 14:22:09 info: ======= ENV: development ========
+2026-01-10 14:22:09 info: 🚀 App listening on the port 5000
+2026-01-10 14:22:09 info: =================================
+2026-01-10 14:22:09 info: MongoDB connected successfully
+2026-01-10 14:27:46 info: =================================
+2026-01-10 14:27:46 info: ======= ENV: development ========
+2026-01-10 14:27:46 info: 🚀 App listening on the port 5000
+2026-01-10 14:27:46 info: =================================
+2026-01-10 14:27:46 info: MongoDB connected successfully
+2026-01-10 14:32:45 info: =================================
+2026-01-10 14:32:45 info: ======= ENV: development ========
+2026-01-10 14:32:45 info: 🚀 App listening on the port 5000
+2026-01-10 14:32:45 info: =================================
+2026-01-10 14:32:46 info: MongoDB connected successfully
+2026-01-10 14:38:22 info: =================================
+2026-01-10 14:38:22 info: ======= ENV: development ========
+2026-01-10 14:38:22 info: 🚀 App listening on the port 5000
+2026-01-10 14:38:22 info: =================================
+2026-01-10 14:38:22 info: MongoDB connected successfully
+2026-01-10 14:39:01 info: =================================
+2026-01-10 14:39:01 info: ======= ENV: development ========
+2026-01-10 14:39:01 info: 🚀 App listening on the port 5000
+2026-01-10 14:39:01 info: =================================
+2026-01-10 14:39:02 info: MongoDB connected successfully
+2026-01-10 14:39:35 info: =================================
+2026-01-10 14:39:35 info: ======= ENV: development ========
+2026-01-10 14:39:35 info: 🚀 App listening on the port 5000
+2026-01-10 14:39:35 info: =================================
+2026-01-10 14:39:35 info: MongoDB connected successfully
+2026-01-10 14:42:14 info: =================================
+2026-01-10 14:42:14 info: ======= ENV: development ========
+2026-01-10 14:42:14 info: 🚀 App listening on the port 5000
+2026-01-10 14:42:14 info: =================================
+2026-01-10 14:42:14 info: MongoDB connected successfully
+2026-01-10 14:43:34 info: =================================
+2026-01-10 14:43:34 info: ======= ENV: development ========
+2026-01-10 14:43:34 info: 🚀 App listening on the port 5000
+2026-01-10 14:43:34 info: =================================
+2026-01-10 14:43:34 info: MongoDB connected successfully
+2026-01-10 14:46:30 info: =================================
+2026-01-10 14:46:30 info: ======= ENV: development ========
+2026-01-10 14:46:30 info: 🚀 App listening on the port 5000
+2026-01-10 14:46:30 info: =================================
+2026-01-10 14:46:30 info: MongoDB connected successfully
+2026-01-10 15:27:43 info: =================================
+2026-01-10 15:27:43 info: ======= ENV: development ========
+2026-01-10 15:27:43 info: 🚀 App listening on the port 5000
+2026-01-10 15:27:43 info: =================================
+2026-01-10 15:27:43 info: MongoDB connected successfully
+2026-01-10 15:33:33 info: =================================
+2026-01-10 15:33:33 info: ======= ENV: development ========
+2026-01-10 15:33:33 info: 🚀 App listening on the port 5000
+2026-01-10 15:33:33 info: =================================
+2026-01-10 15:33:33 info: MongoDB connected successfully
+2026-01-10 15:34:02 info: =================================
+2026-01-10 15:34:02 info: ======= ENV: development ========
+2026-01-10 15:34:02 info: 🚀 App listening on the port 5000
+2026-01-10 15:34:02 info: =================================
+2026-01-10 15:34:02 info: MongoDB connected successfully
+2026-01-10 15:36:48 info: =================================
+2026-01-10 15:36:48 info: ======= ENV: development ========
+2026-01-10 15:36:48 info: 🚀 App listening on the port 5000
+2026-01-10 15:36:48 info: =================================
+2026-01-10 15:36:48 info: MongoDB connected successfully
+2026-01-10 15:38:06 info: =================================
+2026-01-10 15:38:06 info: ======= ENV: development ========
+2026-01-10 15:38:06 info: 🚀 App listening on the port 5000
+2026-01-10 15:38:06 info: =================================
+2026-01-10 15:38:06 info: MongoDB connected successfully
+2026-01-10 15:40:57 info: =================================
+2026-01-10 15:40:57 info: ======= ENV: development ========
+2026-01-10 15:40:57 info: 🚀 App listening on the port 5000
+2026-01-10 15:40:57 info: =================================
+2026-01-10 15:40:57 info: MongoDB connected successfully
+2026-01-10 15:51:54 info: =================================
+2026-01-10 15:51:54 info: ======= ENV: development ========
+2026-01-10 15:51:54 info: 🚀 App listening on the port 5000
+2026-01-10 15:51:54 info: =================================
+2026-01-10 15:51:54 info: MongoDB connected successfully

@@ -1,0 +1,2 @@
+2026-01-10 12:26:15 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.
+2026-01-10 12:26:25 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: OTP has expired. Please request a new one.

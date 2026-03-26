@@ -4,6 +4,7 @@ import { AuthController } from '@/controllers/auth.controller';
 import AuthRepo from '@/repository/auth.repository';
 import validationMiddleware from '@/middlewares/validation.middleware';
 import { logoutSchema, refreshTokenSchema, sendOtpSchema, verifyOtpSchema } from '@/validationSchema/auth.validation.schema';
+import { userAuthMiddleware } from '@/middlewares/userAuth.middleware';
 
 class AuthRoute implements Routes {
   public authPath = '/user/auth';
@@ -35,6 +36,7 @@ class AuthRoute implements Routes {
     
     this.router.post(
       `${this.authPath}/logout`,
+      userAuthMiddleware(),
       validationMiddleware(logoutSchema, 'body'),
       this.authController.logout
     );

@@ -20,16 +20,27 @@ export class UserController {
   readonly uploadUserDocument = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await this.userRepository.uploadUserDocument(req);
-      return generalResponse(
-        res,
-        data.user,
-        data.message,
-        'success',
-        false,
-      );
+      return generalResponse(res, data.user, data.message, 'success', false);
     } catch (error) {
       next(error);
     }
   };
 
+  readonly reUploadUserDocument = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.reUploadUserDocument(req);
+      return generalResponse(res, data.user, data.message, 'success', false);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly getMe = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.getMe(req);
+      return generalResponse(res, data, USER_MESSAGES.USER_FETCHED, 'success', false);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

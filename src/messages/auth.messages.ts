@@ -32,5 +32,6 @@ export const AUTH_MESSAGES = Object.freeze({
 
   ACCESS_REFRESHED : "Access token refreshed",
 
-  LOGOUT_SUCCESS : "Logged out successfuly"
+  LOGOUT_SUCCESS : "Logged out successfuly",
+  USER_BLOCKED: 'Your account has been blocked. Please contact support.',
 });

@@ -19,23 +19,31 @@ class UserRoute implements Routes {
     this.initializeRoutes();
   }
   private initializeRoutes() {
+    this.router.get(
+      `${this.userPath}/me`,
+      userAuthMiddleware(),
+      this.userController.getMe,
+    );
+
     this.router.post(
       `${this.userPath}/completeProfile`,
       userAuthMiddleware(),
       validationMiddleware(completeProfileSchema, 'body'),
       this.userController.completeProfile,
     );
+
     this.router.post(
       `${this.userPath}/upload-documents`,
       userAuthMiddleware(),
       validationMiddleware(addressProofSchema, 'body'),
       this.userController.uploadUserDocument,
     );
+
     this.router.post(
       `${this.userPath}/reUpload-documents`,
       userAuthMiddleware(),
       validationMiddleware(addressProofSchema, 'body'),
-      this.userController.uploadUserDocument,
+      this.userController.reUploadUserDocument,
     );
   }
 }

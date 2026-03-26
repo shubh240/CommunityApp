@@ -11,11 +11,13 @@ import User from '@/models/mongoose/user.model';
 const userAuthMiddleware = (unverified = false) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const token = req.headers.authorization;
+      const authHeader = req.headers.authorization;
 
-      if (!token) {
+      if (!authHeader) {
         throw new HttpException(401, AUTH_MESSAGES.TOKEN_EXPIRED);
       }
+
+      const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
       jwt.verify(token, JWT_SECRET, async (err, decoded: jwtPayloadUser) => {
         if (err) {
@@ -24,6 +26,9 @@ const userAuthMiddleware = (unverified = false) => {
           const user = await User.findById(decoded.userId);
           if (!user) {
             return generalResponse(res, null, AUTH_MESSAGES.USER_NOT_FOUND, 'error', true, 401);
+          }
+          if (user.isBlocked) {
+            return generalResponse(res, null, AUTH_MESSAGES.USER_BLOCKED, 'error', true, 403);
           }
           req.userTokenData = {
             _id: user._id,

@@ -30,7 +30,7 @@ class AdminAuthRoute implements Routes {
     );
 
     this.router.post(
-      '${this.path}/reviewUserDocument',
+      `${this.path}/reviewUserDocument`,
       adminAuthMiddleware(),
       validationMiddleware(reviewUserDocSchema,'body'),
       this.controller.reviewUserDocument

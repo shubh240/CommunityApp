@@ -8,13 +8,13 @@ import { AUTH_MESSAGES } from '@/messages/auth.messages';
 const adminAuthMiddleware = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const token = req.headers.authorization;
-      console.log('token',token)
-      if (!token) {
+      const authHeader = req.headers.authorization;
+
+      if (!authHeader) {
         throw new HttpException(401, AUTH_MESSAGES.TOKEN_EXPIRED);
       }
 
-      // const token = authHeader.split(' ')[1];
+      const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
       // 1. Verify JWT
       const decoded: any = jwt.verify(token, JWT_SECRET);
@@ -23,7 +23,7 @@ const adminAuthMiddleware = () => {
         throw new HttpException(401, 'Invalid admin token');
       }
 
-      // 2. Check token exists in DB
+      // 2. Check token exists and is not expired in DB
       const adminToken = await AdminToken.findOne({
         adminId: decoded.adminId,
         accessToken: token,

@@ -56,9 +56,7 @@ readonly sendOtp = async (req: Request, res: Response, next: NextFunction) => {
 
     await this.authRepository.logout(userId, deviceId);
 
-    return generalResponse(res, {
-      message: AUTH_MESSAGES.LOGOUT_SUCCESS,
-    });
+    return generalResponse(res, null, AUTH_MESSAGES.LOGOUT_SUCCESS);
   };
 
 

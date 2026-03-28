@@ -1,0 +1,4035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community App Backend - API Documentation</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.6; }
+  h1 { color: #1a1a1a; border-bottom: 3px solid #4f46e5; padding-bottom: 10px; }
+  h2 { color: #4f46e5; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-top: 40px; }
+  h3 { color: #1e40af; margin-top: 30px; }
+  h4 { color: #374151; }
+  table { border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 14px; }
+  th, td { border: 1px solid #d1d5db; padding: 8px 12px; text-align: left; }
+  th { background: #4f46e5; color: white; font-weight: 600; }
+  tr:nth-child(even) { background: #f9fafb; }
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e11d48; }
+  pre code { background: none; padding: 0; color: #cdd6f4; }
+  blockquote { border-left: 4px solid #4f46e5; margin: 15px 0; padding: 10px 20px; background: #eff6ff; color: #1e40af; }
+  strong { color: #111; }
+  hr { border: none; border-top: 2px solid #e5e7eb; margin: 30px 0; }
+  @media print { body { max-width: 100%; padding: 20px; } pre { white-space: pre-wrap; } }
+</style>
+</head>
+<body>
+<h1>Community App Backend - API Documentation</h1>
+<p><strong>Base URL:</strong> <code>http://localhost:5000/api/v1</code></p>
+<h2>Authentication</h2>
+<p>All protected routes require:</p>
+<pre><code>Header: Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<h2>Response Format</h2>
+<p>All responses follow this structure:</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {},
+  &quot;message&quot;: &quot;Success message&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h2>Error Response</h2>
+<pre><code class="language-json">{
+  &quot;data&quot;: null,
+  &quot;message&quot;: &quot;Error description&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;error&quot;
+}
+</code></pre>
+<p>Common status codes: <code>400</code> Bad Request | <code>401</code> Unauthorized | <code>403</code> Forbidden | <code>404</code> Not Found | <code>500</code> Server Error</p>
+<hr>
+<h2>1. AUTH MODULE (<code>/user/auth</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/user/auth/sendOtp</code></td>
+<td>No</td>
+<td>Send OTP to mobile number for login/signup</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/user/auth/verifyOtp</code></td>
+<td>No</td>
+<td>Verify OTP and get access + refresh tokens</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/user/auth/refresh-token</code></td>
+<td>No</td>
+<td>Get new access token using refresh token</td>
+</tr>
+<tr>
+<td>4</td>
+<td>POST</td>
+<td><code>/user/auth/logout</code></td>
+<td>Yes</td>
+<td>Logout and revoke token</td>
+</tr>
+</tbody></table>
+<h3>1.1 Send OTP</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/sendOtp
+Body:
+{
+  &quot;mobile&quot;: &quot;9876543210&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {},
+  &quot;message&quot;: &quot;OTP sent successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>1.2 Verify OTP</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/verifyOtp
+Body:
+{
+  &quot;mobile&quot;: &quot;9876543210&quot;,
+  &quot;otp&quot;: &quot;1234&quot;,
+  &quot;deviceInfo&quot;: {
+    &quot;deviceId&quot;: &quot;device-123&quot;,
+    &quot;platform&quot;: &quot;android&quot;,
+    &quot;appVersion&quot;: &quot;1.0.0&quot;
+  }
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;,
+    &quot;refreshToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;,
+    &quot;user&quot;: {
+      &quot;_id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;mobile&quot;: 9876543210,
+      &quot;email&quot;: &quot;vijay@email.com&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;,
+      &quot;onboardingStep&quot;: 1,
+      &quot;kycStatus&quot;: &quot;NOT_STARTED&quot;
+    },
+    &quot;navigation&quot;: {
+      &quot;screen&quot;: &quot;PERSONAL_INFO&quot;
+    }
+  },
+  &quot;message&quot;: &quot;OTP verified successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>Navigation screens:</strong> <code>PERSONAL_INFO</code> | <code>ADDRESS_PROOF</code> | <code>EDUCATION_PROOF</code> | <code>OTHER_DOC</code> | <code>UNDER_REVIEW</code> | <code>REJECTED</code> | <code>HOME</code></p>
+</blockquote>
+<blockquote>
+<p>When <code>screen: &quot;REJECTED&quot;</code>, response includes <code>rejectedDocs</code>:</p>
+</blockquote>
+<pre><code class="language-json">&quot;navigation&quot;: {
+  &quot;screen&quot;: &quot;REJECTED&quot;,
+  &quot;rejectedDocs&quot;: [
+    {
+      &quot;type&quot;: &quot;ADDRESS_PROOF&quot;,
+      &quot;documentName&quot;: &quot;Aadhaar Card&quot;,
+      &quot;status&quot;: &quot;REJECTED&quot;,
+      &quot;rejectionReason&quot;: &quot;Document is blurry&quot;
+    }
+  ]
+}
+</code></pre>
+<h3>1.3 Refresh Token</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/refresh-token
+Body:
+{
+  &quot;refreshToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;,
+  &quot;deviceId&quot;: &quot;device-123&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;
+  },
+  &quot;message&quot;: &quot;Access token refreshed&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>1.4 Logout</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/logout
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;deviceId&quot;: &quot;device-123&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: null,
+  &quot;message&quot;: &quot;Logged out successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>2. USER MODULE (<code>/user/auth</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/user/auth/me</code></td>
+<td>Yes</td>
+<td>Get current user profile + navigation screen</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/user/auth/completeProfile</code></td>
+<td>Yes</td>
+<td>Complete personal info (Step 1 of onboarding)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/user/auth/upload-documents</code></td>
+<td>Yes</td>
+<td>Upload KYC documents (Step 2-4)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>POST</td>
+<td><code>/user/auth/reUpload-documents</code></td>
+<td>Yes</td>
+<td>Re-upload rejected documents</td>
+</tr>
+</tbody></table>
+<h3>2.1 Get Me</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /user/auth/me
+Header: Authorization: Bearer &lt;token&gt;
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;user&quot;: {
+      &quot;_id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;mobile&quot;: 9876543210,
+      &quot;email&quot;: &quot;vijay@email.com&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;,
+      &quot;onboardingStep&quot;: 5,
+      &quot;kycStatus&quot;: &quot;APPROVED&quot;,
+      &quot;isBlocked&quot;: false
+    },
+    &quot;navigation&quot;: {
+      &quot;screen&quot;: &quot;HOME&quot;
+    }
+  },
+  &quot;message&quot;: &quot;User profile fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>2.2 Complete Profile</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/completeProfile
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;firstName&quot;: &quot;Vijay&quot;,
+  &quot;lastName&quot;: &quot;Yadav&quot;,
+  &quot;email&quot;: &quot;vijay@email.com&quot;,
+  &quot;language&quot;: &quot;en&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;onboardingStep&quot;: 2,
+    &quot;kycStatus&quot;: &quot;IN_PROGRESS&quot;
+  },
+  &quot;message&quot;: &quot;User profile successfully updated&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>2.3 Upload Documents</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/upload-documents
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;type&quot;: &quot;ADDRESS_PROOF&quot;,       // ADDRESS_PROOF | EDUCATION_PROOF | OTHER
+  &quot;documentName&quot;: &quot;Aadhaar Card&quot;,
+  &quot;frontImage&quot;: &quot;https://s3.../front.jpg&quot;,
+  &quot;backImage&quot;: &quot;https://s3.../back.jpg&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+    &quot;firstName&quot;: &quot;Vijay&quot;,
+    &quot;lastName&quot;: &quot;Yadav&quot;,
+    &quot;mobile&quot;: 9876543210,
+    &quot;email&quot;: &quot;vijay@email.com&quot;,
+    &quot;onboardingStep&quot;: 3,
+    &quot;kycStatus&quot;: &quot;IN_PROGRESS&quot;
+  },
+  &quot;message&quot;: &quot;Address proof uploaded successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> <code>onboardingStep</code> increments per doc: ADDRESS_PROOF=3, EDUCATION_PROOF=4, OTHER=5. After last doc, <code>kycStatus</code> becomes <code>UNDER_REVIEW</code>.</p>
+</blockquote>
+<h3>2.4 Re-Upload Documents (after rejection)</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /user/auth/reUpload-documents
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;type&quot;: &quot;ADDRESS_PROOF&quot;,
+  &quot;documentName&quot;: &quot;Aadhaar Card&quot;,
+  &quot;frontImage&quot;: &quot;https://s3.../front-new.jpg&quot;,
+  &quot;backImage&quot;: &quot;https://s3.../back-new.jpg&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+    &quot;firstName&quot;: &quot;Vijay&quot;,
+    &quot;lastName&quot;: &quot;Yadav&quot;,
+    &quot;onboardingStep&quot;: 5,
+    &quot;kycStatus&quot;: &quot;UNDER_REVIEW&quot;
+  },
+  &quot;message&quot;: &quot;Address proof uploaded successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> <code>kycStatus</code> changes to <code>UNDER_REVIEW</code> only after ALL rejected docs are re-uploaded. If other docs are still <code>REJECTED</code>, status stays <code>REJECTED</code>.</p>
+</blockquote>
+<hr>
+<h2>3. ADMIN MODULE (<code>/admin</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/admin/register</code></td>
+<td>No</td>
+<td>Register a new admin</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/admin/login</code></td>
+<td>No</td>
+<td>Admin login with mobile + password</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/admin/refresh-token</code></td>
+<td>No</td>
+<td>Get new access token using refresh token</td>
+</tr>
+<tr>
+<td>4</td>
+<td>POST</td>
+<td><code>/admin/logout</code></td>
+<td>Admin</td>
+<td>Logout and revoke token</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GET</td>
+<td><code>/admin/kyc/submitted</code></td>
+<td>Admin</td>
+<td>List users pending KYC review</td>
+</tr>
+<tr>
+<td>6</td>
+<td>POST</td>
+<td><code>/admin/reviewUserDocument</code></td>
+<td>Admin</td>
+<td>Approve/Reject user KYC document</td>
+</tr>
+<tr>
+<td>7</td>
+<td>GET</td>
+<td><code>/admin/matrimonial/profiles</code></td>
+<td>Admin</td>
+<td>List matrimonial profiles for review</td>
+</tr>
+<tr>
+<td>8</td>
+<td>POST</td>
+<td><code>/admin/matrimonial/review</code></td>
+<td>Admin</td>
+<td>Approve/Reject matrimonial profile</td>
+</tr>
+</tbody></table>
+<h3>3.1 Admin Register</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /admin/register
+Body:
+{
+  &quot;name&quot;: &quot;Admin Name&quot;,
+  &quot;mobile&quot;: 9876543210,
+  &quot;email&quot;: &quot;admin@example.com&quot;,
+  &quot;password&quot;: &quot;admin123&quot;
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;admin&quot;: {
+      &quot;id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+      &quot;name&quot;: &quot;Admin Name&quot;,
+      &quot;email&quot;: &quot;admin@example.com&quot;,
+      &quot;mobile&quot;: 9876543210
+    }
+  },
+  &quot;message&quot;: &quot;Admin registered successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>3.2 Admin Login</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /admin/login
+Body:
+{
+  &quot;mobile&quot;: 9876543210,
+  &quot;password&quot;: &quot;admin123&quot;,
+  &quot;deviceInfo&quot;: {
+    &quot;deviceId&quot;: &quot;device-123&quot;,
+    &quot;platform&quot;: &quot;web&quot;,
+    &quot;appVersion&quot;: &quot;1.0.0&quot;
+  }
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;admin&quot;: {
+      &quot;id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+      &quot;name&quot;: &quot;Admin Name&quot;,
+      &quot;email&quot;: &quot;admin@example.com&quot;
+    },
+    &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;,
+    &quot;refreshToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;
+  },
+  &quot;message&quot;: &quot;Admin logged in successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>3.3 Admin Refresh Token</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /admin/refresh-token
+Body:
+{
+  &quot;refreshToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;,
+  &quot;deviceId&quot;: &quot;device-123&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;
+  },
+  &quot;message&quot;: &quot;Access token refreshed&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>3.4 Admin Logout</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /admin/logout
+Header: Authorization: Bearer &lt;admin_token&gt;
+Body:
+{
+  &quot;deviceId&quot;: &quot;device-123&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: null,
+  &quot;message&quot;: &quot;Logged out successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>3.5 List KYC Users</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /admin/kyc/submitted?kycStatus=UNDER_REVIEW&amp;page=1&amp;pageSize=10
+Header: Authorization: Bearer &lt;admin_token&gt;
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;count&quot;: 25,
+    &quot;data&quot;: [
+      {
+        &quot;_id&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+        &quot;firstName&quot;: &quot;Vijay&quot;,
+        &quot;lastName&quot;: &quot;Yadav&quot;,
+        &quot;email&quot;: &quot;vijay@email.com&quot;,
+        &quot;mobile&quot;: 9876543210,
+        &quot;kycStatus&quot;: &quot;UNDER_REVIEW&quot;,
+        &quot;onboardingStep&quot;: 5,
+        &quot;createdAt&quot;: &quot;2026-03-24T15:53:53.420Z&quot;,
+        &quot;documents&quot;: [
+          {
+            &quot;_id&quot;: &quot;69c2b391c952e0a4b5474536&quot;,
+            &quot;userId&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+            &quot;type&quot;: &quot;ADDRESS_PROOF&quot;,
+            &quot;documentName&quot;: &quot;Aadhaar Card&quot;,
+            &quot;frontImage&quot;: &quot;https://s3.../front.jpg&quot;,
+            &quot;backImage&quot;: &quot;https://s3.../back.jpg&quot;,
+            &quot;status&quot;: &quot;PENDING&quot;,
+            &quot;rejectionReason&quot;: null,
+            &quot;reviewedBy&quot;: null,
+            &quot;reviewedAt&quot;: null,
+            &quot;isActive&quot;: true
+          }
+        ]
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Submitted KYC users fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>kycStatus filters:</strong> <code>UNDER_REVIEW</code> | <code>APPROVED</code> | <code>REJECTED</code> | <code>IN_PROGRESS</code> | <code>NOT_STARTED</code> (or omit for all)</p>
+</blockquote>
+<h3>3.6 Review User Document</h3>
+<p><strong>Request (Approve):</strong></p>
+<pre><code class="language-json">POST /admin/reviewUserDocument
+Header: Authorization: Bearer &lt;admin_token&gt;
+Body:
+{
+  &quot;userId&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+  &quot;docId&quot;: &quot;69c2b391c952e0a4b5474536&quot;,
+  &quot;action&quot;: &quot;APPROVED&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;69c2b391c952e0a4b5474536&quot;,
+    &quot;userId&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+    &quot;type&quot;: &quot;ADDRESS_PROOF&quot;,
+    &quot;documentName&quot;: &quot;Aadhaar Card&quot;,
+    &quot;status&quot;: &quot;APPROVED&quot;,
+    &quot;rejectionReason&quot;: null,
+    &quot;reviewedBy&quot;: &quot;admin_object_id&quot;,
+    &quot;reviewedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;,
+    &quot;isActive&quot;: true
+  },
+  &quot;message&quot;: &quot;Document approved&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<p><strong>Request (Reject):</strong></p>
+<pre><code class="language-json">{
+  &quot;userId&quot;: &quot;69c2b2a1463ed663dd29037c&quot;,
+  &quot;docId&quot;: &quot;69c2b391c952e0a4b5474536&quot;,
+  &quot;action&quot;: &quot;REJECTED&quot;,
+  &quot;rejectionReason&quot;: &quot;Document is blurry, please re-upload&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;69c2b391c952e0a4b5474536&quot;,
+    &quot;status&quot;: &quot;REJECTED&quot;,
+    &quot;rejectionReason&quot;: &quot;Document is blurry, please re-upload&quot;,
+    &quot;reviewedBy&quot;: &quot;admin_object_id&quot;,
+    &quot;reviewedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Document rejected&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> When all 3 required docs (ADDRESS_PROOF, EDUCATION_PROOF, OTHER) are approved, user&#39;s <code>kycStatus</code> auto-changes to <code>APPROVED</code>.</p>
+</blockquote>
+<h3>3.7 List Matrimonial Profiles</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /admin/matrimonial/profiles?status=UNDER_REVIEW&amp;page=1&amp;pageSize=10
+Header: Authorization: Bearer &lt;admin_token&gt;
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;count&quot;: 5,
+    &quot;data&quot;: [
+      {
+        &quot;_id&quot;: &quot;profile_object_id&quot;,
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Vijay&quot;,
+          &quot;lastName&quot;: &quot;Yadav&quot;,
+          &quot;mobile&quot;: 9876543210,
+          &quot;email&quot;: &quot;vijay@email.com&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;createdForUserId&quot;: {
+          &quot;_id&quot;: &quot;family_member_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;relation&quot;: &quot;BROTHER&quot;
+        },
+        &quot;firstName&quot;: &quot;Ashok&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;status&quot;: &quot;UNDER_REVIEW&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-26T10:00:00.000Z&quot;
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Matrimonial profiles fetched&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>3.8 Review Matrimonial Profile</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /admin/matrimonial/review
+Header: Authorization: Bearer &lt;admin_token&gt;
+Body:
+{
+  &quot;profileId&quot;: &quot;profile_object_id&quot;,
+  &quot;action&quot;: &quot;APPROVED&quot;
+}
+// If REJECTED:
+{
+  &quot;profileId&quot;: &quot;profile_object_id&quot;,
+  &quot;action&quot;: &quot;REJECTED&quot;,
+  &quot;rejectionReason&quot;: &quot;Incomplete profile information&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;profile_object_id&quot;,
+    &quot;status&quot;: &quot;APPROVED&quot;,
+    &quot;reviewedBy&quot;: &quot;admin_object_id&quot;,
+    &quot;reviewedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Profile approved&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>4. SOCIAL MEDIA MODULE (<code>/social</code>)</h2>
+<h3>4A. Posts</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/posts</code></td>
+<td>Yes</td>
+<td>Create a new post (text/image/video)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PUT</td>
+<td><code>/social/posts/:postId</code></td>
+<td>Yes</td>
+<td>Update post (content, media add/remove)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DELETE</td>
+<td><code>/social/posts/:postId</code></td>
+<td>Yes</td>
+<td>Delete post</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/social/posts/feed</code></td>
+<td>Yes</td>
+<td>Get home feed (paginated)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GET</td>
+<td><code>/social/posts/saved</code></td>
+<td>Yes</td>
+<td>Get saved posts</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GET</td>
+<td><code>/social/posts/user/:userId</code></td>
+<td>Yes</td>
+<td>Get posts by a specific user</td>
+</tr>
+<tr>
+<td>7</td>
+<td>GET</td>
+<td><code>/social/posts/:postId</code></td>
+<td>Yes</td>
+<td>Get single post detail</td>
+</tr>
+<tr>
+<td>8</td>
+<td>POST</td>
+<td><code>/social/posts/:postId/share</code></td>
+<td>Yes</td>
+<td>Share post (increment count)</td>
+</tr>
+</tbody></table>
+<h4>4A.1 Create Post</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /social/posts
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;content&quot;: &quot;Beautiful day at the beach!&quot;,
+  &quot;postType&quot;: &quot;IMAGE&quot;,           // TEXT | IMAGE | VIDEO
+  &quot;visibility&quot;: &quot;PUBLIC&quot;,        // PUBLIC | FRIENDS | PRIVATE
+  &quot;feeling&quot;: &quot;happy&quot;,
+  &quot;checkin&quot;: {
+    &quot;location&quot;: &quot;Goa Beach&quot;,
+    &quot;latitude&quot;: 15.2993,
+    &quot;longitude&quot;: 74.1240
+  },
+  &quot;taggedUsers&quot;: [&quot;user_id_1&quot;, &quot;user_id_2&quot;],
+  &quot;media&quot;: [
+    {
+      &quot;mediaType&quot;: &quot;IMAGE&quot;,
+      &quot;mediaUrl&quot;: &quot;https://s3.../beach.jpg&quot;,
+      &quot;thumbnailUrl&quot;: &quot;&quot;,
+      &quot;size&quot;: 204800
+    }
+  ]
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;post_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;content&quot;: &quot;Beautiful day at the beach!&quot;,
+    &quot;postType&quot;: &quot;IMAGE&quot;,
+    &quot;visibility&quot;: &quot;PUBLIC&quot;,
+    &quot;likeCount&quot;: 0,
+    &quot;commentCount&quot;: 0,
+    &quot;shareCount&quot;: 0,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;,
+    &quot;media&quot;: [
+      {
+        &quot;_id&quot;: &quot;media_object_id&quot;,
+        &quot;postId&quot;: &quot;post_object_id&quot;,
+        &quot;mediaType&quot;: &quot;IMAGE&quot;,
+        &quot;mediaUrl&quot;: &quot;https://s3.../beach.jpg&quot;,
+        &quot;thumbnailUrl&quot;: &quot;&quot;,
+        &quot;size&quot;: 204800
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Post created successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4A.2 Update Post</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">PUT /social/posts/:postId
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;content&quot;: &quot;Updated caption!&quot;,
+  &quot;feeling&quot;: &quot;excited&quot;,
+  &quot;addMedia&quot;: [
+    {
+      &quot;mediaType&quot;: &quot;IMAGE&quot;,
+      &quot;mediaUrl&quot;: &quot;https://s3.../new-photo.jpg&quot;,
+      &quot;size&quot;: 102400
+    }
+  ],
+  &quot;removeMediaIds&quot;: [&quot;media_object_id_to_remove&quot;]
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;post_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;content&quot;: &quot;Updated caption!&quot;,
+    &quot;postType&quot;: &quot;IMAGE&quot;,
+    &quot;visibility&quot;: &quot;PUBLIC&quot;,
+    &quot;media&quot;: [...]
+  },
+  &quot;message&quot;: &quot;Post updated successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4A.3 Delete Post</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;postId&quot;: &quot;post_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Post deleted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4A.4 Get Feed</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /social/posts/feed?page=1&amp;pageSize=10
+GET /social/posts/feed?page=1&amp;pageSize=10&amp;postType=VIDEO
+Header: Authorization: Bearer &lt;token&gt;
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;posts&quot;: [
+      {
+        &quot;_id&quot;: &quot;post_object_id&quot;,
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Vijay&quot;,
+          &quot;lastName&quot;: &quot;Yadav&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;content&quot;: &quot;Beautiful day at the beach!&quot;,
+        &quot;postType&quot;: &quot;IMAGE&quot;,
+        &quot;visibility&quot;: &quot;PUBLIC&quot;,
+        &quot;likeCount&quot;: 15,
+        &quot;commentCount&quot;: 3,
+        &quot;shareCount&quot;: 2,
+        &quot;isLiked&quot;: true,
+        &quot;isSaved&quot;: false,
+        &quot;media&quot;: [...],
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 50,
+      &quot;totalPages&quot;: 5
+    }
+  },
+  &quot;message&quot;: &quot;Feed fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4A.5 Get Saved Posts</h4>
+<p><strong>Response:</strong> Same structure as feed</p>
+<h4>4A.6 Get User Posts</h4>
+<p><strong>Response:</strong> Same structure as feed</p>
+<h4>4A.7 Get Single Post</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;post_object_id&quot;,
+    &quot;userId&quot;: {
+      &quot;_id&quot;: &quot;user_object_id&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+    },
+    &quot;content&quot;: &quot;Beautiful day!&quot;,
+    &quot;postType&quot;: &quot;IMAGE&quot;,
+    &quot;isLiked&quot;: true,
+    &quot;isSaved&quot;: false,
+    &quot;media&quot;: [...],
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Post fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4A.8 Share Post</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;post_object_id&quot;,
+    &quot;shareCount&quot;: 3
+  },
+  &quot;message&quot;: &quot;Post shared successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4B. Likes</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/posts/:postId/like</code></td>
+<td>Yes</td>
+<td>Toggle like/unlike</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/social/posts/:postId/likes</code></td>
+<td>Yes</td>
+<td>Get list of users who liked</td>
+</tr>
+</tbody></table>
+<h4>4B.1 Toggle Like</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;liked&quot;: true,
+    &quot;likeCount&quot;: 16
+  },
+  &quot;message&quot;: &quot;Post liked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4B.2 Get Likes</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;likes&quot;: [
+      {
+        &quot;_id&quot;: &quot;like_object_id&quot;,
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 16,
+      &quot;totalPages&quot;: 2
+    }
+  },
+  &quot;message&quot;: &quot;Likes fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4C. Comments</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/posts/:postId/comments</code></td>
+<td>Yes</td>
+<td>Add comment (or reply)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/social/posts/:postId/comments</code></td>
+<td>Yes</td>
+<td>Get comments with replies</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PUT</td>
+<td><code>/social/posts/:postId/comments/:commentId</code></td>
+<td>Yes</td>
+<td>Edit comment</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/social/posts/:postId/comments/:commentId</code></td>
+<td>Yes</td>
+<td>Delete comment</td>
+</tr>
+<tr>
+<td>5</td>
+<td>POST</td>
+<td><code>/social/posts/:postId/comments/:commentId/like</code></td>
+<td>Yes</td>
+<td>Toggle comment like</td>
+</tr>
+</tbody></table>
+<h4>4C.1 Add Comment</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /social/posts/:postId/comments
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;text&quot;: &quot;Nice post!&quot;
+}
+// Reply to a comment:
+{
+  &quot;text&quot;: &quot;Thanks!&quot;,
+  &quot;parentCommentId&quot;: &quot;comment_object_id&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;comment_object_id&quot;,
+    &quot;postId&quot;: &quot;post_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;content&quot;: &quot;Nice post!&quot;,
+    &quot;likeCount&quot;: 0,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Comment added successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4C.2 Get Comments</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;comments&quot;: [
+      {
+        &quot;_id&quot;: &quot;comment_object_id&quot;,
+        &quot;postId&quot;: &quot;post_object_id&quot;,
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;content&quot;: &quot;Nice post!&quot;,
+        &quot;likeCount&quot;: 2,
+        &quot;isLiked&quot;: false,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 3,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Comments fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4C.3 Edit Comment</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;comment_object_id&quot;,
+    &quot;content&quot;: &quot;Updated comment!&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Comment updated successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4C.4 Delete Comment</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;commentId&quot;: &quot;comment_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Comment deleted successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4C.5 Toggle Comment Like</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;liked&quot;: true,
+    &quot;likeCount&quot;: 3
+  },
+  &quot;message&quot;: &quot;Comment liked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4D. Save</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/posts/:postId/save</code></td>
+<td>Yes</td>
+<td>Toggle save/unsave post</td>
+</tr>
+</tbody></table>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;saved&quot;: true
+  },
+  &quot;message&quot;: &quot;Post saved successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4E. Stories</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/stories</code></td>
+<td>Yes</td>
+<td>Create story (24hr expiry)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/social/stories/feed</code></td>
+<td>Yes</td>
+<td>Get stories feed (grouped by user)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/social/stories/:storyId/view</code></td>
+<td>Yes</td>
+<td>Mark story as viewed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/social/stories/:storyId/views</code></td>
+<td>Yes</td>
+<td>Get who viewed your story</td>
+</tr>
+<tr>
+<td>5</td>
+<td>DELETE</td>
+<td><code>/social/stories/:storyId</code></td>
+<td>Yes</td>
+<td>Delete story</td>
+</tr>
+</tbody></table>
+<h4>4E.1 Create Story</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /social/stories
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;mediaType&quot;: &quot;IMAGE&quot;,          // IMAGE | VIDEO
+  &quot;mediaUrl&quot;: &quot;https://s3.../story.jpg&quot;,
+  &quot;thumbnailUrl&quot;: &quot;&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;story_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;media&quot;: {
+      &quot;mediaType&quot;: &quot;IMAGE&quot;,
+      &quot;mediaUrl&quot;: &quot;https://s3.../story.jpg&quot;,
+      &quot;thumbnailUrl&quot;: &quot;&quot;
+    },
+    &quot;expiresAt&quot;: &quot;2026-03-29T10:00:00.000Z&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Story created successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4E.2 Get Stories Feed</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;stories&quot;: [
+      {
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Vijay&quot;,
+          &quot;lastName&quot;: &quot;Yadav&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;stories&quot;: [
+          {
+            &quot;_id&quot;: &quot;story_object_id&quot;,
+            &quot;media&quot;: {
+              &quot;mediaType&quot;: &quot;IMAGE&quot;,
+              &quot;mediaUrl&quot;: &quot;https://s3.../story.jpg&quot;
+            },
+            &quot;viewCount&quot;: 5,
+            &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+          }
+        ]
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Stories fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4E.3 View Story</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;viewed&quot;: true,
+    &quot;viewCount&quot;: 6
+  },
+  &quot;message&quot;: &quot;Story viewed successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4E.4 Get Story Views</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;views&quot;: [
+      {
+        &quot;_id&quot;: &quot;view_object_id&quot;,
+        &quot;userId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;viewedAt&quot;: &quot;2026-03-28T11:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 6,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Story views fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4E.5 Delete Story</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;storyId&quot;: &quot;story_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Story deleted successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4F. Follow</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/follow/:userId</code></td>
+<td>Yes</td>
+<td>Send follow request</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/social/follow/respond</code></td>
+<td>Yes</td>
+<td>Accept/Reject follow request</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DELETE</td>
+<td><code>/social/follow/:userId</code></td>
+<td>Yes</td>
+<td>Unfollow user</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/social/followers/:userId</code></td>
+<td>Yes</td>
+<td>Get followers list</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GET</td>
+<td><code>/social/following/:userId</code></td>
+<td>Yes</td>
+<td>Get following list</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GET</td>
+<td><code>/social/follow/requests</code></td>
+<td>Yes</td>
+<td>Get pending follow requests</td>
+</tr>
+<tr>
+<td>7</td>
+<td>DELETE</td>
+<td><code>/social/follower/:userId</code></td>
+<td>Yes</td>
+<td>Remove a follower</td>
+</tr>
+</tbody></table>
+<h4>4F.1 Send Follow Request</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;status&quot;: &quot;PENDING&quot;,
+    &quot;requestId&quot;: &quot;follow_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Follow request sent successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4F.2 Respond to Follow Request</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /social/follow/respond
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;requestId&quot;: &quot;follow_object_id&quot;,
+  &quot;action&quot;: &quot;ACCEPTED&quot;           // ACCEPTED | REJECTED
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;status&quot;: &quot;ACCEPTED&quot;,
+    &quot;followId&quot;: &quot;follow_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Follow request accepted&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4F.3 Unfollow</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;unfollowed&quot;: true
+  },
+  &quot;message&quot;: &quot;Unfollowed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4F.4 Get Followers</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;followers&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Ashok&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 100,
+      &quot;totalPages&quot;: 10
+    }
+  },
+  &quot;message&quot;: &quot;Followers fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4F.5 Get Following</h4>
+<p><strong>Response:</strong> Same structure as followers</p>
+<h4>4F.6 Get Follow Requests</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;requests&quot;: [
+      {
+        &quot;_id&quot;: &quot;follow_object_id&quot;,
+        &quot;requesterId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;status&quot;: &quot;PENDING&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 3,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Follow requests fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4F.7 Remove Follower</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;removed&quot;: true
+  },
+  &quot;message&quot;: &quot;Follower removed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4G. Search</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/social/search</code></td>
+<td>Yes</td>
+<td>Search posts &amp; users</td>
+</tr>
+</tbody></table>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /social/search?q=vijay&amp;type=all&amp;page=1&amp;pageSize=10
+// type: all | posts | users
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;users&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Vijay&quot;,
+        &quot;lastName&quot;: &quot;Yadav&quot;,
+        &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+      }
+    ],
+    &quot;posts&quot;: [...],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 5,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Search results fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4H. Notifications</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/social/notifications</code></td>
+<td>Yes</td>
+<td>Get notifications (paginated + unread count)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PUT</td>
+<td><code>/social/notifications/:notificationId/read</code></td>
+<td>Yes</td>
+<td>Mark single notification as read</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PUT</td>
+<td><code>/social/notifications/read-all</code></td>
+<td>Yes</td>
+<td>Mark all notifications as read</td>
+</tr>
+</tbody></table>
+<h4>4H.1 Get Notifications</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;notifications&quot;: [
+      {
+        &quot;_id&quot;: &quot;notification_object_id&quot;,
+        &quot;senderId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+        },
+        &quot;type&quot;: &quot;LIKE&quot;,
+        &quot;title&quot;: &quot;New Like&quot;,
+        &quot;message&quot;: &quot;Ashok liked your post&quot;,
+        &quot;isRead&quot;: false,
+        &quot;referenceId&quot;: &quot;post_object_id&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 25,
+      &quot;totalPages&quot;: 3
+    }
+  },
+  &quot;message&quot;: &quot;Notifications fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4H.2 Mark as Read</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;notification_object_id&quot;,
+    &quot;isRead&quot;: true
+  },
+  &quot;message&quot;: &quot;Notification marked as read&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4H.3 Mark All as Read</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;updated&quot;: 15
+  },
+  &quot;message&quot;: &quot;All notifications marked as read&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4I. Block</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/block/:userId</code></td>
+<td>Yes</td>
+<td>Block user</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DELETE</td>
+<td><code>/social/block/:userId</code></td>
+<td>Yes</td>
+<td>Unblock user</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/social/blocked-users</code></td>
+<td>Yes</td>
+<td>Get blocked users list</td>
+</tr>
+</tbody></table>
+<h4>4I.1 Block User</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;blockId&quot;: &quot;block_object_id&quot;,
+    &quot;blockedUserId&quot;: &quot;user_object_id&quot;
+  },
+  &quot;message&quot;: &quot;User blocked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4I.2 Unblock User</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;unblocked&quot;: true
+  },
+  &quot;message&quot;: &quot;User unblocked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4I.3 Get Blocked Users</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;blockedUsers&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Spam&quot;,
+        &quot;lastName&quot;: &quot;User&quot;,
+        &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 2,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Blocked users fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4J. Report</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/social/report/post/:postId</code></td>
+<td>Yes</td>
+<td>Report a post</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/social/report/user/:userId</code></td>
+<td>Yes</td>
+<td>Report a user</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/social/report/comment/:commentId</code></td>
+<td>Yes</td>
+<td>Report a comment</td>
+</tr>
+</tbody></table>
+<h4>4J.1 Report Post/User/Comment</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /social/report/post/:postId
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;reason&quot;: &quot;Spam&quot;,
+  &quot;description&quot;: &quot;This post contains spam links&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;reportId&quot;: &quot;report_object_id&quot;,
+    &quot;status&quot;: &quot;PENDING&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Post reported successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>4K. Profile &amp; Account</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/social/profile/:userId</code></td>
+<td>Yes</td>
+<td>Get user profile stats (posts/followers/following count)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/social/profile</code></td>
+<td>Yes</td>
+<td>Get own profile stats</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/social/account/deactivate</code></td>
+<td>Yes</td>
+<td>Deactivate account (soft)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/social/account</code></td>
+<td>Yes</td>
+<td>Delete account permanently</td>
+</tr>
+</tbody></table>
+<h4>4K.1 Get Other User Profile</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;user&quot;: {
+      &quot;_id&quot;: &quot;user_object_id&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+    },
+    &quot;stats&quot;: {
+      &quot;postsCount&quot;: 42,
+      &quot;followersCount&quot;: 150,
+      &quot;followingCount&quot;: 85,
+      &quot;likeCount&quot;: 320
+    },
+    &quot;isFollowing&quot;: true,
+    &quot;isBlocked&quot;: false
+  },
+  &quot;message&quot;: &quot;Profile stats fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4K.2 Get Own Profile</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;user&quot;: {
+      &quot;_id&quot;: &quot;user_object_id&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+    },
+    &quot;stats&quot;: {
+      &quot;postsCount&quot;: 42,
+      &quot;followersCount&quot;: 150,
+      &quot;followingCount&quot;: 85,
+      &quot;likeCount&quot;: 320
+    }
+  },
+  &quot;message&quot;: &quot;Profile stats fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4K.3 Deactivate Account</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;deactivated&quot;: true
+  },
+  &quot;message&quot;: &quot;Account deactivated successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>4K.4 Delete Account</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;deleted&quot;: true
+  },
+  &quot;message&quot;: &quot;Account deleted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>5. FAMILY TREE MODULE (<code>/family</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/family/members</code></td>
+<td>Yes</td>
+<td>Add a family member</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/family/members</code></td>
+<td>Yes</td>
+<td>Get all family members (flat list)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/family/tree</code></td>
+<td>Yes</td>
+<td>Get family tree (grouped by relation)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/family/members/:memberId</code></td>
+<td>Yes</td>
+<td>Get single member detail</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PUT</td>
+<td><code>/family/members/:memberId</code></td>
+<td>Yes</td>
+<td>Update family member</td>
+</tr>
+<tr>
+<td>6</td>
+<td>DELETE</td>
+<td><code>/family/members/:memberId</code></td>
+<td>Yes</td>
+<td>Delete family member</td>
+</tr>
+<tr>
+<td>7</td>
+<td>POST</td>
+<td><code>/family/members/:memberId/link</code></td>
+<td>Yes</td>
+<td>Link member to registered user</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DELETE</td>
+<td><code>/family/members/:memberId/link</code></td>
+<td>Yes</td>
+<td>Unlink member</td>
+</tr>
+</tbody></table>
+<h3>5.1 Add Family Member</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /family/members
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;relation&quot;: &quot;BROTHER&quot;,         // SELF|FATHER|MOTHER|SPOUSE|BROTHER|SISTER|SON|DAUGHTER|GRANDFATHER|GRANDMOTHER|UNCLE|AUNT|COUSIN|OTHER
+  &quot;firstName&quot;: &quot;Ashok&quot;,
+  &quot;lastName&quot;: &quot;Bharwad&quot;,
+  &quot;dateOfBirth&quot;: &quot;1990-10-25&quot;,
+  &quot;profileImage&quot;: &quot;&quot;,
+  &quot;mobile&quot;: &quot;9876543210&quot;
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;member_object_id&quot;,
+    &quot;headUserId&quot;: &quot;user_object_id&quot;,
+    &quot;relation&quot;: &quot;BROTHER&quot;,
+    &quot;firstName&quot;: &quot;Ashok&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;dateOfBirth&quot;: &quot;1990-10-25T00:00:00.000Z&quot;,
+    &quot;profileImage&quot;: &quot;&quot;,
+    &quot;mobile&quot;: &quot;9876543210&quot;,
+    &quot;isRegistered&quot;: false,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Family member added successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.2 Get All Members</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;members&quot;: [
+      {
+        &quot;_id&quot;: &quot;member_object_id&quot;,
+        &quot;headUserId&quot;: &quot;user_object_id&quot;,
+        &quot;relation&quot;: &quot;BROTHER&quot;,
+        &quot;firstName&quot;: &quot;Ashok&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;profileImage&quot;: &quot;&quot;,
+        &quot;isRegistered&quot;: false,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 8,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Family members fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.3 Get Family Tree</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;SELF&quot;: [
+      {
+        &quot;_id&quot;: &quot;member_id&quot;,
+        &quot;firstName&quot;: &quot;Vijay&quot;,
+        &quot;lastName&quot;: &quot;Yadav&quot;,
+        &quot;relation&quot;: &quot;SELF&quot;,
+        &quot;isRegistered&quot;: true
+      }
+    ],
+    &quot;FATHER&quot;: [...],
+    &quot;MOTHER&quot;: [...],
+    &quot;SPOUSE&quot;: [...],
+    &quot;BROTHER&quot;: [...],
+    &quot;SISTER&quot;: [...]
+  },
+  &quot;message&quot;: &quot;Family tree fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.4 Get Single Member</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;member_object_id&quot;,
+    &quot;headUserId&quot;: &quot;user_object_id&quot;,
+    &quot;relation&quot;: &quot;BROTHER&quot;,
+    &quot;firstName&quot;: &quot;Ashok&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;dateOfBirth&quot;: &quot;1990-10-25T00:00:00.000Z&quot;,
+    &quot;profileImage&quot;: &quot;&quot;,
+    &quot;mobile&quot;: &quot;9876543210&quot;,
+    &quot;userId&quot;: null,
+    &quot;isRegistered&quot;: false,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Family members fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.5 Update Member</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;member_object_id&quot;,
+    &quot;relation&quot;: &quot;BROTHER&quot;,
+    &quot;firstName&quot;: &quot;Ashok Updated&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Family member updated successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.6 Delete Member</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;memberId&quot;: &quot;member_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Family member removed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.7 Link Member to Registered User</h3>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /family/members/:memberId/link
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;userId&quot;: &quot;registered_user_object_id&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;member_object_id&quot;,
+    &quot;userId&quot;: &quot;registered_user_object_id&quot;,
+    &quot;isRegistered&quot;: true
+  },
+  &quot;message&quot;: &quot;Family member linked to registered user successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>5.8 Unlink Member</h3>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;member_object_id&quot;,
+    &quot;userId&quot;: null,
+    &quot;isRegistered&quot;: false
+  },
+  &quot;message&quot;: &quot;Family member unlinked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>6. MATRIMONIAL MODULE (<code>/matrimonial</code>)</h2>
+<h3>6A. Profile Management</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/matrimonial/profiles</code></td>
+<td>Yes</td>
+<td>Create profile (Step 1 - pick family member)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PUT</td>
+<td><code>/matrimonial/profiles/:profileId</code></td>
+<td>Yes</td>
+<td>Update profile (any step)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/matrimonial/profiles/:profileId/submit</code></td>
+<td>Yes</td>
+<td>Submit profile for admin review</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/matrimonial/profiles/:profileId</code></td>
+<td>Yes</td>
+<td>Delete profile</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GET</td>
+<td><code>/matrimonial/profiles/me</code></td>
+<td>Yes</td>
+<td>Get all my profiles</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GET</td>
+<td><code>/matrimonial/profiles/browse</code></td>
+<td>Yes</td>
+<td>Browse approved profiles (with filters)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>GET</td>
+<td><code>/matrimonial/profiles/search</code></td>
+<td>Yes</td>
+<td>Search profiles</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GET</td>
+<td><code>/matrimonial/profiles/:profileId</code></td>
+<td>Yes</td>
+<td>View profile detail (auto-tracks view)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>GET</td>
+<td><code>/matrimonial/profiles/:profileId/viewers</code></td>
+<td>Yes</td>
+<td>See who viewed your profile</td>
+</tr>
+<tr>
+<td>10</td>
+<td>POST</td>
+<td><code>/matrimonial/profiles/:profileId/toggle-hide</code></td>
+<td>Yes</td>
+<td>Hide/unhide profile from browse</td>
+</tr>
+</tbody></table>
+<h4>6A.1 Create Profile (Step 1)</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /matrimonial/profiles
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;createdForUserId&quot;: &quot;family_member_object_id&quot;,
+  &quot;firstName&quot;: &quot;Ashok&quot;,
+  &quot;lastName&quot;: &quot;Bharwad&quot;,
+  &quot;dateOfBirth&quot;: &quot;1990-10-25&quot;,
+  &quot;height&quot;: 175,
+  &quot;maritalStatus&quot;: &quot;NEVER_MARRIED&quot;    // NEVER_MARRIED|DIVORCED|WIDOWED|AWAITING_DIVORCE
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;profile_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;createdForUserId&quot;: &quot;family_member_object_id&quot;,
+    &quot;firstName&quot;: &quot;Ashok&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;dateOfBirth&quot;: &quot;1990-10-25T00:00:00.000Z&quot;,
+    &quot;height&quot;: 175,
+    &quot;maritalStatus&quot;: &quot;NEVER_MARRIED&quot;,
+    &quot;status&quot;: &quot;DRAFT&quot;,
+    &quot;isActive&quot;: true,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Matrimonial profile created successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.2 Update Profile (Steps 2-6)</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">PUT /matrimonial/profiles/:profileId
+Header: Authorization: Bearer &lt;token&gt;
+// Step 2 - Community Details:
+{
+  &quot;subCaste&quot;: &quot;Bharwad&quot;,
+  &quot;gotra&quot;: &quot;Kashyap&quot;,
+  &quot;nativePlace&quot;: &quot;Ahmedabad&quot;,
+  &quot;currentCity&quot;: &quot;Gandhinagar&quot;
+}
+// Step 3 - Family Summary:
+{
+  &quot;fatherName&quot;: &quot;Ramesh Bharwad&quot;,
+  &quot;motherName&quot;: &quot;Savita Bharwad&quot;,
+  &quot;familyType&quot;: &quot;JOINT&quot;              // NUCLEAR|JOINT|EXTENDED
+}
+// Step 4 - Education &amp; Profession:
+{
+  &quot;education&quot;: &quot;Diploma Engineer&quot;,
+  &quot;profession&quot;: &quot;UI/UX Designer&quot;,
+  &quot;company&quot;: &quot;Indian PVT. LTD&quot;,
+  &quot;annualIncome&quot;: &quot;5-10 LPA&quot;
+}
+// Step 5 - Photos &amp; About:
+{
+  &quot;photos&quot;: [&quot;https://s3.../photo1.jpg&quot;, &quot;https://s3.../photo2.jpg&quot;],
+  &quot;aboutCandidate&quot;: &quot;I am a simple person...&quot;
+}
+// Step 6 - Partner Preferences:
+{
+  &quot;partnerPreferences&quot;: {
+    &quot;ageMin&quot;: 22,
+    &quot;ageMax&quot;: 30,
+    &quot;heightMin&quot;: 150,
+    &quot;heightMax&quot;: 175,
+    &quot;locationPreference&quot;: &quot;Gujarat&quot;,
+    &quot;educationPreference&quot;: &quot;Graduate&quot;,
+    &quot;maritalStatus&quot;: [&quot;NEVER_MARRIED&quot;]
+  }
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;profile_object_id&quot;,
+    &quot;firstName&quot;: &quot;Ashok&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;status&quot;: &quot;DRAFT&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Matrimonial profile updated successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.3 Submit for Review</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;profile_object_id&quot;,
+    &quot;status&quot;: &quot;UNDER_REVIEW&quot;,
+    &quot;submittedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Profile submitted for review successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.4 Delete Profile</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;profileId&quot;: &quot;profile_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Matrimonial profile deleted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.5 Get My Profiles</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;profiles&quot;: [
+      {
+        &quot;_id&quot;: &quot;profile_object_id&quot;,
+        &quot;firstName&quot;: &quot;Ashok&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;status&quot;: &quot;APPROVED&quot;,
+        &quot;createdForUserId&quot;: {
+          &quot;_id&quot;: &quot;family_member_id&quot;,
+          &quot;firstName&quot;: &quot;Ashok&quot;,
+          &quot;relation&quot;: &quot;BROTHER&quot;
+        }
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;My matrimonial profiles fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.6 Browse Profiles (with filters)</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /matrimonial/profiles/browse?page=1&amp;pageSize=10
+GET /matrimonial/profiles/browse?ageMin=22&amp;ageMax=30&amp;city=Ahmedabad&amp;education=Engineer
+GET /matrimonial/profiles/browse?maritalStatus=NEVER_MARRIED&amp;q=Anjali
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;profiles&quot;: [
+      {
+        &quot;_id&quot;: &quot;profile_object_id&quot;,
+        &quot;firstName&quot;: &quot;Anjali&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;dateOfBirth&quot;: &quot;1998-05-15T00:00:00.000Z&quot;,
+        &quot;height&quot;: 160,
+        &quot;maritalStatus&quot;: &quot;NEVER_MARRIED&quot;,
+        &quot;education&quot;: &quot;Graduate&quot;,
+        &quot;profession&quot;: &quot;Teacher&quot;,
+        &quot;currentCity&quot;: &quot;Ahmedabad&quot;,
+        &quot;photos&quot;: [&quot;https://s3.../photo1.jpg&quot;],
+        &quot;status&quot;: &quot;APPROVED&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 25,
+      &quot;totalPages&quot;: 3
+    }
+  },
+  &quot;message&quot;: &quot;Matrimonial profiles fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.8 View Profile Detail</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;profile_object_id&quot;,
+    &quot;userId&quot;: {
+      &quot;_id&quot;: &quot;user_object_id&quot;,
+      &quot;firstName&quot;: &quot;Vijay&quot;,
+      &quot;lastName&quot;: &quot;Yadav&quot;,
+      &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+    },
+    &quot;firstName&quot;: &quot;Ashok&quot;,
+    &quot;lastName&quot;: &quot;Bharwad&quot;,
+    &quot;dateOfBirth&quot;: &quot;1990-10-25T00:00:00.000Z&quot;,
+    &quot;height&quot;: 175,
+    &quot;maritalStatus&quot;: &quot;NEVER_MARRIED&quot;,
+    &quot;subCaste&quot;: &quot;Bharwad&quot;,
+    &quot;gotra&quot;: &quot;Kashyap&quot;,
+    &quot;education&quot;: &quot;Diploma Engineer&quot;,
+    &quot;profession&quot;: &quot;UI/UX Designer&quot;,
+    &quot;company&quot;: &quot;Indian PVT. LTD&quot;,
+    &quot;annualIncome&quot;: &quot;5-10 LPA&quot;,
+    &quot;photos&quot;: [&quot;https://s3.../photo1.jpg&quot;],
+    &quot;aboutCandidate&quot;: &quot;I am a simple person...&quot;,
+    &quot;partnerPreferences&quot;: {
+      &quot;ageMin&quot;: 22,
+      &quot;ageMax&quot;: 30,
+      &quot;heightMin&quot;: 150,
+      &quot;heightMax&quot;: 175
+    },
+    &quot;status&quot;: &quot;APPROVED&quot;
+  },
+  &quot;message&quot;: &quot;Matrimonial profile fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.9 Get Profile Viewers</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;viewers&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Anjali&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;,
+        &quot;viewedAt&quot;: &quot;2026-03-28T11:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 12,
+      &quot;totalPages&quot;: 2
+    }
+  },
+  &quot;message&quot;: &quot;Profile viewers fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6A.10 Toggle Hide Profile</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;hidden&quot;: true
+  },
+  &quot;message&quot;: &quot;Profile hidden successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>6B. Shortlist</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/matrimonial/shortlist/:profileId</code></td>
+<td>Yes</td>
+<td>Toggle shortlist (heart icon)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/matrimonial/shortlist</code></td>
+<td>Yes</td>
+<td>Get shortlisted profiles</td>
+</tr>
+</tbody></table>
+<h4>6B.1 Toggle Shortlist</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;shortlisted&quot;: true,
+    &quot;shortlistId&quot;: &quot;shortlist_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Profile shortlisted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6B.2 Get Shortlisted</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;profiles&quot;: [...],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 5,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Shortlisted profiles fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>6C. Interest System</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/matrimonial/interests</code></td>
+<td>Yes</td>
+<td>Send interest to a profile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/matrimonial/interests/sent</code></td>
+<td>Yes</td>
+<td>Interest tab (my sent interests)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/matrimonial/interests/received</code></td>
+<td>Yes</td>
+<td>Requests tab (received pending)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/matrimonial/interests/accepted</code></td>
+<td>Yes</td>
+<td>View Profile tab (accepted matches)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PUT</td>
+<td><code>/matrimonial/interests/:interestId/respond</code></td>
+<td>Yes</td>
+<td>Accept/Reject interest</td>
+</tr>
+<tr>
+<td>6</td>
+<td>DELETE</td>
+<td><code>/matrimonial/interests/:interestId</code></td>
+<td>Yes</td>
+<td>Withdraw sent interest</td>
+</tr>
+</tbody></table>
+<h4>6C.1 Send Interest</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /matrimonial/interests
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;fromProfileId&quot;: &quot;my_profile_id&quot;,
+  &quot;toProfileId&quot;: &quot;target_profile_id&quot;,
+  &quot;message&quot;: &quot;I liked your profile&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;interest_object_id&quot;,
+    &quot;senderId&quot;: &quot;user_object_id&quot;,
+    &quot;receiverProfileId&quot;: &quot;profile_object_id&quot;,
+    &quot;status&quot;: &quot;PENDING&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Interest sent successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6C.2 Get Sent Interests</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;interests&quot;: [
+      {
+        &quot;_id&quot;: &quot;interest_object_id&quot;,
+        &quot;receiverProfile&quot;: {
+          &quot;_id&quot;: &quot;profile_object_id&quot;,
+          &quot;firstName&quot;: &quot;Anjali&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;photos&quot;: [&quot;https://s3.../photo.jpg&quot;]
+        },
+        &quot;status&quot;: &quot;PENDING&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 3,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Interests fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6C.3 Get Received Interests</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;requests&quot;: [
+      {
+        &quot;_id&quot;: &quot;interest_object_id&quot;,
+        &quot;senderProfile&quot;: {
+          &quot;_id&quot;: &quot;profile_object_id&quot;,
+          &quot;firstName&quot;: &quot;Rahul&quot;,
+          &quot;lastName&quot;: &quot;Bharwad&quot;,
+          &quot;photos&quot;: [&quot;https://s3.../photo.jpg&quot;]
+        },
+        &quot;status&quot;: &quot;PENDING&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 2,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Interest requests fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6C.4 Get Accepted Interests</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;profiles&quot;: [...],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 10,
+      &quot;total&quot;: 1,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Interests fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6C.5 Respond to Interest</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">PUT /matrimonial/interests/:interestId/respond
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;action&quot;: &quot;ACCEPTED&quot;               // ACCEPTED | REJECTED
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;interest_object_id&quot;,
+    &quot;status&quot;: &quot;ACCEPTED&quot;,
+    &quot;respondedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Interest accepted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>6C.6 Withdraw Interest</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;interestId&quot;: &quot;interest_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Interest withdrawn successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>7. MESSAGING &amp; CALL MODULE (<code>/messaging</code>)</h2>
+<h3>7A. Chat Rooms</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/messaging/chats/direct</code></td>
+<td>Yes</td>
+<td>Create 1:1 chat with a user</td>
+</tr>
+<tr>
+<td>2</td>
+<td>POST</td>
+<td><code>/messaging/chats/group</code></td>
+<td>Yes</td>
+<td>Create group chat</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/messaging/chats</code></td>
+<td>Yes</td>
+<td>Get all my chat rooms</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GET</td>
+<td><code>/messaging/chats/:roomId</code></td>
+<td>Yes</td>
+<td>Get chat room detail</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PUT</td>
+<td><code>/messaging/chats/:roomId</code></td>
+<td>Yes</td>
+<td>Update group settings</td>
+</tr>
+<tr>
+<td>6</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/join</code></td>
+<td>Yes</td>
+<td>Join public/password group</td>
+</tr>
+<tr>
+<td>7</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/leave</code></td>
+<td>Yes</td>
+<td>Leave group</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId</code></td>
+<td>Yes</td>
+<td>Delete group (owner only)</td>
+</tr>
+</tbody></table>
+<h4>7A.1 Create Direct Chat</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/direct
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;receiverId&quot;: &quot;user_object_id&quot;
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;room_object_id&quot;,
+    &quot;type&quot;: &quot;DIRECT&quot;,
+    &quot;participants&quot;: [&quot;user_id_1&quot;, &quot;user_id_2&quot;],
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Chat room created successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.2 Create Group</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/group
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;name&quot;: &quot;Bharwad Family Group&quot;,
+  &quot;groupImage&quot;: &quot;https://s3.../group.jpg&quot;,
+  &quot;groupType&quot;: &quot;PUBLIC&quot;,             // PUBLIC | PRIVATE | PASSWORD
+  &quot;password&quot;: &quot;&quot;,                    // only for PASSWORD type
+  &quot;description&quot;: &quot;Family group chat&quot;,
+  &quot;memberIds&quot;: [&quot;user_id_1&quot;, &quot;user_id_2&quot;]
+}
+</code></pre>
+<p><strong>Response: 201</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;room_object_id&quot;,
+    &quot;type&quot;: &quot;GROUP&quot;,
+    &quot;name&quot;: &quot;Bharwad Family Group&quot;,
+    &quot;description&quot;: &quot;Family group chat&quot;,
+    &quot;admin&quot;: &quot;user_object_id&quot;,
+    &quot;members&quot;: [...],
+    &quot;avatar&quot;: &quot;https://s3.../group.jpg&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Group created successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.3 Get My Chat Rooms</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;chats&quot;: [
+      {
+        &quot;_id&quot;: &quot;room_object_id&quot;,
+        &quot;type&quot;: &quot;DIRECT&quot;,
+        &quot;name&quot;: &quot;Ashok Bharwad&quot;,
+        &quot;lastMessage&quot;: &quot;Hello, how are you?&quot;,
+        &quot;unreadCount&quot;: 3,
+        &quot;lastMessageTime&quot;: &quot;2026-03-28T11:00:00.000Z&quot;,
+        &quot;members&quot;: [...],
+        &quot;avatar&quot;: &quot;https://s3.../photo.jpg&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 12,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Chat rooms fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.4 Get Chat Room Detail</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;room_object_id&quot;,
+    &quot;type&quot;: &quot;GROUP&quot;,
+    &quot;name&quot;: &quot;Bharwad Family Group&quot;,
+    &quot;members&quot;: [...],
+    &quot;admin&quot;: &quot;user_object_id&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Chat room fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.5 Update Group</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;room_object_id&quot;,
+    &quot;name&quot;: &quot;Updated Group Name&quot;,
+    &quot;description&quot;: &quot;Updated description&quot;,
+    &quot;avatar&quot;: &quot;https://s3.../new-group.jpg&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Chat room updated successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.6 Join Group</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/:roomId/join
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;password&quot;: &quot;secret123&quot;           // only needed for PASSWORD type groups
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;joined&quot;: true,
+    &quot;roomId&quot;: &quot;room_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Joined group successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.7 Leave Group</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;left&quot;: true,
+    &quot;roomId&quot;: &quot;room_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Left group successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7A.8 Delete Group</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;roomId&quot;: &quot;room_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Group deleted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7B. Group Management</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/messaging/groups</code></td>
+<td>Yes</td>
+<td>Get my groups list</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/messaging/chats/:roomId/members</code></td>
+<td>Yes</td>
+<td>Get members (members + admins + moderators + banned)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/members</code></td>
+<td>Yes</td>
+<td>Add members to group</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/members/:userId</code></td>
+<td>Yes</td>
+<td>Remove member</td>
+</tr>
+<tr>
+<td>5</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/ban/:userId</code></td>
+<td>Yes</td>
+<td>Ban member</td>
+</tr>
+<tr>
+<td>6</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/ban/:userId</code></td>
+<td>Yes</td>
+<td>Unban member</td>
+</tr>
+<tr>
+<td>7</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/admin/:userId</code></td>
+<td>Yes</td>
+<td>Promote to admin</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/admin/:userId</code></td>
+<td>Yes</td>
+<td>Demote admin (owner only)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/moderator/:userId</code></td>
+<td>Yes</td>
+<td>Promote to moderator</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/moderator/:userId</code></td>
+<td>Yes</td>
+<td>Demote moderator</td>
+</tr>
+</tbody></table>
+<h4>7B.1 Get My Groups</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;groups&quot;: [...],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 5,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Chat rooms fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.2 Get Group Members</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;members&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Vijay&quot;,
+        &quot;lastName&quot;: &quot;Yadav&quot;,
+        &quot;role&quot;: &quot;ADMIN&quot;,
+        &quot;joinedAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      },
+      {
+        &quot;_id&quot;: &quot;user_object_id_2&quot;,
+        &quot;firstName&quot;: &quot;Ashok&quot;,
+        &quot;lastName&quot;: &quot;Bharwad&quot;,
+        &quot;role&quot;: &quot;MEMBER&quot;,
+        &quot;joinedAt&quot;: &quot;2026-03-28T10:05:00.000Z&quot;
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Group members fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.3 Add Members</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/:roomId/members
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;memberIds&quot;: [&quot;user_id_1&quot;, &quot;user_id_2&quot;, &quot;user_id_3&quot;]
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;added&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_id_1&quot;,
+        &quot;firstName&quot;: &quot;Rahul&quot;,
+        &quot;role&quot;: &quot;MEMBER&quot;
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Member added to group successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.4 Remove Member</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot; },
+  &quot;message&quot;: &quot;Member removed from group successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.5 Ban Member</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;banned&quot;: true },
+  &quot;message&quot;: &quot;Member banned from group&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.6 Unban Member</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;banned&quot;: false },
+  &quot;message&quot;: &quot;Member unbanned from group&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.7 Promote to Admin</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;role&quot;: &quot;ADMIN&quot; },
+  &quot;message&quot;: &quot;Member promoted to admin&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.8 Demote Admin</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;role&quot;: &quot;MEMBER&quot; },
+  &quot;message&quot;: &quot;Admin demoted to member&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.9 Promote to Moderator</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;role&quot;: &quot;MODERATOR&quot; },
+  &quot;message&quot;: &quot;Member promoted to moderator&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7B.10 Demote Moderator</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;userId&quot;: &quot;user_object_id&quot;, &quot;role&quot;: &quot;MEMBER&quot; },
+  &quot;message&quot;: &quot;Moderator demoted to member&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7C. Messages</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/messages</code></td>
+<td>Yes</td>
+<td>Send message</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/messaging/chats/:roomId/messages</code></td>
+<td>Yes</td>
+<td>Get messages (auto-marks as read)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PUT</td>
+<td><code>/messaging/chats/:roomId/messages/:messageId</code></td>
+<td>Yes</td>
+<td>Edit message</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/messages/:messageId</code></td>
+<td>Yes</td>
+<td>Delete message</td>
+</tr>
+<tr>
+<td>5</td>
+<td>GET</td>
+<td><code>/messaging/unread</code></td>
+<td>Yes</td>
+<td>Get total unread message count</td>
+</tr>
+</tbody></table>
+<h4>7C.1 Send Message</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/:roomId/messages
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+// Text message:
+{
+  &quot;messageType&quot;: &quot;TEXT&quot;,
+  &quot;message&quot;: &quot;Hello, how are you?&quot;
+}
+// Image message:
+{
+  &quot;messageType&quot;: &quot;IMAGE&quot;,
+  &quot;message&quot;: &quot;Check this out!&quot;,
+  &quot;mediaUrl&quot;: &quot;https://s3.../photo.jpg&quot;
+}
+// Reply to message:
+{
+  &quot;messageType&quot;: &quot;TEXT&quot;,
+  &quot;message&quot;: &quot;I agree!&quot;,
+  &quot;replyToMessageId&quot;: &quot;message_object_id&quot;
+}
+// Video/Audio/File:
+{
+  &quot;messageType&quot;: &quot;VIDEO&quot;,           // VIDEO | AUDIO | FILE
+  &quot;mediaUrl&quot;: &quot;https://s3.../video.mp4&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;message_object_id&quot;,
+    &quot;roomId&quot;: &quot;room_object_id&quot;,
+    &quot;senderId&quot;: &quot;user_object_id&quot;,
+    &quot;content&quot;: &quot;Hello, how are you?&quot;,
+    &quot;mediaUrls&quot;: [],
+    &quot;reactions&quot;: [],
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Message sent successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7C.2 Get Messages</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;messages&quot;: [
+      {
+        &quot;_id&quot;: &quot;message_object_id&quot;,
+        &quot;senderId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Vijay&quot;,
+          &quot;lastName&quot;: &quot;Yadav&quot;
+        },
+        &quot;content&quot;: &quot;Hello, how are you?&quot;,
+        &quot;mediaUrls&quot;: [],
+        &quot;reactions&quot;: [],
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;,
+        &quot;isEdited&quot;: false
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 50,
+      &quot;totalPages&quot;: 3
+    }
+  },
+  &quot;message&quot;: &quot;Messages fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7C.3 Edit Message</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;message_object_id&quot;,
+    &quot;content&quot;: &quot;Updated message!&quot;,
+    &quot;isEdited&quot;: true,
+    &quot;updatedAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Message updated successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7C.4 Delete Message</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;messageId&quot;: &quot;message_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Message deleted successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7C.5 Get Unread Count</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;totalUnread&quot;: 15,
+    &quot;byRoom&quot;: {
+      &quot;room_id_1&quot;: 5,
+      &quot;room_id_2&quot;: 10
+    }
+  },
+  &quot;message&quot;: &quot;Unread count fetched&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7D. Reactions</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/messages/:messageId/reactions</code></td>
+<td>Yes</td>
+<td>Add/update emoji reaction</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/messages/:messageId/reactions</code></td>
+<td>Yes</td>
+<td>Remove your reaction</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/messaging/chats/:roomId/messages/:messageId/reactions</code></td>
+<td>Yes</td>
+<td>Get all reactions on message</td>
+</tr>
+</tbody></table>
+<h4>7D.1 Add Reaction</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/:roomId/messages/:messageId/reactions
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;emoji&quot;: &quot;👍&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;reaction_object_id&quot;,
+    &quot;messageId&quot;: &quot;message_object_id&quot;,
+    &quot;userId&quot;: &quot;user_object_id&quot;,
+    &quot;emoji&quot;: &quot;👍&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Reaction added successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7D.2 Remove Reaction</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;removed&quot;: true },
+  &quot;message&quot;: &quot;Reaction removed successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7D.3 Get Reactions</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;reactions&quot;: [
+      {
+        &quot;emoji&quot;: &quot;👍&quot;,
+        &quot;count&quot;: 3,
+        &quot;users&quot;: [&quot;user_id_1&quot;, &quot;user_id_2&quot;, &quot;user_id_3&quot;]
+      },
+      {
+        &quot;emoji&quot;: &quot;❤️&quot;,
+        &quot;count&quot;: 1,
+        &quot;users&quot;: [&quot;user_id_4&quot;]
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;Reactions fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7E. Mute &amp; Clear</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/messaging/chats/:roomId/mute</code></td>
+<td>Yes</td>
+<td>Mute chat notifications</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/mute</code></td>
+<td>Yes</td>
+<td>Unmute chat</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/messaging/chats/:roomId/mute</code></td>
+<td>Yes</td>
+<td>Get mute status</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DELETE</td>
+<td><code>/messaging/chats/:roomId/history</code></td>
+<td>Yes</td>
+<td>Clear your chat history</td>
+</tr>
+</tbody></table>
+<h4>7E.1 Mute Chat</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/chats/:roomId/mute
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;mutedUntil&quot;: null               // null = mute forever
+}
+// Or mute for specific time:
+{
+  &quot;mutedUntil&quot;: &quot;2026-04-01T00:00:00Z&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;muted&quot;: true,
+    &quot;mutedUntil&quot;: null
+  },
+  &quot;message&quot;: &quot;Chat muted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7E.2 Unmute Chat</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;muted&quot;: false },
+  &quot;message&quot;: &quot;Chat unmuted successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7E.3 Get Mute Status</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;muted&quot;: true,
+    &quot;mutedUntil&quot;: &quot;2026-04-01T00:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Mute status fetched&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7E.4 Clear Chat History</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;cleared&quot;: true },
+  &quot;message&quot;: &quot;Chat history cleared successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7F. Calls</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/messaging/calls</code></td>
+<td>Yes</td>
+<td>Create call log</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/messaging/calls</code></td>
+<td>Yes</td>
+<td>Get call history</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GET</td>
+<td><code>/messaging/calls/:callId</code></td>
+<td>Yes</td>
+<td>Get call detail (participants, recording)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>PUT</td>
+<td><code>/messaging/calls/:callId</code></td>
+<td>Yes</td>
+<td>Update call (duration, status, recording)</td>
+</tr>
+</tbody></table>
+<h4>7F.1 Create Call</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /messaging/calls
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;receiverId&quot;: &quot;user_object_id&quot;,
+  &quot;chatRoomId&quot;: &quot;room_object_id&quot;,
+  &quot;callType&quot;: &quot;VOICE&quot;               // VOICE | VIDEO
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;call_object_id&quot;,
+    &quot;roomId&quot;: &quot;room_object_id&quot;,
+    &quot;initiatorId&quot;: &quot;user_object_id&quot;,
+    &quot;callType&quot;: &quot;VOICE&quot;,
+    &quot;duration&quot;: 0,
+    &quot;status&quot;: &quot;ONGOING&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Call log created successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7F.2 Get Call History</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;calls&quot;: [
+      {
+        &quot;_id&quot;: &quot;call_object_id&quot;,
+        &quot;roomId&quot;: &quot;room_object_id&quot;,
+        &quot;initiatorId&quot;: {
+          &quot;_id&quot;: &quot;user_object_id&quot;,
+          &quot;firstName&quot;: &quot;Vijay&quot;,
+          &quot;lastName&quot;: &quot;Yadav&quot;
+        },
+        &quot;callType&quot;: &quot;VOICE&quot;,
+        &quot;duration&quot;: 120,
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 10,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Call logs fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7F.3 Get Call Detail</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;call_object_id&quot;,
+    &quot;roomId&quot;: &quot;room_object_id&quot;,
+    &quot;initiatorId&quot;: {...},
+    &quot;participantIds&quot;: [...],
+    &quot;callType&quot;: &quot;VOICE&quot;,
+    &quot;duration&quot;: 120,
+    &quot;startTime&quot;: &quot;2026-03-28T10:00:00.000Z&quot;,
+    &quot;endTime&quot;: &quot;2026-03-28T10:02:00.000Z&quot;,
+    &quot;status&quot;: &quot;COMPLETED&quot;
+  },
+  &quot;message&quot;: &quot;Call detail fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>7F.4 Update Call (when call ends)</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">PUT /messaging/calls/:callId
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;status&quot;: &quot;OUTGOING&quot;,             // OUTGOING|INCOMING|MISSED|REJECTED
+  &quot;duration&quot;: 120,                   // seconds
+  &quot;startedAt&quot;: &quot;2026-03-28T10:00:00Z&quot;,
+  &quot;endedAt&quot;: &quot;2026-03-28T10:02:00Z&quot;,
+  &quot;recordingUrl&quot;: &quot;https://s3.../recording.mp3&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;_id&quot;: &quot;call_object_id&quot;,
+    &quot;status&quot;: &quot;OUTGOING&quot;,
+    &quot;duration&quot;: 120,
+    &quot;updatedAt&quot;: &quot;2026-03-28T10:02:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Call log updated successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>7G. Users</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/messaging/users/search</code></td>
+<td>Yes</td>
+<td>Search users for new chat</td>
+</tr>
+</tbody></table>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /messaging/users/search?q=vijay&amp;page=1&amp;pageSize=20
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;users&quot;: [
+      {
+        &quot;_id&quot;: &quot;user_object_id&quot;,
+        &quot;firstName&quot;: &quot;Vijay&quot;,
+        &quot;lastName&quot;: &quot;Yadav&quot;,
+        &quot;profileImage&quot;: &quot;https://s3.../photo.jpg&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 3,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Users fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>8. NEWS FEED MODULE (<code>/news</code>)</h2>
+<h3>8A. Bookmarks</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/news/bookmarks</code></td>
+<td>Yes</td>
+<td>Toggle bookmark article</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/news/bookmarks</code></td>
+<td>Yes</td>
+<td>Get my bookmarks</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DELETE</td>
+<td><code>/news/bookmarks/:bookmarkId</code></td>
+<td>Yes</td>
+<td>Remove bookmark</td>
+</tr>
+</tbody></table>
+<h4>8A.1 Toggle Bookmark</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /news/bookmarks
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;articleUrl&quot;: &quot;https://bbc.com/article/123&quot;,
+  &quot;title&quot;: &quot;Ukraine&#39;s President Zelensky to BBC&quot;,
+  &quot;description&quot;: &quot;Article description...&quot;,
+  &quot;imageUrl&quot;: &quot;https://bbc.com/image.jpg&quot;,
+  &quot;sourceName&quot;: &quot;BBC News&quot;,
+  &quot;sourceLogo&quot;: &quot;https://bbc.com/logo.png&quot;,
+  &quot;publishedAt&quot;: &quot;2026-03-28T10:00:00Z&quot;,
+  &quot;category&quot;: &quot;Europe&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;bookmarked&quot;: true,
+    &quot;bookmarkId&quot;: &quot;bookmark_object_id&quot;
+  },
+  &quot;message&quot;: &quot;Article bookmarked successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8A.2 Get Bookmarks</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;bookmarks&quot;: [
+      {
+        &quot;_id&quot;: &quot;bookmark_object_id&quot;,
+        &quot;userId&quot;: &quot;user_object_id&quot;,
+        &quot;articleUrl&quot;: &quot;https://bbc.com/article/123&quot;,
+        &quot;title&quot;: &quot;Ukraine&#39;s President Zelensky to BBC&quot;,
+        &quot;description&quot;: &quot;Article description...&quot;,
+        &quot;imageUrl&quot;: &quot;https://bbc.com/image.jpg&quot;,
+        &quot;sourceName&quot;: &quot;BBC News&quot;,
+        &quot;sourceLogo&quot;: &quot;https://bbc.com/logo.png&quot;,
+        &quot;category&quot;: &quot;Europe&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 5,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Bookmarks fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8A.3 Remove Bookmark</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;removed&quot;: true },
+  &quot;message&quot;: &quot;Bookmark removed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>8B. Topics</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/news/topics</code></td>
+<td>Yes</td>
+<td>Toggle save topic</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/news/topics/me</code></td>
+<td>Yes</td>
+<td>Get my saved topics</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DELETE</td>
+<td><code>/news/topics/:topicSlug</code></td>
+<td>Yes</td>
+<td>Remove saved topic</td>
+</tr>
+</tbody></table>
+<h4>8B.1 Toggle Save Topic</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /news/topics
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;topicSlug&quot;: &quot;technology&quot;,
+  &quot;topicName&quot;: &quot;Technology&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;saved&quot;: true,
+    &quot;topicSlug&quot;: &quot;technology&quot;
+  },
+  &quot;message&quot;: &quot;Topic saved successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8B.2 Get My Topics</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;topics&quot;: [
+      {
+        &quot;_id&quot;: &quot;topic_object_id&quot;,
+        &quot;userId&quot;: &quot;user_object_id&quot;,
+        &quot;topicSlug&quot;: &quot;technology&quot;,
+        &quot;topicName&quot;: &quot;Technology&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;My saved topics fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8B.3 Remove Topic</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;removed&quot;: true },
+  &quot;message&quot;: &quot;Topic removed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>8C. Authors</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/news/authors</code></td>
+<td>Yes</td>
+<td>Toggle follow author</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GET</td>
+<td><code>/news/authors/me</code></td>
+<td>Yes</td>
+<td>Get my followed authors</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DELETE</td>
+<td><code>/news/authors/:authorSlug</code></td>
+<td>Yes</td>
+<td>Unfollow author</td>
+</tr>
+</tbody></table>
+<h4>8C.1 Toggle Follow Author</h4>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /news/authors
+Header: Authorization: Bearer &lt;token&gt;
+Body:
+{
+  &quot;authorSlug&quot;: &quot;bbc-news&quot;,
+  &quot;authorName&quot;: &quot;BBC News&quot;,
+  &quot;authorLogo&quot;: &quot;https://bbc.com/logo.png&quot;
+}
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;following&quot;: true,
+    &quot;authorSlug&quot;: &quot;bbc-news&quot;
+  },
+  &quot;message&quot;: &quot;Author followed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8C.2 Get My Authors</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;authors&quot;: [
+      {
+        &quot;_id&quot;: &quot;author_object_id&quot;,
+        &quot;userId&quot;: &quot;user_object_id&quot;,
+        &quot;authorSlug&quot;: &quot;bbc-news&quot;,
+        &quot;authorName&quot;: &quot;BBC News&quot;,
+        &quot;authorLogo&quot;: &quot;https://bbc.com/logo.png&quot;,
+        &quot;followedAt&quot;: &quot;2026-03-28T10:00:00.000Z&quot;
+      }
+    ]
+  },
+  &quot;message&quot;: &quot;My followed authors fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4>8C.3 Unfollow Author</h4>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: { &quot;removed&quot;: true },
+  &quot;message&quot;: &quot;Author unfollowed successfully&quot;,
+  &quot;toast&quot;: true,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<h3>8D. Search</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GET</td>
+<td><code>/news/search</code></td>
+<td>Yes</td>
+<td>Search topics + authors</td>
+</tr>
+</tbody></table>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">GET /news/search?q=technology&amp;type=all&amp;page=1&amp;pageSize=20
+// type: all | topics | authors
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;topics&quot;: [...],
+    &quot;authors&quot;: [...],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;pageSize&quot;: 20,
+      &quot;total&quot;: 10,
+      &quot;totalPages&quot;: 1
+    }
+  },
+  &quot;message&quot;: &quot;Search results fetched successfully&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>9. CRON MODULE (<code>/cron</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>POST</td>
+<td><code>/cron/story-cleanup</code></td>
+<td>Cron Secret</td>
+<td>Delete expired stories (called by AWS CloudWatch)</td>
+</tr>
+</tbody></table>
+<p><strong>Request:</strong></p>
+<pre><code class="language-json">POST /cron/story-cleanup
+Header: x-cron-secret: your-cron-secret-key-here
+</code></pre>
+<p><strong>Response: 200</strong></p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;deleted&quot;: 12,
+    &quot;processed&quot;: 50,
+    &quot;completedAt&quot;: &quot;2026-03-28T00:00:00.000Z&quot;
+  },
+  &quot;message&quot;: &quot;Story cleanup completed&quot;,
+  &quot;toast&quot;: false,
+  &quot;responseType&quot;: &quot;success&quot;
+}
+</code></pre>
+<hr>
+<h2>Testing Flow in Postman</h2>
+<h3>Step 1: Auth</h3>
+<ol>
+<li>Call <strong>Send OTP</strong> → note the OTP from server logs (dev mode)</li>
+<li>Call <strong>Verify OTP</strong> → save <code>accessToken</code> and <code>refreshToken</code></li>
+<li>Set <code>accessToken</code> as Bearer token in Postman collection</li>
+</ol>
+<h3>Step 2: Complete Onboarding</h3>
+<ol start="4">
+<li>Call <strong>Complete Profile</strong> → personal info</li>
+<li>Call <strong>Upload Documents</strong> x 3 (ADDRESS_PROOF, EDUCATION_PROOF, OTHER)</li>
+<li>Admin: <strong>Login</strong> → <strong>List KYC</strong> → <strong>Review Documents</strong> (approve all)</li>
+<li>Call <strong>Get Me</strong> → should show <code>screen: HOME</code></li>
+</ol>
+<h3>Step 3: Test Social Media</h3>
+<ol start="8">
+<li>Create a post → Like → Comment → Save → Share</li>
+<li>Create a story → View story feed</li>
+<li>Follow another user → Accept follow request</li>
+</ol>
+<h3>Step 4: Test Family Tree</h3>
+<ol start="11">
+<li>Add family members (SELF, FATHER, MOTHER, etc.)</li>
+<li>Get family tree</li>
+</ol>
+<h3>Step 5: Test Matrimonial</h3>
+<ol start="13">
+<li>Create matrimonial profile → Update steps → Submit</li>
+<li>Admin: Review → Approve</li>
+<li>Browse profiles → Send interest → Accept interest</li>
+</ol>
+<h3>Step 6: Test Messaging</h3>
+<ol start="16">
+<li>Create direct chat → Send messages → Add reactions</li>
+<li>Create group → Add members → Promote admin</li>
+<li>Create call log</li>
+</ol>
+<h3>Step 7: Test News Feed</h3>
+<ol start="19">
+<li>Bookmark article → Save topic → Follow author</li>
+</ol>
+</body></html>

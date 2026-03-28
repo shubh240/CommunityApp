@@ -5,6 +5,7 @@ import type { Request } from 'express';
 import UserDoc from '@/models/mongoose/userDoc.model';
 import User from '@/models/mongoose/user.model';
 import { DOC_FLOW, DOCUMENT_MESSAGE_MAP } from '@/constants/userDocMap';
+import UserDeviceToken from '@/models/mongoose/userDeviceToken.model';
 
 export default class UserRepo {
   constructor() {}
@@ -194,4 +195,30 @@ export default class UserRepo {
     };
   };
 
+  // ─── Register Device Token (FCM) ───────────────────
+  readonly registerDeviceToken = async (req: Request) => {
+    const userId = req.userTokenData._id;
+    const { token, deviceType } = req.body;
+
+    await UserDeviceToken.updateOne(
+      { userId, token },
+      { userId, token, deviceType, isActive: true },
+      { upsert: true }
+    );
+
+    return { registered: true };
+  };
+
+  // ─── Remove Device Token ──────────────────────────
+  readonly removeDeviceToken = async (req: Request) => {
+    const userId = req.userTokenData._id;
+    const { token } = req.body;
+
+    await UserDeviceToken.updateOne(
+      { userId, token },
+      { isActive: false }
+    );
+
+    return { removed: true };
+  };
 }

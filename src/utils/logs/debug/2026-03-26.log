@@ -298,3 +298,13 @@
 2026-03-26 22:47:22 info: 🚀 App listening on the port 5000
 2026-03-26 22:47:22 info: =================================
 2026-03-26 22:47:22 info: MongoDB connected successfully
+2026-03-26 22:47:34 info: =================================
+2026-03-26 22:47:34 info: ======= ENV: development ========
+2026-03-26 22:47:34 info: 🚀 App listening on the port 5000
+2026-03-26 22:47:34 info: =================================
+2026-03-26 22:47:34 info: MongoDB connected successfully
+2026-03-26 22:49:11 info: =================================
+2026-03-26 22:49:11 info: ======= ENV: development ========
+2026-03-26 22:49:11 info: 🚀 App listening on the port 5000
+2026-03-26 22:49:11 info: =================================
+2026-03-26 22:49:11 info: MongoDB connected successfully

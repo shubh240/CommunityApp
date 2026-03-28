@@ -6,18 +6,20 @@ import express from 'express';
 import { logger, stream } from '@utils/logger';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
-import { IncomingMessage, Server, ServerResponse } from 'http';
+import { createServer, IncomingMessage, Server, ServerResponse } from 'http';
 import { NODE_ENV, PORT, LOG_FORMAT, API_VERSION } from '@config';
 import connectMongoDB from './models/mongoose';
 
 export default class App {
   readonly app: express.Application;
+  readonly httpServer: Server<typeof IncomingMessage, typeof ServerResponse>;
   readonly env: string;
   readonly port: string | number;
   server: Server<typeof IncomingMessage, typeof ServerResponse>;
 
   constructor(data: { apiRoutes: Routes[]; generalRoutes: Routes[] }) {
     this.app = express();
+    this.httpServer = createServer(this.app);
     this.env = NODE_ENV || 'development';
     this.port = PORT || 3000;
     this.initializeDB();
@@ -34,7 +36,7 @@ export default class App {
   }
 
   public readonly listen = async () => {
-    this.server = this.app.listen(this.port, () => {
+    this.server = this.httpServer.listen(this.port, () => {
       logger.info('=================================');
       logger.info(`======= ENV: ${this.env} ========`);
       logger.info(`🚀 App listening on the port ${this.port}`);

@@ -4,7 +4,7 @@ import { POST_MESSAGES } from '@/messages/post.messages';
 import Story from '@/models/mongoose/story.model';
 import StoryView from '@/models/mongoose/storyView.model';
 import Follow from '@/models/mongoose/follow.model';
-import Notification from '@/models/mongoose/notification.model';
+import { sendNotification } from '@/helper/pushNotification.helper';
 import BlockRepo from '@/repository/block.repository';
 
 export default class StoryRepo {
@@ -120,7 +120,7 @@ export default class StoryRepo {
 
     // Notify story owner (if not self)
     if (story.userId.toString() !== userId.toString()) {
-      await Notification.create({
+      await sendNotification({
         senderId: userId,
         receiverId: story.userId,
         type: 'STORY_VIEW',

@@ -29,6 +29,11 @@
             "date": 1774541779835,
             "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-03-26.log",
             "hash": "01ce5d98a00c64d52ad6c47318cdfe69104834b53d31ea7bb60899a4614d196c"
+        },
+        {
+            "date": 1774682505408,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\debug\\2026-03-28.log",
+            "hash": "ddb3cd395a20f137febff08868ce66d707438049f952fb709be2a8a5bd04f20a"
         }
     ],
     "hashType": "sha256"

@@ -4,7 +4,7 @@ import { POST_MESSAGES } from '@/messages/post.messages';
 import Follow from '@/models/mongoose/follow.model';
 import User from '@/models/mongoose/user.model';
 import Block from '@/models/mongoose/block.model';
-import Notification from '@/models/mongoose/notification.model';
+import { sendNotification } from '@/helper/pushNotification.helper';
 
 export default class FollowRepo {
   constructor() {}
@@ -48,7 +48,7 @@ export default class FollowRepo {
     }
 
     // Notify receiver
-    await Notification.create({
+    await sendNotification({
       senderId: requesterId,
       receiverId,
       type: 'FOLLOW_REQUEST',
@@ -71,7 +71,7 @@ export default class FollowRepo {
     await follow.save();
 
     if (action === 'ACCEPTED') {
-      await Notification.create({
+      await sendNotification({
         senderId: userId,
         receiverId: follow.requesterId,
         type: 'FOLLOW_ACCEPTED',

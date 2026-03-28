@@ -47,6 +47,13 @@ const chatRoomSchema = new Schema<ChatRoomAttributes>(
       },
     ],
 
+    moderatorIds: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+
     bannedMemberIds: [
       {
         type: Schema.Types.ObjectId,

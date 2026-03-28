@@ -9,6 +9,7 @@ import UserToken from '@/models/mongoose/userToken.model';
 import { parseJwtExpires } from '@/utils/auth';
 import { HttpException } from '@/exceptions/HttpException';
 import { AUTH_MESSAGES } from '@/messages/auth.messages';
+import { sendOtpSms } from '@/utils/sendOtp';
 import { Types } from 'mongoose';
 
 /*
@@ -48,11 +49,10 @@ export default class AuthRepo {
       { upsert: true }
     );
 
-    // TODO: Send OTP via SMS (Twilio/AWS SNS)
-    // await sendOtpSms(mobile, otp);
-
-    // Only log in development — never expose OTP in response
-    if (process.env.NODE_ENV === 'development') {
+    // Send OTP via SMS in production, log in development
+    if (process.env.NODE_ENV === 'production') {
+      await sendOtpSms(String(mobile), String(otp));
+    } else {
       console.log(`[DEV] OTP for ${mobile}: ${otp}`);
     }
 

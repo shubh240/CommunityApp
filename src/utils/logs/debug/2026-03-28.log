@@ -1,0 +1,414 @@
+2026-03-28 12:51:49 info: =================================
+2026-03-28 12:51:49 info: ======= ENV: development ========
+2026-03-28 12:51:49 info: 🚀 App listening on the port 5000
+2026-03-28 12:51:49 info: =================================
+2026-03-28 12:51:49 info: MongoDB connected successfully
+2026-03-28 12:55:57 info: =================================
+2026-03-28 12:55:57 info: ======= ENV: development ========
+2026-03-28 12:55:57 info: 🚀 App listening on the port 5000
+2026-03-28 12:55:57 info: =================================
+2026-03-28 12:55:57 info: MongoDB connected successfully
+2026-03-28 12:57:38 info: =================================
+2026-03-28 12:57:38 info: ======= ENV: development ========
+2026-03-28 12:57:38 info: 🚀 App listening on the port 5000
+2026-03-28 12:57:38 info: =================================
+2026-03-28 12:57:39 info: MongoDB connected successfully
+2026-03-28 12:58:26 info: =================================
+2026-03-28 12:58:26 info: ======= ENV: development ========
+2026-03-28 12:58:26 info: 🚀 App listening on the port 5000
+2026-03-28 12:58:26 info: =================================
+2026-03-28 12:58:26 info: MongoDB connected successfully
+2026-03-28 12:59:22 info: =================================
+2026-03-28 12:59:22 info: ======= ENV: development ========
+2026-03-28 12:59:22 info: 🚀 App listening on the port 5000
+2026-03-28 12:59:22 info: =================================
+2026-03-28 12:59:23 info: MongoDB connected successfully
+2026-03-28 13:00:28 info: =================================
+2026-03-28 13:00:28 info: ======= ENV: development ========
+2026-03-28 13:00:28 info: 🚀 App listening on the port 5000
+2026-03-28 13:00:28 info: =================================
+2026-03-28 13:00:28 info: MongoDB connected successfully
+2026-03-28 13:01:04 info: =================================
+2026-03-28 13:01:04 info: ======= ENV: development ========
+2026-03-28 13:01:04 info: 🚀 App listening on the port 5000
+2026-03-28 13:01:04 info: =================================
+2026-03-28 13:01:04 info: MongoDB connected successfully
+2026-03-28 13:01:26 info: =================================
+2026-03-28 13:01:26 info: ======= ENV: development ========
+2026-03-28 13:01:26 info: 🚀 App listening on the port 5000
+2026-03-28 13:01:26 info: =================================
+2026-03-28 13:01:26 info: MongoDB connected successfully
+2026-03-28 13:07:01 info: =================================
+2026-03-28 13:07:01 info: ======= ENV: development ========
+2026-03-28 13:07:01 info: 🚀 App listening on the port 5000
+2026-03-28 13:07:01 info: =================================
+2026-03-28 13:07:01 info: MongoDB connected successfully
+2026-03-28 13:07:42 info: =================================
+2026-03-28 13:07:42 info: ======= ENV: development ========
+2026-03-28 13:07:42 info: 🚀 App listening on the port 5000
+2026-03-28 13:07:42 info: =================================
+2026-03-28 13:07:42 info: MongoDB connected successfully
+2026-03-28 13:08:09 info: =================================
+2026-03-28 13:08:09 info: ======= ENV: development ========
+2026-03-28 13:08:09 info: 🚀 App listening on the port 5000
+2026-03-28 13:08:09 info: =================================
+2026-03-28 13:08:10 info: MongoDB connected successfully
+2026-03-28 13:08:45 info: =================================
+2026-03-28 13:08:45 info: ======= ENV: development ========
+2026-03-28 13:08:45 info: 🚀 App listening on the port 5000
+2026-03-28 13:08:45 info: =================================
+2026-03-28 13:08:46 info: MongoDB connected successfully
+2026-03-28 13:09:07 info: =================================
+2026-03-28 13:09:07 info: ======= ENV: development ========
+2026-03-28 13:09:07 info: 🚀 App listening on the port 5000
+2026-03-28 13:09:07 info: =================================
+2026-03-28 13:09:07 info: MongoDB connected successfully
+2026-03-28 13:09:31 info: =================================
+2026-03-28 13:09:31 info: ======= ENV: development ========
+2026-03-28 13:09:31 info: 🚀 App listening on the port 5000
+2026-03-28 13:09:31 info: =================================
+2026-03-28 13:09:31 info: MongoDB connected successfully
+2026-03-28 13:09:56 info: =================================
+2026-03-28 13:09:56 info: ======= ENV: development ========
+2026-03-28 13:09:56 info: 🚀 App listening on the port 5000
+2026-03-28 13:09:56 info: =================================
+2026-03-28 13:09:57 info: MongoDB connected successfully
+2026-03-28 13:10:13 info: =================================
+2026-03-28 13:10:13 info: ======= ENV: development ========
+2026-03-28 13:10:13 info: 🚀 App listening on the port 5000
+2026-03-28 13:10:13 info: =================================
+2026-03-28 13:10:13 info: MongoDB connected successfully
+2026-03-28 13:10:26 info: =================================
+2026-03-28 13:10:26 info: ======= ENV: development ========
+2026-03-28 13:10:26 info: 🚀 App listening on the port 5000
+2026-03-28 13:10:26 info: =================================
+2026-03-28 13:10:26 info: MongoDB connected successfully
+2026-03-28 13:10:42 info: =================================
+2026-03-28 13:10:42 info: ======= ENV: development ========
+2026-03-28 13:10:42 info: 🚀 App listening on the port 5000
+2026-03-28 13:10:42 info: =================================
+2026-03-28 13:10:42 info: MongoDB connected successfully
+2026-03-28 13:11:05 info: =================================
+2026-03-28 13:11:05 info: ======= ENV: development ========
+2026-03-28 13:11:05 info: 🚀 App listening on the port 5000
+2026-03-28 13:11:05 info: =================================
+2026-03-28 13:11:05 info: MongoDB connected successfully
+2026-03-28 13:11:25 info: =================================
+2026-03-28 13:11:25 info: ======= ENV: development ========
+2026-03-28 13:11:25 info: 🚀 App listening on the port 5000
+2026-03-28 13:11:25 info: =================================
+2026-03-28 13:11:25 info: MongoDB connected successfully
+2026-03-28 13:12:32 info: =================================
+2026-03-28 13:12:32 info: ======= ENV: development ========
+2026-03-28 13:12:32 info: 🚀 App listening on the port 5000
+2026-03-28 13:12:32 info: =================================
+2026-03-28 13:12:32 info: MongoDB connected successfully
+2026-03-28 13:14:52 info: =================================
+2026-03-28 13:14:52 info: ======= ENV: development ========
+2026-03-28 13:14:52 info: 🚀 App listening on the port 5000
+2026-03-28 13:14:52 info: =================================
+2026-03-28 13:14:53 info: MongoDB connected successfully
+2026-03-28 13:15:28 info: =================================
+2026-03-28 13:15:28 info: ======= ENV: development ========
+2026-03-28 13:15:28 info: 🚀 App listening on the port 5000
+2026-03-28 13:15:28 info: =================================
+2026-03-28 13:15:28 info: MongoDB connected successfully
+2026-03-28 13:15:52 info: =================================
+2026-03-28 13:15:52 info: ======= ENV: development ========
+2026-03-28 13:15:52 info: 🚀 App listening on the port 5000
+2026-03-28 13:15:52 info: =================================
+2026-03-28 13:15:52 info: MongoDB connected successfully
+2026-03-28 13:16:29 info: =================================
+2026-03-28 13:16:29 info: ======= ENV: development ========
+2026-03-28 13:16:29 info: 🚀 App listening on the port 5000
+2026-03-28 13:16:29 info: =================================
+2026-03-28 13:16:29 info: MongoDB connected successfully
+2026-03-28 13:17:01 info: =================================
+2026-03-28 13:17:01 info: ======= ENV: development ========
+2026-03-28 13:17:01 info: 🚀 App listening on the port 5000
+2026-03-28 13:17:01 info: =================================
+2026-03-28 13:17:02 info: MongoDB connected successfully
+2026-03-28 13:17:25 info: =================================
+2026-03-28 13:17:25 info: ======= ENV: development ========
+2026-03-28 13:17:25 info: 🚀 App listening on the port 5000
+2026-03-28 13:17:25 info: =================================
+2026-03-28 13:17:25 info: MongoDB connected successfully
+2026-03-28 13:17:45 info: =================================
+2026-03-28 13:17:45 info: ======= ENV: development ========
+2026-03-28 13:17:45 info: 🚀 App listening on the port 5000
+2026-03-28 13:17:45 info: =================================
+2026-03-28 13:17:45 info: MongoDB connected successfully
+2026-03-28 13:18:07 info: =================================
+2026-03-28 13:18:07 info: ======= ENV: development ========
+2026-03-28 13:18:07 info: 🚀 App listening on the port 5000
+2026-03-28 13:18:07 info: =================================
+2026-03-28 13:18:08 info: MongoDB connected successfully
+2026-03-28 13:20:41 info: =================================
+2026-03-28 13:20:41 info: ======= ENV: development ========
+2026-03-28 13:20:41 info: 🚀 App listening on the port 5000
+2026-03-28 13:20:41 info: =================================
+2026-03-28 13:20:42 info: MongoDB connected successfully
+2026-03-28 13:21:14 info: =================================
+2026-03-28 13:21:14 info: ======= ENV: development ========
+2026-03-28 13:21:14 info: 🚀 App listening on the port 5000
+2026-03-28 13:21:14 info: =================================
+2026-03-28 13:21:15 info: MongoDB connected successfully
+2026-03-28 13:22:34 info: =================================
+2026-03-28 13:22:34 info: ======= ENV: development ========
+2026-03-28 13:22:34 info: 🚀 App listening on the port 5000
+2026-03-28 13:22:34 info: =================================
+2026-03-28 13:22:35 info: MongoDB connected successfully
+2026-03-28 13:23:22 info: =================================
+2026-03-28 13:23:22 info: ======= ENV: development ========
+2026-03-28 13:23:22 info: 🚀 App listening on the port 5000
+2026-03-28 13:23:22 info: =================================
+2026-03-28 13:23:22 info: MongoDB connected successfully
+2026-03-28 13:23:58 info: =================================
+2026-03-28 13:23:58 info: ======= ENV: development ========
+2026-03-28 13:23:58 info: 🚀 App listening on the port 5000
+2026-03-28 13:23:58 info: =================================
+2026-03-28 13:23:58 info: MongoDB connected successfully
+2026-03-28 13:24:45 info: =================================
+2026-03-28 13:24:45 info: ======= ENV: development ========
+2026-03-28 13:24:45 info: 🚀 App listening on the port 5000
+2026-03-28 13:24:45 info: =================================
+2026-03-28 13:24:45 info: MongoDB connected successfully
+2026-03-28 13:25:34 info: =================================
+2026-03-28 13:25:34 info: ======= ENV: development ========
+2026-03-28 13:25:34 info: 🚀 App listening on the port 5000
+2026-03-28 13:25:34 info: =================================
+2026-03-28 13:25:34 info: MongoDB connected successfully
+2026-03-28 13:25:52 info: =================================
+2026-03-28 13:25:52 info: ======= ENV: development ========
+2026-03-28 13:25:52 info: 🚀 App listening on the port 5000
+2026-03-28 13:25:52 info: =================================
+2026-03-28 13:25:52 info: MongoDB connected successfully
+2026-03-28 13:27:15 info: =================================
+2026-03-28 13:27:15 info: ======= ENV: development ========
+2026-03-28 13:27:15 info: 🚀 App listening on the port 5000
+2026-03-28 13:27:15 info: =================================
+2026-03-28 13:27:15 info: MongoDB connected successfully
+2026-03-28 13:38:29 info: =================================
+2026-03-28 13:38:29 info: ======= ENV: development ========
+2026-03-28 13:38:29 info: 🚀 App listening on the port 5000
+2026-03-28 13:38:29 info: =================================
+2026-03-28 13:38:30 info: MongoDB connected successfully
+2026-03-28 13:38:43 info: =================================
+2026-03-28 13:38:43 info: ======= ENV: development ========
+2026-03-28 13:38:43 info: 🚀 App listening on the port 5000
+2026-03-28 13:38:43 info: =================================
+2026-03-28 13:38:43 info: MongoDB connected successfully
+2026-03-28 13:39:04 info: =================================
+2026-03-28 13:39:04 info: ======= ENV: development ========
+2026-03-28 13:39:04 info: 🚀 App listening on the port 5000
+2026-03-28 13:39:04 info: =================================
+2026-03-28 13:39:04 info: MongoDB connected successfully
+2026-03-28 13:39:25 info: =================================
+2026-03-28 13:39:25 info: ======= ENV: development ========
+2026-03-28 13:39:25 info: 🚀 App listening on the port 5000
+2026-03-28 13:39:25 info: =================================
+2026-03-28 13:39:25 info: MongoDB connected successfully
+2026-03-28 13:39:50 info: =================================
+2026-03-28 13:39:50 info: ======= ENV: development ========
+2026-03-28 13:39:50 info: 🚀 App listening on the port 5000
+2026-03-28 13:39:50 info: =================================
+2026-03-28 13:39:50 info: MongoDB connected successfully
+2026-03-28 13:40:27 info: =================================
+2026-03-28 13:40:27 info: ======= ENV: development ========
+2026-03-28 13:40:27 info: 🚀 App listening on the port 5000
+2026-03-28 13:40:27 info: =================================
+2026-03-28 13:40:28 info: MongoDB connected successfully
+2026-03-28 13:40:43 info: =================================
+2026-03-28 13:40:43 info: ======= ENV: development ========
+2026-03-28 13:40:43 info: 🚀 App listening on the port 5000
+2026-03-28 13:40:43 info: =================================
+2026-03-28 13:40:46 info: MongoDB connected successfully
+2026-03-28 13:41:00 info: =================================
+2026-03-28 13:41:00 info: ======= ENV: development ========
+2026-03-28 13:41:00 info: 🚀 App listening on the port 5000
+2026-03-28 13:41:00 info: =================================
+2026-03-28 13:41:00 info: MongoDB connected successfully
+2026-03-28 13:41:34 info: =================================
+2026-03-28 13:41:34 info: ======= ENV: development ========
+2026-03-28 13:41:34 info: 🚀 App listening on the port 5000
+2026-03-28 13:41:34 info: =================================
+2026-03-28 13:41:36 info: MongoDB connected successfully
+2026-03-28 13:41:57 info: =================================
+2026-03-28 13:41:58 info: ======= ENV: development ========
+2026-03-28 13:41:58 info: 🚀 App listening on the port 5000
+2026-03-28 13:41:58 info: =================================
+2026-03-28 13:41:58 info: MongoDB connected successfully
+2026-03-28 13:42:23 info: =================================
+2026-03-28 13:42:23 info: ======= ENV: development ========
+2026-03-28 13:42:23 info: 🚀 App listening on the port 5000
+2026-03-28 13:42:23 info: =================================
+2026-03-28 13:42:24 info: MongoDB connected successfully
+2026-03-28 13:47:28 info: =================================
+2026-03-28 13:47:28 info: ======= ENV: development ========
+2026-03-28 13:47:28 info: 🚀 App listening on the port 5000
+2026-03-28 13:47:28 info: =================================
+2026-03-28 13:47:28 info: MongoDB connected successfully
+2026-03-28 13:47:44 info: =================================
+2026-03-28 13:47:44 info: ======= ENV: development ========
+2026-03-28 13:47:44 info: 🚀 App listening on the port 5000
+2026-03-28 13:47:44 info: =================================
+2026-03-28 13:47:45 info: MongoDB connected successfully
+2026-03-28 13:48:32 info: =================================
+2026-03-28 13:48:32 info: ======= ENV: development ========
+2026-03-28 13:48:32 info: 🚀 App listening on the port 5000
+2026-03-28 13:48:32 info: =================================
+2026-03-28 13:48:32 info: MongoDB connected successfully
+2026-03-28 13:49:14 info: =================================
+2026-03-28 13:49:14 info: ======= ENV: development ========
+2026-03-28 13:49:14 info: 🚀 App listening on the port 5000
+2026-03-28 13:49:14 info: =================================
+2026-03-28 13:49:14 info: MongoDB connected successfully
+2026-03-28 13:49:35 info: =================================
+2026-03-28 13:49:35 info: ======= ENV: development ========
+2026-03-28 13:49:35 info: 🚀 App listening on the port 5000
+2026-03-28 13:49:35 info: =================================
+2026-03-28 13:49:35 info: MongoDB connected successfully
+2026-03-28 13:49:58 info: =================================
+2026-03-28 13:49:58 info: ======= ENV: development ========
+2026-03-28 13:49:58 info: 🚀 App listening on the port 5000
+2026-03-28 13:49:58 info: =================================
+2026-03-28 13:49:58 info: MongoDB connected successfully
+2026-03-28 14:01:29 info: =================================
+2026-03-28 14:01:29 info: ======= ENV: development ========
+2026-03-28 14:01:29 info: 🚀 App listening on the port 5000
+2026-03-28 14:01:29 info: =================================
+2026-03-28 14:01:29 info: MongoDB connected successfully
+2026-03-28 14:02:48 info: =================================
+2026-03-28 14:02:48 info: ======= ENV: development ========
+2026-03-28 14:02:48 info: 🚀 App listening on the port 5000
+2026-03-28 14:02:48 info: =================================
+2026-03-28 14:02:48 info: MongoDB connected successfully
+2026-03-28 14:03:20 info: =================================
+2026-03-28 14:03:20 info: ======= ENV: development ========
+2026-03-28 14:03:20 info: 🚀 App listening on the port 5000
+2026-03-28 14:03:20 info: =================================
+2026-03-28 14:03:20 info: MongoDB connected successfully
+2026-03-28 14:03:36 info: =================================
+2026-03-28 14:03:36 info: ======= ENV: development ========
+2026-03-28 14:03:36 info: 🚀 App listening on the port 5000
+2026-03-28 14:03:36 info: =================================
+2026-03-28 14:03:36 info: MongoDB connected successfully
+2026-03-28 14:03:54 info: =================================
+2026-03-28 14:03:54 info: ======= ENV: development ========
+2026-03-28 14:03:54 info: 🚀 App listening on the port 5000
+2026-03-28 14:03:54 info: =================================
+2026-03-28 14:03:54 info: MongoDB connected successfully
+2026-03-28 14:04:17 info: =================================
+2026-03-28 14:04:17 info: ======= ENV: development ========
+2026-03-28 14:04:17 info: 🚀 App listening on the port 5000
+2026-03-28 14:04:17 info: =================================
+2026-03-28 14:04:18 info: MongoDB connected successfully
+2026-03-28 14:11:16 info: =================================
+2026-03-28 14:11:16 info: ======= ENV: development ========
+2026-03-28 14:11:16 info: 🚀 App listening on the port 5000
+2026-03-28 14:11:16 info: =================================
+2026-03-28 14:11:16 info: MongoDB connected successfully
+2026-03-28 14:12:16 info: =================================
+2026-03-28 14:12:16 info: ======= ENV: development ========
+2026-03-28 14:12:16 info: 🚀 App listening on the port 5000
+2026-03-28 14:12:16 info: =================================
+2026-03-28 14:12:16 info: MongoDB connected successfully
+2026-03-28 14:12:45 info: =================================
+2026-03-28 14:12:45 info: ======= ENV: development ========
+2026-03-28 14:12:45 info: 🚀 App listening on the port 5000
+2026-03-28 14:12:45 info: =================================
+2026-03-28 14:12:45 info: MongoDB connected successfully
+2026-03-28 14:13:06 info: =================================
+2026-03-28 14:13:06 info: ======= ENV: development ========
+2026-03-28 14:13:06 info: 🚀 App listening on the port 5000
+2026-03-28 14:13:06 info: =================================
+2026-03-28 14:13:06 info: MongoDB connected successfully
+2026-03-28 14:13:35 info: =================================
+2026-03-28 14:13:35 info: ======= ENV: development ========
+2026-03-28 14:13:35 info: 🚀 App listening on the port 5000
+2026-03-28 14:13:35 info: =================================
+2026-03-28 14:13:35 info: MongoDB connected successfully
+2026-03-28 14:14:17 info: =================================
+2026-03-28 14:14:17 info: ======= ENV: development ========
+2026-03-28 14:14:17 info: 🚀 App listening on the port 5000
+2026-03-28 14:14:17 info: =================================
+2026-03-28 14:14:17 info: MongoDB connected successfully
+2026-03-28 14:15:06 info: =================================
+2026-03-28 14:15:06 info: ======= ENV: development ========
+2026-03-28 14:15:06 info: 🚀 App listening on the port 5000
+2026-03-28 14:15:06 info: =================================
+2026-03-28 14:15:07 info: MongoDB connected successfully
+2026-03-28 14:15:21 info: =================================
+2026-03-28 14:15:21 info: ======= ENV: development ========
+2026-03-28 14:15:21 info: 🚀 App listening on the port 5000
+2026-03-28 14:15:21 info: =================================
+2026-03-28 14:15:21 info: MongoDB connected successfully
+2026-03-28 14:16:06 info: =================================
+2026-03-28 14:16:06 info: ======= ENV: development ========
+2026-03-28 14:16:06 info: 🚀 App listening on the port 5000
+2026-03-28 14:16:06 info: =================================
+2026-03-28 14:16:06 info: MongoDB connected successfully
+2026-03-28 14:16:34 info: =================================
+2026-03-28 14:16:34 info: ======= ENV: development ========
+2026-03-28 14:16:34 info: 🚀 App listening on the port 5000
+2026-03-28 14:16:34 info: =================================
+2026-03-28 14:16:47 info: =================================
+2026-03-28 14:16:47 info: ======= ENV: development ========
+2026-03-28 14:16:47 info: 🚀 App listening on the port 5000
+2026-03-28 14:16:47 info: =================================
+2026-03-28 14:16:48 info: MongoDB connected successfully
+2026-03-28 14:17:06 info: =================================
+2026-03-28 14:17:06 info: ======= ENV: development ========
+2026-03-28 14:17:06 info: 🚀 App listening on the port 5000
+2026-03-28 14:17:06 info: =================================
+2026-03-28 14:17:06 info: MongoDB connected successfully
+2026-03-28 14:17:20 info: =================================
+2026-03-28 14:17:20 info: ======= ENV: development ========
+2026-03-28 14:17:20 info: 🚀 App listening on the port 5000
+2026-03-28 14:17:20 info: =================================
+2026-03-28 14:17:21 info: MongoDB connected successfully
+2026-03-28 14:17:44 info: =================================
+2026-03-28 14:17:44 info: ======= ENV: development ========
+2026-03-28 14:17:44 info: 🚀 App listening on the port 5000
+2026-03-28 14:17:44 info: =================================
+2026-03-28 14:17:44 info: MongoDB connected successfully
+2026-03-28 14:18:04 info: =================================
+2026-03-28 14:18:04 info: ======= ENV: development ========
+2026-03-28 14:18:04 info: 🚀 App listening on the port 5000
+2026-03-28 14:18:04 info: =================================
+2026-03-28 14:18:04 info: MongoDB connected successfully
+2026-03-28 14:18:28 info: =================================
+2026-03-28 14:18:28 info: ======= ENV: development ========
+2026-03-28 14:18:28 info: 🚀 App listening on the port 5000
+2026-03-28 14:18:28 info: =================================
+2026-03-28 14:18:28 info: MongoDB connected successfully
+2026-03-28 14:18:41 info: =================================
+2026-03-28 14:18:41 info: ======= ENV: development ========
+2026-03-28 14:18:41 info: 🚀 App listening on the port 5000
+2026-03-28 14:18:41 info: =================================
+2026-03-28 14:18:41 info: MongoDB connected successfully
+2026-03-28 14:19:00 info: =================================
+2026-03-28 14:19:00 info: ======= ENV: development ========
+2026-03-28 14:19:00 info: 🚀 App listening on the port 5000
+2026-03-28 14:19:00 info: =================================
+2026-03-28 14:19:00 info: MongoDB connected successfully
+2026-03-28 14:19:15 info: =================================
+2026-03-28 14:19:15 info: ======= ENV: development ========
+2026-03-28 14:19:15 info: 🚀 App listening on the port 5000
+2026-03-28 14:19:15 info: =================================
+2026-03-28 14:19:16 info: MongoDB connected successfully
+2026-03-28 14:19:39 info: =================================
+2026-03-28 14:19:39 info: ======= ENV: development ========
+2026-03-28 14:19:39 info: 🚀 App listening on the port 5000
+2026-03-28 14:19:39 info: =================================
+2026-03-28 14:19:39 info: MongoDB connected successfully
+2026-03-28 14:20:22 info: =================================
+2026-03-28 14:20:22 info: ======= ENV: development ========
+2026-03-28 14:20:22 info: 🚀 App listening on the port 5000
+2026-03-28 14:20:22 info: =================================
+2026-03-28 14:20:23 info: MongoDB connected successfully
+2026-03-28 14:21:00 info: =================================
+2026-03-28 14:21:00 info: ======= ENV: development ========
+2026-03-28 14:21:00 info: 🚀 App listening on the port 5000
+2026-03-28 14:21:00 info: =================================
+2026-03-28 14:21:00 info: MongoDB connected successfully

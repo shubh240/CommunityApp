@@ -20,6 +20,7 @@ export interface ChatRoomAttributes extends Document {
   description: string;
   ownerId: Types.ObjectId;
   adminIds: Types.ObjectId[];
+  moderatorIds: Types.ObjectId[];
   bannedMemberIds: Types.ObjectId[];
 
   isActive: boolean;

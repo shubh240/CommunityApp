@@ -30,3 +30,19 @@ export const reviewUserDocSchema = Joi.object({
     otherwise: Joi.forbidden()
   })
 });
+
+export const matrimonialProfileListSchema = Joi.object({
+  status: Joi.string().valid('UNDER_REVIEW', 'APPROVED', 'REJECTED', 'DRAFT').optional(),
+  page: Joi.number().optional(),
+  pageSize: Joi.number().optional(),
+});
+
+export const reviewMatrimonialProfileSchema = Joi.object({
+  profileId: Joi.string().required(),
+  action: Joi.string().valid('APPROVED', 'REJECTED').required(),
+  rejectionReason: Joi.when('action', {
+    is: 'REJECTED',
+    then: Joi.string().min(1).required(),
+    otherwise: Joi.forbidden(),
+  }),
+});

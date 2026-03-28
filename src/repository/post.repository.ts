@@ -1,5 +1,4 @@
 import type { Request } from 'express';
-import mongoose from 'mongoose';
 import { HttpException } from '@/exceptions/HttpException';
 import { POST_MESSAGES } from '@/messages/post.messages';
 import Post from '@/models/mongoose/post.model';
@@ -8,7 +7,7 @@ import PostLike from '@/models/mongoose/postLike.model';
 import PostComment from '@/models/mongoose/postComment.model';
 import PostSaved from '@/models/mongoose/postSaved.model';
 import CommentLike from '@/models/mongoose/commentLike.model';
-import Notification from '@/models/mongoose/notification.model';
+import { sendNotification } from '@/helper/pushNotification.helper';
 import Follow from '@/models/mongoose/follow.model';
 import User from '@/models/mongoose/user.model';
 import BlockRepo from '@/repository/block.repository';
@@ -231,7 +230,7 @@ export default class PostRepo {
 
       // Notify post owner (if not self)
       if (post.userId.toString() !== userId.toString()) {
-        await Notification.create({
+        await sendNotification({
           senderId: userId,
           receiverId: post.userId,
           type: 'POST_LIKE',
@@ -291,7 +290,7 @@ export default class PostRepo {
 
     // Notify post owner
     if (post.userId.toString() !== userId.toString()) {
-      await Notification.create({
+      await sendNotification({
         senderId: userId,
         receiverId: post.userId,
         type: 'POST_COMMENT',

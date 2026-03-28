@@ -45,6 +45,19 @@ class UserRoute implements Routes {
       validationMiddleware(addressProofSchema, 'body'),
       this.userController.reUploadUserDocument,
     );
+
+    // ─── Device Token (FCM Push) ────────────────────
+    this.router.post(
+      `${this.userPath}/device-token`,
+      userAuthMiddleware(),
+      this.userController.registerDeviceToken,
+    );
+
+    this.router.delete(
+      `${this.userPath}/device-token`,
+      userAuthMiddleware(),
+      this.userController.removeDeviceToken,
+    );
   }
 }
 

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Routes } from '@/interfaces/routes.interface';
 import validationMiddleware from '@/middlewares/validation.middleware';
-import { adminLoginSchema, reviewUserDocSchema, userUnderReviewSchema } from '@/validationSchema/admin.validation.schema';
+import { adminLoginSchema, reviewUserDocSchema, userUnderReviewSchema, matrimonialProfileListSchema, reviewMatrimonialProfileSchema } from '@/validationSchema/admin.validation.schema';
 import { AdminAuthController } from '@/controllers/admin.controller';
 import AdminAuthRepo from '@/repository/admin.repository';
 import { adminAuthMiddleware } from '@/middlewares/adminAuth.middleware';
@@ -34,6 +34,21 @@ class AdminAuthRoute implements Routes {
       adminAuthMiddleware(),
       validationMiddleware(reviewUserDocSchema,'body'),
       this.controller.reviewUserDocument
+    );
+
+    // ─── Matrimonial Admin Routes ───────────────────
+    this.router.get(
+      `${this.path}/matrimonial/profiles`,
+      adminAuthMiddleware(),
+      validationMiddleware(matrimonialProfileListSchema, 'query'),
+      this.controller.listMatrimonialProfiles
+    );
+
+    this.router.post(
+      `${this.path}/matrimonial/review`,
+      adminAuthMiddleware(),
+      validationMiddleware(reviewMatrimonialProfileSchema, 'body'),
+      this.controller.reviewMatrimonialProfile
     );
   }
 }

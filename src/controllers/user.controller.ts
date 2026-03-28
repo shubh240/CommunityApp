@@ -43,4 +43,22 @@ export class UserController {
       next(error);
     }
   };
+
+  readonly registerDeviceToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.registerDeviceToken(req);
+      return generalResponse(res, data, 'Device token registered', 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly removeDeviceToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.removeDeviceToken(req);
+      return generalResponse(res, data, 'Device token removed', 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
 }

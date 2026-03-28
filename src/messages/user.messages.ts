@@ -6,6 +6,8 @@ export const USER_MESSAGES = Object.freeze({
   EDUCATION_PROOF_UPLOADED: 'Education proof uploaded successfully',
   OTHER_DOC_UPLOADED: 'Document uploaded successfully',
   INVALID_DOCUMENT_TYPE: 'Invalid document type',
+  REUPLOAD_NOT_ALLOWED: 'Re-upload is only allowed when your KYC is rejected',
+  USER_FETCHED: 'User profile fetched successfully',
   USER_EXIST_EMAIL: 'User is already registered with this email',
   GETALL_HELPS: 'User helps fetched successfully',
   HELP_CREATE: 'Help registered. Our volunteer will contact you soon',

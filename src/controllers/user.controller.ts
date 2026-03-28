@@ -20,16 +20,45 @@ export class UserController {
   readonly uploadUserDocument = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await this.userRepository.uploadUserDocument(req);
-      return generalResponse(
-        res,
-        data.user,
-        data.message,
-        'success',
-        false,
-      );
+      return generalResponse(res, data.user, data.message, 'success', false);
     } catch (error) {
       next(error);
     }
   };
 
+  readonly reUploadUserDocument = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.reUploadUserDocument(req);
+      return generalResponse(res, data.user, data.message, 'success', false);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly getMe = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.getMe(req);
+      return generalResponse(res, data, USER_MESSAGES.USER_FETCHED, 'success', false);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly registerDeviceToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.registerDeviceToken(req);
+      return generalResponse(res, data, 'Device token registered', 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly removeDeviceToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.removeDeviceToken(req);
+      return generalResponse(res, data, 'Device token removed', 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
 }

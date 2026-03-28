@@ -46,4 +46,29 @@ export class AdminAuthController {
     }
   };
 
+  readonly listMatrimonialProfiles = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const data = await this.repo.listMatrimonialProfiles(req);
+      return generalResponse(res, data, 'Matrimonial profiles fetched', 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  readonly reviewMatrimonialProfile = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const data = await this.repo.reviewMatrimonialProfile(req);
+      return generalResponse(res, data.profile, data.message, 'success');
+    } catch (error) {
+      next(error);
+    }
+  };
 }

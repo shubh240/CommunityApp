@@ -13,6 +13,38 @@ import MatrimonialProfile from '@/models/mongoose/matrimonialProfile.model';
 import { sendNotification } from '@/helper/pushNotification.helper';
 
 export default class AdminAuthRepo {
+  readonly register = async (req: Request) => {
+    const { name, mobile, email, password } = req.body;
+
+    const existingByMobile = await Admin.findOne({ mobile });
+    if (existingByMobile) {
+      throw new HttpException(400, ADMIN_MESSAGES.ADMIN_ALREADY_EXISTS);
+    }
+
+    const existingByEmail = await Admin.findOne({ email });
+    if (existingByEmail) {
+      throw new HttpException(400, ADMIN_MESSAGES.EMAIL_ALREADY_EXISTS);
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const admin = await Admin.create({
+      name,
+      mobile,
+      email,
+      password: hashedPassword,
+    });
+
+    return {
+      admin: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        mobile: admin.mobile,
+      },
+    };
+  };
+
   readonly login = async (req: Request) => {
     const { mobile, password, deviceInfo } = req.body;
 
@@ -32,17 +64,16 @@ export default class AdminAuthRepo {
     }
 
     // 3. Generate tokens
-    // Cast needed: JWT_ACCESS_EXPIRES is string from env but jsonwebtoken types expect StringValue
     const accessToken = jwt.sign(
       { adminId: admin._id },
       JWT_SECRET,
-      { expiresIn: JWT_ACCESS_EXPIRES as any }
+      { expiresIn: JWT_ACCESS_EXPIRES }
     );
 
     const refreshToken = jwt.sign(
       { adminId: admin._id },
       JWT_SECRET,
-      { expiresIn: JWT_REFRESH_EXPIRES as any }
+      { expiresIn: JWT_REFRESH_EXPIRES }
     );
 
     const expiresAt = new Date(Date.now() + parseJwtExpires(JWT_REFRESH_EXPIRES));
@@ -92,7 +123,7 @@ export default class AdminAuthRepo {
 
     const [users, total] = await Promise.all([
       User.find(filter)
-        .select('_id name email mobile kycStatus onboardingStep createdAt')
+        .select('_id firstName lastName email mobile kycStatus onboardingStep createdAt')
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(Number(pageSize))
@@ -253,5 +284,48 @@ export default class AdminAuthRepo {
     });
 
     return { message: `Profile ${action.toLowerCase()}`, profile };
+  };
+
+  readonly refreshToken = async (req: Request) => {
+    const { refreshToken, deviceId } = req.body;
+
+    if (!refreshToken || !deviceId) {
+      throw new HttpException(401, 'Refresh token & deviceId required');
+    }
+
+    let decoded: any;
+    try {
+      decoded = jwt.verify(refreshToken, JWT_SECRET);
+    } catch {
+      throw new HttpException(401, 'Invalid refresh token');
+    }
+
+    const tokenDoc = await AdminToken.findOne({
+      adminId: decoded.adminId,
+      refreshToken,
+      'deviceInfo.deviceId': deviceId,
+    });
+
+    if (!tokenDoc) {
+      throw new HttpException(401, 'Session expired, please login again');
+    }
+
+    const newAccessToken = jwt.sign(
+      { adminId: decoded.adminId },
+      JWT_SECRET,
+      { expiresIn: JWT_ACCESS_EXPIRES }
+    );
+
+    tokenDoc.accessToken = newAccessToken;
+    await tokenDoc.save();
+
+    return { accessToken: newAccessToken };
+  };
+
+  readonly logout = async (adminId: string, deviceId: string): Promise<void> => {
+    await AdminToken.findOneAndDelete({
+      adminId,
+      'deviceInfo.deviceId': deviceId,
+    });
   };
 }

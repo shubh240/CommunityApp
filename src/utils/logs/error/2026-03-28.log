@@ -1,0 +1,6 @@
+2026-03-28 17:07:41 error: [POST] /api/v1/user/auth/verifyOtp >> StatusCode:: 400, Message:: Invalid Otp
+2026-03-28 17:11:57 error: [POST] /api/v1/user/auth/logout >> StatusCode:: 401, Message:: Token expired, try again
+2026-03-28 17:15:32 error: [POST] /api/v1/user/auth/completeProfile >> StatusCode:: 400, Message:: Profile is already completed
+2026-03-28 17:21:40 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-03-28 17:33:50 error: [POST] /api/v1/admin/register >> StatusCode:: 400, Message:: Admin already exists with this mobile
+2026-03-28 17:43:55 error: [POST] /api/v1/user/auth/refresh-token >> StatusCode:: 401, Message:: Session expired, please login again

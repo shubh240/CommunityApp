@@ -1,6 +1,22 @@
 // admin.validation.schema.ts
 import Joi from 'joi';
 
+export const adminRegisterSchema = Joi.object({
+  name: Joi.string().trim().min(2).max(50).required(),
+  mobile: Joi.number().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+});
+
+export const adminRefreshTokenSchema = Joi.object({
+  refreshToken: Joi.string().required(),
+  deviceId: Joi.string().required(),
+});
+
+export const adminLogoutSchema = Joi.object({
+  deviceId: Joi.string().required(),
+});
+
 export const adminLoginSchema = Joi.object({
   mobile: Joi.number().required(),
   password: Joi.string().min(6).required(),

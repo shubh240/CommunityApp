@@ -80,6 +80,12 @@ export default class UserRepo {
       throw new HttpException(400, USER_MESSAGES.INVALID_DOCUMENT_TYPE);
     }
 
+    // Rejected users must use reUpload-documents endpoint
+    const currentUser = await User.findById(userId);
+    if (currentUser?.kycStatus === 'REJECTED') {
+      throw new HttpException(400, USER_MESSAGES.USE_REUPLOAD_ENDPOINT);
+    }
+
     const { nextStep, isLastStep } = DOC_FLOW[type];
 
     // upsert doc

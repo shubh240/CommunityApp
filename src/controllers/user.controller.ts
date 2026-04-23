@@ -44,6 +44,15 @@ export class UserController {
     }
   };
 
+  readonly updateProfile = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.userRepository.updateProfile(req);
+      return generalResponse(res, data, USER_MESSAGES.USER_UPDATE, 'success', true);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   readonly registerDeviceToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await this.userRepository.registerDeviceToken(req);

@@ -22,19 +22,19 @@ export default class ChatMessageRepo {
   // ─── Send Message ──────────────────────────────────
   readonly sendMessage = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { roomId } = req.params;
+    const roomId = req.params.roomId as string;
     const { messageType, message, mediaUrl, replyToMessageId } = req.body;
 
     const room = await this.verifyParticipant(roomId, userId);
 
-    const chatMessage = await ChatMessage.create({
+    const chatMessage = (await ChatMessage.create({
       chatRoomId: roomId,
       senderId: userId,
       messageType,
       message,
       mediaUrl,
       replyToMessageId: replyToMessageId || null,
-    });
+    })) as any;
 
     // Update room's last message
     room.lastMessage = messageType === 'TEXT' ? message : messageType;

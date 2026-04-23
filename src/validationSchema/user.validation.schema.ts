@@ -8,6 +8,22 @@ export const completeProfileSchema = Joi.object({
   language: Joi.string().valid('en', 'hi').optional(),
 });
 
+export const updateUserProfileSchema = Joi.object({
+  firstName: Joi.string().min(2).optional(),
+  lastName: Joi.string().min(2).optional(),
+  email: Joi.string().email().optional(),
+  profileImage: Joi.string().allow('').optional(),
+  language: Joi.string().valid('en', 'hi').optional(),
+  address: Joi.object({
+    addressLine1: Joi.string().allow('').optional(),
+    addressLine2: Joi.string().allow('').optional(),
+    city: Joi.string().allow('').optional(),
+    state: Joi.string().allow('').optional(),
+    pincode: Joi.string().allow('').optional(),
+    country: Joi.string().allow('').optional(),
+  }).optional(),
+});
+
 export const addressProofSchema = Joi.object({
   type: Joi.string()
     .valid('ADDRESS_PROOF', 'EDUCATION_PROOF', 'OTHER')

@@ -51,7 +51,7 @@ export default class ReportRepo {
   // ─── Report User ────────────────────────────────────
   readonly reportUser = async (req: Request) => {
     const reporterId = req.userTokenData._id;
-    const { userId } = req.params;
+    const userId = req.params.userId as string;
     const { reason, description } = req.body;
 
     if (reporterId.toString() === userId) {

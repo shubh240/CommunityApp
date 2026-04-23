@@ -1,0 +1,6 @@
+2026-04-23 21:08:53 error: [POST] /api/v1/admin/register >> StatusCode:: 400, Message:: Admin already exists with this email
+2026-04-23 21:21:01 error: [POST] /api/v1/admin/forgot-password/send-otp >> StatusCode:: 404, Message:: Admin not found
+2026-04-23 21:28:21 error: [GET] /api/v1/admin/profile >> StatusCode:: 401, Message:: Token expired, try again
+2026-04-23 21:28:29 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-04-23 21:35:28 error: [POST] /api/v1/admin/login >> StatusCode:: 400, Message:: Invalid mobile or password
+2026-04-23 21:44:23 error: [GET] /api/v1/admin/dashboard/growth >> StatusCode:: 401, Message:: Token expired, try again

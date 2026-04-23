@@ -231,7 +231,7 @@ export default class MatrimonialProfileRepo {
   // ─── Toggle Shortlist / Favourite ───────────────────
   readonly toggleShortlist = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { profileId } = req.params;
+    const profileId = req.params.profileId as string;
 
     const profile = await MatrimonialProfile.findOne({ _id: profileId, isActive: true, status: 'APPROVED' });
     if (!profile) throw new HttpException(404, MATRIMONIAL_MESSAGES.PROFILE_NOT_FOUND);

@@ -25,6 +25,11 @@ const adminSchema = new Schema<AdminAttributes>(
       select: false, // 🔐 never return password
     },
 
+    profileImage: {
+      type: String,
+      default: '',
+    },
+
     isActive: {
       type: Boolean,
       default: true,

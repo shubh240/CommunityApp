@@ -211,7 +211,7 @@ export default class PostRepo {
   // ─── Like / Unlike ──────────────────────────────────
   readonly toggleLike = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { postId } = req.params;
+    const postId = req.params.postId as string;
 
     const post = await Post.findOne({ _id: postId, isDeleted: false });
     if (!post) throw new HttpException(404, POST_MESSAGES.POST_NOT_FOUND);
@@ -267,7 +267,7 @@ export default class PostRepo {
   // ─── Add Comment ────────────────────────────────────
   readonly addComment = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { postId } = req.params;
+    const postId = req.params.postId as string;
     const { text, parentCommentId } = req.body;
 
     const post = await Post.findOne({ _id: postId, isDeleted: false });
@@ -279,12 +279,12 @@ export default class PostRepo {
       if (!parent) throw new HttpException(404, POST_MESSAGES.COMMENT_NOT_FOUND);
     }
 
-    const comment = await PostComment.create({
+    const comment = (await PostComment.create({
       postId,
       userId,
       parentCommentId: parentCommentId || null,
       text,
-    });
+    })) as any;
 
     await Post.updateOne({ _id: postId }, { $inc: { commentCount: 1 } });
 
@@ -396,7 +396,8 @@ export default class PostRepo {
   // ─── Like / Unlike Comment ──────────────────────────
   readonly toggleCommentLike = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { commentId, postId } = req.params;
+    const commentId = req.params.commentId as string;
+    const postId = req.params.postId as string;
 
     const comment = await PostComment.findOne({ _id: commentId, postId, isDeleted: false });
     if (!comment) throw new HttpException(404, POST_MESSAGES.COMMENT_NOT_FOUND);
@@ -506,7 +507,7 @@ export default class PostRepo {
   // ─── Save / Unsave Post ─────────────────────────────
   readonly toggleSave = async (req: Request) => {
     const userId = req.userTokenData._id;
-    const { postId } = req.params;
+    const postId = req.params.postId as string;
 
     const post = await Post.findOne({ _id: postId, isDeleted: false });
     if (!post) throw new HttpException(404, POST_MESSAGES.POST_NOT_FOUND);

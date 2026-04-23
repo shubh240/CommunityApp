@@ -41,7 +41,9 @@ export default class AuthRepo {
   constructor() { }
 
   readonly sendOtp = async (mobile: number): Promise<{}> => {
-    const otp = randomInt(100000, 999999);
+    // const otp = randomInt(100000, 999999);
+    // Fixed OTP for testing phase
+    const otp = 123456;
 
     await Otp.findOneAndUpdate(
       { mobile },

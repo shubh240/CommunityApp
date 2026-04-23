@@ -34,6 +34,16 @@
             "date": 1774682505418,
             "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-03-28.log",
             "hash": "ca3f40ec9e6d895196b3be8ab6201fa23818088336e4bf84bf23d061aed09786"
+        },
+        {
+            "date": 1776869743331,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-04-22.log",
+            "hash": "8c0a6a5d075ec6352d96f03c9a2530384372a6c09dd871409d4d3eed109e071f"
+        },
+        {
+            "date": 1776958365332,
+            "name": "D:\\CommunityAppBackend\\src\\utils\\logs\\error\\2026-04-23.log",
+            "hash": "8dd1b26750c4c2bc75fc0d1ec85a882344534826a14863f9190bd81d8691b1c0"
         }
     ],
     "hashType": "sha256"

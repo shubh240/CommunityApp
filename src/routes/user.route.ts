@@ -4,6 +4,7 @@ import validationMiddleware from '@/middlewares/validation.middleware';
 import {
   addressProofSchema,
   completeProfileSchema,
+  updateUserProfileSchema,
 } from '@/validationSchema/user.validation.schema';
 import { UserController } from '@/controllers/user.controller';
 import UserRepo from '@/repository/user.repository';
@@ -44,6 +45,14 @@ class UserRoute implements Routes {
       userAuthMiddleware(),
       validationMiddleware(addressProofSchema, 'body'),
       this.userController.reUploadUserDocument,
+    );
+
+    // ─── Update Profile ─────────────────────────────
+    this.router.put(
+      `${this.userPath}/profile`,
+      userAuthMiddleware(),
+      validationMiddleware(updateUserProfileSchema, 'body'),
+      this.userController.updateProfile,
     );
 
     // ─── Device Token (FCM Push) ────────────────────

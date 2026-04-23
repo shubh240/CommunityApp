@@ -22,7 +22,7 @@ export default class BlockRepo {
   // ─── Block User ─────────────────────────────────────
   readonly blockUser = async (req: Request) => {
     const blockerId = req.userTokenData._id;
-    const { userId: blockedId } = req.params;
+    const blockedId = req.params.userId as string;
 
     if (blockerId.toString() === blockedId) {
       throw new HttpException(400, BLOCK_MESSAGES.CANNOT_BLOCK_SELF);

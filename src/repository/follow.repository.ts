@@ -12,7 +12,7 @@ export default class FollowRepo {
   // ─── Send Follow Request ────────────────────────────
   readonly sendFollowRequest = async (req: Request) => {
     const requesterId = req.userTokenData._id;
-    const { userId: receiverId } = req.params;
+    const receiverId = req.params.userId as string;
 
     if (requesterId.toString() === receiverId) {
       throw new HttpException(400, POST_MESSAGES.CANNOT_FOLLOW_SELF);

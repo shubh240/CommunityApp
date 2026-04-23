@@ -201,6 +201,38 @@ export default class UserRepo {
     };
   };
 
+  // ─── Update User Profile ──────────────────────────
+  readonly updateProfile = async (req: Request) => {
+    const userId = req.userTokenData._id;
+    const { firstName, lastName, email, profileImage, language, address } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) throw new HttpException(404, USER_MESSAGES.USER_NOT_FOUND);
+
+    // Check if email is being changed and ensure it's unique
+    if (email !== undefined && email !== user.email) {
+      const existing = await User.findOne({ email, _id: { $ne: userId } });
+      if (existing) throw new HttpException(400, USER_MESSAGES.USER_EXIST_EMAIL);
+      user.email = email;
+    }
+
+    if (firstName !== undefined) user.firstName = firstName;
+    if (lastName !== undefined) user.lastName = lastName;
+    if (profileImage !== undefined) user.profileImage = profileImage;
+    if (language !== undefined) user.language = language;
+    if (address !== undefined) {
+      user.address = { ...user.address, ...address };
+    }
+
+    await user.save();
+
+    const updatedUser = await User.findById(userId)
+      .select('_id firstName lastName mobile email profileImage language address onboardingStep kycStatus isBlocked isActive')
+      .lean();
+
+    return updatedUser;
+  };
+
   // ─── Register Device Token (FCM) ───────────────────
   readonly registerDeviceToken = async (req: Request) => {
     const userId = req.userTokenData._id;

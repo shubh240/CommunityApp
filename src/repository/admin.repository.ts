@@ -67,13 +67,13 @@ export default class AdminAuthRepo {
     const accessToken = jwt.sign(
       { adminId: admin._id },
       JWT_SECRET,
-      { expiresIn: JWT_ACCESS_EXPIRES }
+      { expiresIn: JWT_ACCESS_EXPIRES } as jwt.SignOptions
     );
 
     const refreshToken = jwt.sign(
       { adminId: admin._id },
       JWT_SECRET,
-      { expiresIn: JWT_REFRESH_EXPIRES }
+      { expiresIn: JWT_REFRESH_EXPIRES } as jwt.SignOptions
     );
 
     const expiresAt = new Date(Date.now() + parseJwtExpires(JWT_REFRESH_EXPIRES));
@@ -313,7 +313,7 @@ export default class AdminAuthRepo {
     const newAccessToken = jwt.sign(
       { adminId: decoded.adminId },
       JWT_SECRET,
-      { expiresIn: JWT_ACCESS_EXPIRES }
+      { expiresIn: JWT_ACCESS_EXPIRES } as jwt.SignOptions
     );
 
     tokenDoc.accessToken = newAccessToken;

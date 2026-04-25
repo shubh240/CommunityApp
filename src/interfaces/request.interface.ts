@@ -1,9 +1,3 @@
-import { AdminType } from '@/models/mongoose/admin.model';
-
-export type TokenDataInterface = {
-  admin: AdminType;
-};
-
 export type jwtPayloadAdmin = {
   mobile: string;
   adminId: string;

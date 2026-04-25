@@ -13,8 +13,9 @@
     "module": "commonjs",
     "pretty": true,
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "outDir": "dist",
+    "rootDir": "src",
     "allowJs": true,
     "noEmit": false,
     "esModuleInterop": true,
@@ -43,5 +44,17 @@
     }
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env", "src/constants/modules/index.js"],
-  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
+  "exclude": [
+    "node_modules",
+    "src/http",
+    "src/logs",
+    "src/tests",
+    "src/scripts",
+    "src/seeders",
+    "src/constants/version.constant.ts",
+    "src/controllers/general.controller.ts",
+    "src/controllers/serviceProvider.controller.ts",
+    "src/helper/sequelize.helper.ts",
+    "src/middlewares/isNationalAdmin.middleware.ts"
+  ]
 }

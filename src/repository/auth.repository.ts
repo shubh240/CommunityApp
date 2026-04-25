@@ -75,21 +75,21 @@ export default class AuthRepo {
 
     await Otp.deleteOne({ mobile });
 
-    let user = await UserMongo.findOne({ mobile });
+    let user = await UserMongo.findOne({ mobile: String(mobile) });
     if (!user) {
-      user = new UserMongo({ mobile, isActive: true });
+      user = new UserMongo({ mobile: String(mobile), isActive: true });
       await user.save();
     }
 
     const accessToken = jwt.sign(
       { userId: user._id, mobile: user.mobile },
       JWT_SECRET,
-      { expiresIn: JWT_ACCESS_EXPIRES }
+      { expiresIn: JWT_ACCESS_EXPIRES } as jwt.SignOptions
     );
     const refreshToken = jwt.sign(
       { userId: user._id, mobile: user.mobile },
       JWT_SECRET,
-      { expiresIn: JWT_REFRESH_EXPIRES }
+      { expiresIn: JWT_REFRESH_EXPIRES } as jwt.SignOptions
     );
 
     const expiresAt = new Date(Date.now() + parseJwtExpires(JWT_REFRESH_EXPIRES));
@@ -156,7 +156,7 @@ export default class AuthRepo {
     const newAccessToken = jwt.sign(
       { userId: decoded.userId, mobile: decoded.mobile },
       JWT_SECRET,
-      { expiresIn: JWT_ACCESS_EXPIRES }
+      { expiresIn: JWT_ACCESS_EXPIRES } as jwt.SignOptions
     );
 
     tokenDoc.accessToken = newAccessToken;

@@ -1,4 +1,34 @@
+# Dependencies
 node_modules
+
+# Build output
+dist
+build
+
+# Environment & Secrets
 .env
+.env.local
+.env.production
+.env.development
 src/config/serviceAccountKey.json
 src/config/serviceAccountKeyAdmin.json
+
+# Logs
+*.log
+logs
+src/utils/logs
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+*.swp
+
+# AWS / SSH keys
+*.pem
+
+# Misc
+.cache
+coverage
